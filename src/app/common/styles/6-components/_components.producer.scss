@@ -1,0 +1,69 @@
+/* ==========================================================================
+   #PRODUCER
+   ========================================================================== */
+
+@import '../global-import';
+
+.root {
+  background: $alabaster;
+  padding-top: rem($global-spacing-unit-lg);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: rem($global-spacing-unit-lg);
+}
+
+.title {
+  font-weight: normal;
+  margin-bottom: rem($global-spacing-unit-xsm);
+}
+
+.categories {
+  color: $palette-body-lighten;
+}
+
+.meta {
+  background: #fff;
+  color: $palette-body-lighten;
+  font-size: rem($small-font-size);
+  padding-top: rem($global-spacing-unit-sm);
+  padding-bottom: rem($global-spacing-unit-sm);
+  text-align: center;
+}
+
+.meta__list {
+  margin-bottom: 0;
+}
+
+.meta__item {
+  margin-bottom: rem($global-spacing-unit-sm);
+
+  @include mq($from: 'tablet') {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-right: rem($global-spacing-unit-lg);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+
+    @include mq($from: 'tablet') {
+      margin-right: 0;
+    }
+  }
+}
+
+.meta__link {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: $palette-primary;
+  }
+
+  svg {
+    position: relative;
+    top: 2px;
+  }
+}

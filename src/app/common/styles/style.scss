@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Karla:400,400i,700');
+
+@import "./global-import";
+
+@import "./3-generic/generic.boxsizing";
+@import "~normalize.css";
+@import "./3-generic/generic.reset";
+
+@import "./4-base/base.forms";
+@import "./4-base/base.media";
+@import "./4-base/base.page";
+@import "./4-base/base.tables";
+
+// 5 - object styles generally included in React component
+
+// 6 - component styles generally included in React component
+
+@import "./7-scope/scope.body";
+
+@import "./8-utilities/utilities.alignment";
+@import "./8-utilities/utilities.animation";
+@import "./8-utilities/utilities.color";
+@import "./8-utilities/utilities.headings";
+@import "./8-utilities/utilities.spacing";
+@import "./8-utilities/utilities.text";
+@import "./8-utilities/utilities.visibility";
+@import "./8-utilities/utilities.widths";

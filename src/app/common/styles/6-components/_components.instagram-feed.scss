@@ -1,0 +1,33 @@
+/* ==========================================================================
+   #INSTAGRAM FEED
+   ========================================================================== */
+
+@import '../global-import';
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: rem($container-max-width-lg);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.item {
+  flex-basis: 50%;
+
+  @include mq($from: 'tablet') {
+    flex-basis: 25%;
+  }
+
+  @include mq($from: 'desktop') {
+    flex-basis: 20%;
+  }
+
+  &:last-child {
+    display: none;
+
+    @include mq($from: 'desktop') {
+      display: block;
+    }
+  }
+}

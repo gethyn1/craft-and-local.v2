@@ -1,0 +1,97 @@
+/* ==========================================================================
+   #LIGHTBOX
+   ========================================================================== */
+
+@import '../global-import';
+
+/**
+ * Creates an overlay and lightbox that sits over the top of site content.
+ */
+
+/**
+ * 1. Reset button styles.
+ * 2. Position at top right of lightbox content.
+ * 3. Remove default outline on focus.
+ */
+.close {
+  background: none; /* 1 */
+  border: none; /* 1 */
+  cursor: pointer; /* 1 */
+  padding: 0; /* 1 */
+  position: absolute;
+  right: rem($global-spacing-unit); /* 2 */
+  top: rem($global-spacing-unit); /* 2 */
+
+  &:hover {
+    color: $palette-primary;
+  }
+
+  &:focus {
+    outline: none; /* 3 */
+  }
+}
+
+/**
+ * 1. Create an overlay that covers entire browser content.
+ * 2. Vertically center lightbox content in the browser.
+ * 3. Sit lightbox on top of other page content.
+ */
+.overlay {
+  background: rgba(0,0,0,.8); /* 1 */
+  position: fixed; /* 1 */
+  top: 0; /* 1 */
+  left: 0; /* 1 */
+  bottom: 0; /* 1 */
+  right: 0; /* 1 */
+  display: flex; /* 2 */
+  flex-direction: column; /* 2 */
+  justify-content: center; /* 2 */
+  z-index: $stacking-max; /* 3 */
+
+  /**
+   * 1. Create space between edge of browser and content on larger devices.
+   */
+  @include mq($from: 'tablet') {
+    padding: rem($global-spacing-unit-lg) rem($global-spacing-unit); /* 1 */
+  }
+}
+
+/**
+ * 1. Vertically center lightbox content in the browser for smaller devices.
+ * 2. Full page content area for smaller devices.
+ * 3. Positioning hook for close button.
+ * 4. Chrome fix - ensure content is full width regardless of content line length.
+ */
+.wrapper {
+  display: flex; /* 1 */
+  flex-direction: column; /* 1 */
+  justify-content: center; /* 1 */
+  background: #fff;
+  height: 100vh; /* 2 */
+  padding: rem($global-spacing-unit-lg) 0 rem($global-spacing-unit);
+  position: relative; /* 3 */
+  width: 100%; /* 4 */
+
+  /**
+   * 1. Center content inside the browser window for larger devices.
+   */
+  @include mq($from: 'tablet') {
+    display: block; /* 1 */
+    height: auto; /* 1 */
+    margin: 0 auto; /* 1 */
+    max-height: 90vh; /* 1 */
+    max-width: rem(500); /* 1 */
+  }
+}
+
+/**
+ * 1. calculate appropriate content height based on parent padding.
+ * 2. Enable content scrolling when content is larger than available content area.
+ * 3. Accelerated scrolling for ios.
+ */
+.content {
+  max-height: calc(100% - #{($global-spacing-unit-lg + $global-spacing-unit)}); /* 1 */
+  padding: 0 rem($global-spacing-unit);
+  overflow-y: scroll; /* 2 */
+  -webkit-overflow-scrolling: touch; /* 3 */
+}

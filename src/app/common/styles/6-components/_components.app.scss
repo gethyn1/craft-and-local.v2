@@ -1,0 +1,16 @@
+/* ==========================================================================
+   #APP
+   ========================================================================== */
+
+@import '../global-import';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.footer {
+  background: $alabaster;
+  flex: 1;
+}

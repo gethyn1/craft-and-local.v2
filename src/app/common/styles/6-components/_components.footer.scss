@@ -1,0 +1,25 @@
+/* ==========================================================================
+   #FOOTER
+   ========================================================================== */
+
+@import '../global-import';
+
+.root {
+  background: $alabaster;
+  color: $palette-body-lighten;
+  font-size: rem($small-font-size);
+  padding: rem($global-spacing-unit) 0;
+}
+
+.nav {
+  margin-bottom: 0;
+}
+
+.nav__link {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: $palette-body;
+  }
+}

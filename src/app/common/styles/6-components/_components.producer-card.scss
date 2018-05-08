@@ -1,0 +1,42 @@
+/* ==========================================================================
+   #BUTTON
+   ========================================================================== */
+
+@import '../global-import';
+
+.card {
+  border: 1px solid $silver-satin;
+  box-shadow: 0 2px 2px rgba(0,0,0,0.08);
+  color: inherit;
+  display: block;
+  padding: rem($global-spacing-unit-lg) rem($global-spacing-unit);
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    .title {
+      color: $palette-primary;
+    }
+  }
+}
+
+.title {
+  font-size: rem(16);
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+
+.categories,
+.distance {
+  color: $palette-body-lighten;
+}
+
+.distance {
+  font-size: rem($small-font-size);
+
+  svg {
+    margin-right: rem($global-spacing-unit-xsm);
+    position: relative;
+    top: 1px;
+  }
+}
