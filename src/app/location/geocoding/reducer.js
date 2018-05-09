@@ -11,16 +11,10 @@ import {
 export const loadingReducer = (state: boolean = true, action: { type: string, payload: any }) => {
   switch (action.type) {
     case GEOCODING_ADDRESS_LOOKUP_IS_LOADING:
-      return {
-        ...state,
-        isLoading: true,
-      }
+      return true
     case GEOCODING_ADDRESS_LOOKUP_SUCCESS:
     case GEOCODING_ADDRESS_LOOKUP_HAS_ERRORED:
-      return {
-        ...state,
-        isLoading: false,
-      }
+      return false
     default:
       return state
   }
@@ -30,21 +24,15 @@ export const errorReducer = (state: boolean = false, action: { type: string, pay
   switch (action.type) {
     case GEOCODING_ADDRESS_LOOKUP_IS_LOADING:
     case GEOCODING_ADDRESS_LOOKUP_SUCCESS:
-      return {
-        ...state,
-        hasErrored: false,
-      }
+      return false
     case GEOCODING_ADDRESS_LOOKUP_HAS_ERRORED:
-      return {
-        ...state,
-        isLoading: true,
-      }
+      return true
     default:
       return state
   }
 }
 
-export const geocodingReducer = (state: Array = [], action: { type: string, payload: any }) => {
+export const geocodingReducer = (state: ?Object = null, action: { type: string, payload: any }) => { // eslint-disable-line
   switch (action.type) {
     case GEOCODING_ADDRESS_LOOKUP_SUCCESS:
       return {

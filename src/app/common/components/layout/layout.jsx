@@ -1,17 +1,17 @@
 /* eslint-disable dot-notation */
 // @flow
 
-import React from 'react'
+import * as React from 'react'
 import styles from './layout.scss'
 
 type Props = {
-  children: React.Element<*>,
+  children: React.Node,
   direction?: ?string,
   size?: ?string,
 }
 
 type ItemProps = {
-  children: React.Element<*>,
+  children: React.Node,
   cols: string,
   className?: string,
 }

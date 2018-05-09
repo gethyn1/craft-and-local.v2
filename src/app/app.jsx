@@ -10,12 +10,10 @@ type Props = {
   getUserLocation: Function,
 }
 
-class App extends React.Component {
+class App extends React.Component<Props> {
   componentDidMount() {
     this.props.getUserLocation()
   }
-
-  props: Props
 
   render() {
     return (

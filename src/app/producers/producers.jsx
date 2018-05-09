@@ -7,8 +7,8 @@ import Card from './card'
 
 type props = {
   producers: Array<Object>,
-  isFetching: Boolean,
-  hasErrored: Boolean,
+  isFetching: boolean,
+  hasErrored: boolean,
   userLatLng: Object,
 }
 

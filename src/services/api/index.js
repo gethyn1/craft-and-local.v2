@@ -1,4 +1,5 @@
 // @flow
+
 import { API_URL } from '../../config'
 
 const catchFetchError = (response: Object) => {
@@ -23,7 +24,7 @@ const api = {
       .catch(err => console.log(err)),
 
   getProducer: (id: String) =>
-    fetch(`${API_URL}/producer/${id}`, { method: 'GET' })
+    fetch(`${API_URL}/producer/${String(id)}`, { method: 'GET' })
       .then(catchFetchError)
       .then(response => response.json())
       .then(data => data)

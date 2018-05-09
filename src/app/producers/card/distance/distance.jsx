@@ -20,7 +20,7 @@ type Props = {
 
 // flow-disable-next-line
 @scriptLoader([GOOGLE_MAPS_URL])
-class Distance extends React.Component {
+class Distance extends React.Component<Props> {
   static defaultProps: Object
 
   constructor(props: Props) {
@@ -57,7 +57,6 @@ class Distance extends React.Component {
 
   getDistance: Function
   distance: number
-  props: Props
 
   render() {
     return (

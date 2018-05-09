@@ -15,7 +15,7 @@ const producersReducer = (state: Array<Object> = [], action: { type: string, pay
   }
 }
 
-const isFetchingReducer = (state: Boolean = false, action: { type: string, payload: any }) => {
+const isFetchingReducer = (state: boolean = false, action: { type: string, payload: any }) => {
   switch (action.type) {
     case PRODUCERS_IS_FETCHING_DATA:
       return true
@@ -27,7 +27,7 @@ const isFetchingReducer = (state: Boolean = false, action: { type: string, paylo
   }
 }
 
-const hasErroredReducer = (state: Boolean = false, action: { type: string, payload: any }) => {
+const hasErroredReducer = (state: boolean = false, action: { type: string, payload: any }) => {
   switch (action.type) {
     case PRODUCERS_IS_FETCHING_DATA:
     case PRODUCERS_FETCH_DATA_SUCCESS:

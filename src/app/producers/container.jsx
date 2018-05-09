@@ -15,12 +15,10 @@ type Props = {
   },
 }
 
-class ProducersContainer extends React.Component {
+class ProducersContainer extends React.Component<Props> {
   componentDidMount() {
     this.props.getProducers()
   }
-
-  props: Props
 
   render() {
     const { isFetching, hasErrored, producers, userLatLng } = this.props

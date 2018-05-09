@@ -1,10 +1,10 @@
 // @flow
 
-import React from 'react'
+import * as React from 'react'
 import styles from './container.scss'
 
 type Props = {
-  children: React.Element<*>,
+  children: React.Node,
 }
 
 const Container = ({ children }: Props) => (

@@ -1,10 +1,10 @@
 // @flow
 
-import React from 'react'
+import * as React from 'react'
 import styles from './list-bare.scss'
 
 type Props = {
-  children: React.Element<*>,
+  children: React.Node,
 }
 
 const ListBare = ({ children }: Props) => (

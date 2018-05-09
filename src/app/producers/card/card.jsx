@@ -11,7 +11,9 @@ import locationIcon from '../../common/icons/location.svg' // eslint-disable-lin
 
 type Props = {
   producer: {
-    location: Array<string>,
+    location: {
+      coordinates: Array<string>
+    },
     categories: Array<{ _id: string, title: string }>,
     user_id: string,
     title: string,

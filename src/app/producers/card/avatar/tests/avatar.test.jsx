@@ -1,5 +1,5 @@
 import React from 'react'
-import { mount } from 'enzyme'
+import { shallow } from 'enzyme'
 import Avatar from '../avatar'
 import styles from '../avatar.scss'
 
@@ -9,7 +9,7 @@ describe('<Avatar />', () => {
 
   const renderedComponent = () => {
     if (!mountedComponent) {
-      mountedComponent = mount(<Avatar {...props} />)
+      mountedComponent = shallow(<Avatar {...props} />)
     }
 
     return mountedComponent
