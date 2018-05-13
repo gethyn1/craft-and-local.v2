@@ -9,6 +9,7 @@ module.name_mapper='\(react-router-dom\)' -> '<PROJECT_ROOT>/flow/GeneralStub.js
 module.name_mapper='\(react-helmet\)' -> '<PROJECT_ROOT>/flow/GeneralStub.js.flow'
 module.name_mapper='\(react-async-script-loader\)' -> '<PROJECT_ROOT>/flow/GeneralStub.js.flow'
 module.name_mapper='\(react-ga\)' -> '<PROJECT_ROOT>/flow/GeneralStub.js.flow'
+module.name_mapper='\(ramda\)' -> '<PROJECT_ROOT>/flow/GeneralStub.js.flow'
 module.name_mapper='.*\(.css\)' -> '<PROJECT_ROOT>/flow/GeneralStub.js.flow'
 module.name_mapper='.*\(.scss\)' -> '<PROJECT_ROOT>/flow/GeneralStub.js.flow'
 module.name_mapper='^common' ->'<PROJECT_ROOT>/src/app/common'

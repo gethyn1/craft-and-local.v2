@@ -1,12 +1,13 @@
 // @flow
 import { combineReducers } from 'redux'
+import { map } from 'ramda'
 import {
   PRODUCERS_IS_FETCHING_DATA,
   PRODUCERS_FETCH_DATA_SUCCESS,
   PRODUCERS_FETCH_HAS_ERRORED,
 } from './action-types'
 
-const producersReducer = (state: Array<Object> = [], action: { type: string, payload: any }) => {
+const producers = (state: Array<Object> = [], action: { type: string, payload: any }) => {
   switch (action.type) {
     case PRODUCERS_FETCH_DATA_SUCCESS:
       return [...action.payload]
@@ -15,7 +16,22 @@ const producersReducer = (state: Array<Object> = [], action: { type: string, pay
   }
 }
 
-const isFetchingReducer = (state: boolean = false, action: { type: string, payload: any }) => {
+const createMarker = (producer: Object) => ({
+  lat: producer.location.coordinates[1],
+  lng: producer.location.coordinates[0],
+  title: producer.title,
+})
+
+const markers = (state: Array<Object> = [], action: { type: string, payload: any }) => {
+  switch (action.type) {
+    case PRODUCERS_FETCH_DATA_SUCCESS:
+      return map(createMarker, action.payload)
+    default:
+      return state
+  }
+}
+
+const isFetching = (state: boolean = false, action: { type: string, payload: any }) => {
   switch (action.type) {
     case PRODUCERS_IS_FETCHING_DATA:
       return true
@@ -27,7 +43,7 @@ const isFetchingReducer = (state: boolean = false, action: { type: string, paylo
   }
 }
 
-const hasErroredReducer = (state: boolean = false, action: { type: string, payload: any }) => {
+const hasErrored = (state: boolean = false, action: { type: string, payload: any }) => {
   switch (action.type) {
     case PRODUCERS_IS_FETCHING_DATA:
     case PRODUCERS_FETCH_DATA_SUCCESS:
@@ -40,9 +56,12 @@ const hasErroredReducer = (state: boolean = false, action: { type: string, paylo
 }
 
 export default combineReducers({
-  data: producersReducer,
+  data: combineReducers({
+    producers,
+    markers,
+  }),
   meta: combineReducers({
-    isFetching: isFetchingReducer,
-    hasErrored: hasErroredReducer,
+    isFetching,
+    hasErrored,
   }),
 })

@@ -7,6 +7,7 @@ import Producers from './producers'
 type Props = {
   getProducers: Function,
   producers: Array<Object>,
+  markers: Array<Object>,
   isFetching: boolean,
   hasErrored: boolean,
   userLatLng: {
@@ -21,12 +22,13 @@ class ProducersContainer extends React.Component<Props> {
   }
 
   render() {
-    const { isFetching, hasErrored, producers, userLatLng } = this.props
+    const { isFetching, hasErrored, producers, markers, userLatLng } = this.props
 
     return (
       <Producers
-        isFetching={isFetching}
+        markers={markers}
         producers={producers}
+        isFetching={isFetching}
         userLatLng={userLatLng}
         hasErrored={hasErrored}
       />
@@ -35,7 +37,8 @@ class ProducersContainer extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: Object) => ({
-  producers: state.domain.producers.data,
+  producers: state.domain.producers.data.producers,
+  markers: state.domain.producers.data.markers,
   isFetching: state.domain.producers.meta.isFetching,
   hasErrored: state.domain.producers.meta.hasErrored,
   userLatLng: {
