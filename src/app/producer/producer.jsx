@@ -3,6 +3,7 @@
 import React from 'react'
 import Avatar from 'common/components/avatar'
 import Container from 'common/components/container'
+import GoogleMap from 'common/components/google-map'
 import Icon from 'common/components/icon'
 import List from 'common/components/list'
 /* eslint-disable no-unused-vars */
@@ -83,6 +84,10 @@ const Producer = ({
           </List>
         </Container>
       </div>
+      <GoogleMap
+        longitude={producer.location.coordinates[0]}
+        latitude={producer.location.coordinates[1]}
+      />
     </div>
   )
 }
