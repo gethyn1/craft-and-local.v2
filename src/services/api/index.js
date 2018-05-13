@@ -23,11 +23,11 @@ const api = {
       // eslint-disable-next-line no-console
       .catch(err => console.log(err)),
 
-  getProducer: (id: String) =>
-    fetch(`${API_URL}/producer/${String(id)}`, { method: 'GET' })
+  getProducer: (userId: String) =>
+    fetch(`${API_URL}/producers/${String(userId)}`, { method: 'GET' })
       .then(catchFetchError)
       .then(response => response.json())
-      .then(data => data)
+      .then(data => data.data.producer)
       // eslint-disable-next-line no-console
       .catch(err => console.log(err)),
 }
