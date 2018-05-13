@@ -1,13 +1,39 @@
 /* ==========================================================================
-   #LIST-BARE
+   #LIST
    ========================================================================== */
+
+.bare,
+.inline {
+  margin-left: 0;
+}
+
+
+
+
 
 /**
  * Strip list-like appearance from lists by removing their bullets, and any
  * indentation.
  */
 
-.list-bare {
+.bare {
   list-style-type: none;
-  margin-left: 0;
+}
+
+
+
+
+
+/**
+ * Display list horizontally.
+ */
+
+.inline {
+  > li {
+    display: inline-block;
+
+    + * {
+      margin-left: 1em;
+    }
+  }
 }

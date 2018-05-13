@@ -3,8 +3,10 @@
 import React from 'react'
 import { Switch } from 'react-router'
 import { Route } from 'react-router-dom'
+import Container from 'common/components/container'
 import attachRoutes from '../core/attach-routes'
 import routes from './manifest'
+import TopBar from './top-bar'
 
 type Props = {
   getUserLocation: Function,
@@ -17,7 +19,8 @@ class App extends React.Component<Props> {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
+        <TopBar />
         <Route
           path="/"
           render={() => {
@@ -26,10 +29,10 @@ class App extends React.Component<Props> {
           }}
         />
         <Switch>
-          <Route exact path="/" render={() => <div><p>Test</p></div>} />
+          <Route exact path="/" render={() => <Container><p>This is the homepage</p></Container>} />
           {attachRoutes(routes)}
         </Switch>
-      </div>
+      </React.Fragment>
     )
   }
 }

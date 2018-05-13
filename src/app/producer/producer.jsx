@@ -4,7 +4,7 @@ import React from 'react'
 import Avatar from 'common/components/avatar'
 import Container from 'common/components/container'
 import Icon from 'common/components/icon'
-import ListBare from 'common/components/list-bare'
+import List from 'common/components/list'
 /* eslint-disable no-unused-vars */
 import twitterIcon from 'common/icons/twitter.svg'
 import instagramIcon from 'common/icons/instagram.svg'
@@ -51,7 +51,7 @@ const Producer = ({
       </Container>
       <div className={styles.meta}>
         <Container>
-          <ListBare className={styles.meta__list}>
+          <List bare className={styles.meta__list}>
             {producer.locality ? (
               <li className={styles.meta__item}>
                 <a className={styles.meta__link} href="#producer-map">
@@ -80,7 +80,7 @@ const Producer = ({
                 </a>
               </li>
             ) : null}
-          </ListBare>
+          </List>
         </Container>
       </div>
     </div>

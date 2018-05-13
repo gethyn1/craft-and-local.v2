@@ -1,0 +1,57 @@
+/* ==========================================================================
+   #TOP BAR
+   ========================================================================== */
+
+@import "common/styles/_global-import.scss";
+
+.top-bar {
+  padding-top: rem($global-spacing-unit);
+  padding-bottom: rem($global-spacing-unit);
+  position: relative;
+}
+
+.branding {
+  @include mq($from: 'tablet') {
+    margin-right: rem($global-spacing-unit);
+  }
+}
+
+.logo {
+  color: inherit;
+  display: inline-block;
+  font-weight: 700;
+  font-size: rem(30);
+  letter-spacing: -1.5px;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    color: $palette-primary;
+  }
+}
+
+/**
+ * 1. Reduce size of ampersand for branding.
+ * 2. Adjust alignment for branding.
+ */
+
+.logo__amp {
+  font-size: rem(14); /* 1 */
+  position: relative; /* 2 */
+  top: -4px; /* 2 */
+}
+
+
+/**
+ * 1. Align items horizontally.
+ */
+
+.wrapper {
+  text-align: center;
+
+  @include mq($from: 'tablet') {
+    align-items: center; /* 1 */
+    display: flex; /* 1 */
+    text-align: auto;
+  }
+}
