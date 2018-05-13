@@ -10,26 +10,27 @@ type Props = {
   markers: Array<Object>,
   isFetching: boolean,
   hasErrored: boolean,
-  userLatLng: {
-    latitude: string,
-    longitude: string,
-  },
+  latitude: string,
+  longitude: string,
 }
 
 class ProducersContainer extends React.Component<Props> {
-  componentDidMount() {
-    this.props.getProducers()
+  componentDidUpdate(prevProps) {
+    const { latitude, longitude } = this.props
+    if (latitude !== prevProps.latitude || longitude !== prevProps.longitude) {
+      this.props.getProducers({ lat: latitude, lng: longitude })
+    }
   }
 
   render() {
-    const { isFetching, hasErrored, producers, markers, userLatLng } = this.props
+    const { isFetching, hasErrored, producers, markers, latitude, longitude } = this.props
 
     return (
       <Producers
         markers={markers}
         producers={producers}
         isFetching={isFetching}
-        userLatLng={userLatLng}
+        userLatLng={{ latitude, longitude }}
         hasErrored={hasErrored}
       />
     )
@@ -41,10 +42,8 @@ const mapStateToProps = (state: Object) => ({
   markers: state.domain.producers.data.markers,
   isFetching: state.domain.producers.meta.isFetching,
   hasErrored: state.domain.producers.meta.hasErrored,
-  userLatLng: {
-    latitude: state.user.location.data.latitude,
-    longitude: state.user.location.data.longitude,
-  },
+  latitude: state.user.location.data.latitude,
+  longitude: state.user.location.data.longitude,
 })
 
 const mapDispatchToProps = ({

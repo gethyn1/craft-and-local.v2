@@ -8,10 +8,15 @@ import {
 
 import api from '../../services/api'
 
-const getProducers = () => (dispatch: Function) => {
+type Props = {
+  lat: string,
+  lng: string,
+}
+
+const getProducers = ({ lat, lng }: Props) => (dispatch: Function) => {
   dispatch({ type: PRODUCERS_IS_FETCHING_DATA, payload: true })
 
-  return api.getProducers()
+  return api.getProducers({ lat, lng })
     .then((data) => {
       dispatch({ type: PRODUCERS_FETCH_DATA_SUCCESS, payload: data })
     })

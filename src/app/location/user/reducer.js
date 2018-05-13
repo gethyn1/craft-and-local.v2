@@ -14,7 +14,7 @@ export const initialState = {
   address: null,
 }
 
-export const loadingReducer = (state: boolean = false, action: { type: string, payload: any }) => {
+export const isLoading = (state: boolean = false, action: { type: string, payload: any }) => {
   switch (action.type) {
     case LOCATION_IS_LOADING:
       return true
@@ -26,7 +26,7 @@ export const loadingReducer = (state: boolean = false, action: { type: string, p
   }
 }
 
-export const errorReducer = (state: boolean = false, action: { type: string, payload: any }) => {
+export const hasErrored = (state: boolean = false, action: { type: string, payload: any }) => {
   switch (action.type) {
     case LOCATION_IS_LOADING:
     case LOCATION_GET_ADDRESS_FROM_LAT_LNG_SUCCESS:
@@ -38,7 +38,7 @@ export const errorReducer = (state: boolean = false, action: { type: string, pay
   }
 }
 
-export const locationReducer = (
+export const location = (
   state: { latitude: number, longitude: number, address: ?string } = initialState,
   action: { type: string, payload: any },
 ) => {
@@ -60,9 +60,9 @@ export const locationReducer = (
 }
 
 export default combineReducers({
-  data: locationReducer,
+  data: location,
   meta: combineReducers({
-    isLoading: loadingReducer,
-    hasErrored: errorReducer,
+    isLoading,
+    hasErrored,
   }),
 })

@@ -14,9 +14,14 @@ const catchFetchError = (response: Object) => {
   return response
 }
 
+type GetProducersProps = {
+  lat: string,
+  lng: string,
+}
+
 const api = {
-  getProducers: () =>
-    fetch(`${API_URL}/producers`, { method: 'GET' })
+  getProducers: ({ lat, lng }: GetProducersProps) =>
+    fetch(`${API_URL}/producers?latlng=${lat},${lng}`, { method: 'GET' })
       .then(catchFetchError)
       .then(response => response.json())
       .then(data => data.data.producers)
