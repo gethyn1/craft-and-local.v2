@@ -29,3 +29,5 @@ class LocalStorageMock {
 
 global.localStorage = new LocalStorageMock
 global.sessionStorage = new LocalStorageMock
+
+window.scrollTo = () => {}

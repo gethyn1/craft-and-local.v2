@@ -44,6 +44,14 @@ const api = {
       .then(data => data.data.producer)
       // eslint-disable-next-line no-console
       .catch(err => console.log(err)),
+
+  getCategories: () =>
+    fetch(`${API_URL}/categories`, { method: 'GET' })
+      .then(catchFetchError)
+      .then(response => response.json())
+      .then(data => data.data.categories)
+      // eslint-disable-next-line no-console
+      .catch(err => console.log(err)),
 }
 
 export default api

@@ -3,12 +3,14 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { getUserLocation } from './location/user'
+import { getCategories } from './categories'
 import App from './app'
 
 const mapStateToProps = (state: Object) => ({}) // eslint-disable-line no-unused-vars
 
 const mapDispatchToProps = {
   getUserLocation,
+  getCategories,
 }
 
 /**

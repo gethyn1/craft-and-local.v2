@@ -10,11 +10,13 @@ import TopBar from './top-bar'
 
 type Props = {
   getUserLocation: Function,
+  getCategories: Function,
 }
 
 class App extends React.Component<Props> {
   componentDidMount() {
     this.props.getUserLocation()
+    this.props.getCategories()
   }
 
   render() {
