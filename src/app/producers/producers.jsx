@@ -5,6 +5,7 @@ import Container from 'common/components/container'
 import GoogleMap from 'common/components/google-map'
 import { Layout, LayoutItem } from 'common/components/layout'
 import Card from './card'
+import Filters from './filters'
 
 type props = {
   producers: Array<Object>,
@@ -16,6 +17,7 @@ type props = {
   userLatLng: Object,
   loadMoreProducers: Function,
   noMoreProducers: boolean,
+  categories: Array<Object>,
 }
 
 const Producers = ({
@@ -28,6 +30,7 @@ const Producers = ({
   userLatLng,
   loadMoreProducers,
   noMoreProducers,
+  categories,
 }: props) => {
   const { latitude, longitude } = userLatLng
 
@@ -43,6 +46,7 @@ const Producers = ({
         />
       </div>
       <Container>
+        <Filters categories={categories} active="" />
         <Layout>
           {
             producers.length
