@@ -65,8 +65,8 @@ const mapStateToProps = (state: Object) => ({
 })
 
 const mapDispatchToProps = ({
-  getProducers: actions.getProducers,
-  loadMoreProducers: actions.loadMoreProducers,
+  getProducers: actions.getProducersWithAPI,
+  loadMoreProducers: actions.loadMoreProducersWithAPI,
 })
 
 export default connect(

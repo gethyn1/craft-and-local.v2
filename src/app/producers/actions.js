@@ -16,7 +16,7 @@ type GetProps = {
   exclude?: Array<string>,
 }
 
-const getProducers = ({
+export const getProducers = (service: Object) => ({
   latitude,
   longitude,
   mindistance,
@@ -24,7 +24,7 @@ const getProducers = ({
 }: GetProps) => (dispatch: Function) => {
   dispatch({ type: PRODUCERS_IS_FETCHING_DATA, payload: true })
 
-  return api.getProducers({ latlng: `${latitude},${longitude}`, mindistance, exclude })
+  return service.getProducers({ latlng: `${latitude},${longitude}`, mindistance, exclude })
     .then((data) => {
       dispatch({ type: PRODUCERS_FETCH_DATA_SUCCESS, payload: data, meta: { latitude, longitude } })
     })
@@ -38,7 +38,7 @@ type LoadProps = {
   exclude?: Array<string>,
 }
 
-const loadMoreProducers = ({
+export const loadMoreProducers = (service: Object) => ({
   latitude,
   longitude,
   searchProximity,
@@ -50,10 +50,10 @@ const loadMoreProducers = ({
     searchProximity[1],
     searchProximity[0],
   )
-  dispatch(getProducers({ latitude, longitude, mindistance, exclude }))
+  dispatch(getProducers(service)({ latitude, longitude, mindistance, exclude }))
 }
 
 export default {
-  getProducers,
-  loadMoreProducers,
+  getProducersWithAPI: getProducers(api),
+  loadMoreProducersWithAPI: loadMoreProducers(api),
 }
