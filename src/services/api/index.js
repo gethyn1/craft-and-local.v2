@@ -1,5 +1,6 @@
 // @flow
 
+import { compose, toPairs, map, join, filter, isNil } from 'ramda'
 import { API_URL } from '../../config'
 
 const catchFetchError = (response: Object) => {
@@ -14,14 +15,22 @@ const catchFetchError = (response: Object) => {
   return response
 }
 
-type GetProducersProps = {
-  lat: string,
-  lng: string,
+const constructQueryString = compose(
+  join('&'),
+  map(join('=')),
+  filter(param => !isNil(param[1])),
+  toPairs,
+)
+
+type Params = {
+  latLng?: string,
+  mindistance?: number,
+  exclude?: Array<string>,
 }
 
 const api = {
-  getProducers: ({ lat, lng }: GetProducersProps) =>
-    fetch(`${API_URL}/producers?latlng=${lat},${lng}`, { method: 'GET' })
+  getProducers: (params: Params) =>
+    fetch(`${API_URL}/producers?${constructQueryString(params)}`, { method: 'GET' })
       .then(catchFetchError)
       .then(response => response.json())
       .then(data => data.data.producers)

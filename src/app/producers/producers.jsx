@@ -9,17 +9,23 @@ import Card from './card'
 type props = {
   producers: Array<Object>,
   markers: Array<Object>,
+  searchProximity: Array<string>,
+  producersAtSearchProximity: Array<string>,
   isFetching: boolean,
   hasErrored: boolean,
   userLatLng: Object,
+  loadMoreProducers: Function,
 }
 
 const Producers = ({
   producers,
   markers,
+  searchProximity,
+  producersAtSearchProximity,
   isFetching,
   hasErrored,
   userLatLng,
+  loadMoreProducers,
 }: props) => {
   const { latitude, longitude } = userLatLng
 
@@ -53,6 +59,18 @@ const Producers = ({
             : (<p>No producers</p>)
           }
         </Layout>
+        <div className="u-margin-bottom-lg">
+          <button
+            onClick={() => loadMoreProducers({
+              latitude,
+              longitude,
+              searchProximity,
+              exclude: producersAtSearchProximity,
+            })}
+          >
+            Load more
+          </button>
+        </div>
       </Container>
     </div>
   )

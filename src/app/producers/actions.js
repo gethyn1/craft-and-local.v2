@@ -7,22 +7,53 @@ import {
 } from './action-types'
 
 import api from '../../services/api'
+import { getDistanceBetweenPoints } from './distances'
 
-type Props = {
-  lat: string,
-  lng: string,
+type GetProps = {
+  latitude: number,
+  longitude: number,
+  mindistance?: number,
+  exclude?: Array<string>,
 }
 
-const getProducers = ({ lat, lng }: Props) => (dispatch: Function) => {
+const getProducers = ({
+  latitude,
+  longitude,
+  mindistance,
+  exclude,
+}: GetProps) => (dispatch: Function) => {
   dispatch({ type: PRODUCERS_IS_FETCHING_DATA, payload: true })
 
-  return api.getProducers({ lat, lng })
+  return api.getProducers({ latlng: `${latitude},${longitude}`, mindistance, exclude })
     .then((data) => {
-      dispatch({ type: PRODUCERS_FETCH_DATA_SUCCESS, payload: data })
+      dispatch({ type: PRODUCERS_FETCH_DATA_SUCCESS, payload: data, meta: { latitude, longitude } })
     })
     .catch(() => dispatch({ type: PRODUCERS_FETCH_HAS_ERRORED, payload: true }))
 }
 
+type LoadProps = {
+  latitude: number,
+  longitude: number,
+  searchProximity: Array<number>,
+  exclude?: Array<string>,
+}
+
+const loadMoreProducers = ({
+  latitude,
+  longitude,
+  searchProximity,
+  exclude,
+}: LoadProps) => (dispatch: Function) => {
+  const mindistance = getDistanceBetweenPoints(
+    latitude,
+    longitude,
+    searchProximity[1],
+    searchProximity[0],
+  )
+  dispatch(getProducers({ latitude, longitude, mindistance, exclude }))
+}
+
 export default {
   getProducers,
+  loadMoreProducers,
 }
