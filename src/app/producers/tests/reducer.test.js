@@ -3,6 +3,7 @@ import {
   getFurthestCoordinates,
   isAtProximity,
   getProducersAtSearchProximity,
+  markers,
   producersReducer,
   searchProximity,
   producersAtSearchProximity,
@@ -52,6 +53,23 @@ describe('getProducersAtSearchProximity()', () => {
 })
 
 describe('producers > reducers', () => {
+  describe('markers', () => {
+    it('should return an empty array if no action is defined', () => {
+      expect(markers(undefined, {})).toEqual([])
+    })
+
+    it('should append new markers to the state', () => {
+      const currentMarkers = [{ lat: 2, lng: 1, title: 'title 1' }]
+      const newMarkers = [{ lat: 8, lng: 7, title: 'title 5' }]
+      const expected = [...currentMarkers, ...newMarkers]
+
+      expect(markers(
+        currentMarkers,
+        { type: PRODUCERS_FETCH_DATA_SUCCESS, payload: newProducers },
+      )).toEqual(expected)
+    })
+  })
+
   describe('producers', () => {
     it('should return an empty array if no action is defined', () => {
       expect(producersReducer(undefined, {})).toEqual([])

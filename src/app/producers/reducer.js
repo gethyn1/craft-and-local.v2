@@ -45,10 +45,10 @@ export const getProducersAtSearchProximity = (
   return exclude
 }
 
-const markers = (state: Array<Object> = [], action: { type: string, payload: any }) => {
+export const markers = (state: Array<Object> = [], action: { type: string, payload: any }) => {
   switch (action.type) {
     case PRODUCERS_FETCH_DATA_SUCCESS:
-      return map(createMarker, action.payload)
+      return [...state, ...map(createMarker, action.payload)]
     default:
       return state
   }
