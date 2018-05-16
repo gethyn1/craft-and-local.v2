@@ -10,25 +10,16 @@ import {
 
 import { getDistanceBetweenPoints } from './distances'
 
-const createMarker = (producer: Object) => ({
+export const createMarker = (producer: Object) => ({
   lat: path(['location', 'coordinates'], producer)[1],
   lng: path(['location', 'coordinates'], producer)[0],
-  title: path(['title'], producer)[1],
+  title: path(['title'], producer),
 })
 
-const markers = (state: Array<Object> = [], action: { type: string, payload: any }) => {
-  switch (action.type) {
-    case PRODUCERS_FETCH_DATA_SUCCESS:
-      return map(createMarker, action.payload)
-    default:
-      return state
-  }
-}
-
-const getFurthestCoordinates = (producers: Array<Object>) =>
+export const getFurthestCoordinates = (producers: Array<Object>) =>
   path(['location', 'coordinates'], producers[producers.length - 1])
 
-const isAtProximity = (proximity: number, latitude: number, longitude: number, producer: Object) => { // eslint-disable-line max-len
+export const isAtProximity = (proximity: number, latitude: number, longitude: number, producer: Object) => { // eslint-disable-line max-len
   const { coordinates } = producer.location
 
   return equals(
@@ -37,7 +28,7 @@ const isAtProximity = (proximity: number, latitude: number, longitude: number, p
   )
 }
 
-const getProducersAtSearchProximity = (
+export const getProducersAtSearchProximity = (
   producers: Array<Object>,
   latitude: number,
   longitude: number,
@@ -54,7 +45,16 @@ const getProducersAtSearchProximity = (
   return exclude
 }
 
-const producersReducer = (state: Array<Object> = [], action: { type: string, payload: any }) => {
+const markers = (state: Array<Object> = [], action: { type: string, payload: any }) => {
+  switch (action.type) {
+    case PRODUCERS_FETCH_DATA_SUCCESS:
+      return map(createMarker, action.payload)
+    default:
+      return state
+  }
+}
+
+export const producersReducer = (state: Array<Object> = [], action: { type: string, payload: any }) => { // eslint-disable-line max-len
   switch (action.type) {
     case PRODUCERS_FETCH_DATA_SUCCESS:
       return [...state, ...action.payload]
@@ -63,7 +63,7 @@ const producersReducer = (state: Array<Object> = [], action: { type: string, pay
   }
 }
 
-const searchProximity = (state: Array<number> = [0, 0], action: { type: string, payload: any }) => {
+export const searchProximity = (state: Array<number> = [0, 0], action: { type: string, payload: any }) => { // eslint-disable-line max-len
   switch (action.type) {
     case PRODUCERS_FETCH_DATA_SUCCESS:
       return isEmpty(action.payload) ? state : getFurthestCoordinates(action.payload)
@@ -72,7 +72,7 @@ const searchProximity = (state: Array<number> = [0, 0], action: { type: string, 
   }
 }
 
-const producersAtSearchProximity = (state: Array<string> = [], action: { type: string, payload: any, meta: Object }) => { // eslint-disable-line max-len
+export const producersAtSearchProximity = (state: Array<string> = [], action: { type: string, payload: any, meta: Object }) => { // eslint-disable-line max-len
   switch (action.type) {
     case PRODUCERS_FETCH_DATA_SUCCESS:
       return isEmpty(action.payload)
