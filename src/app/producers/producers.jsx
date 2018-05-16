@@ -15,6 +15,7 @@ type props = {
   hasErrored: boolean,
   userLatLng: Object,
   loadMoreProducers: Function,
+  noMoreProducers: boolean,
 }
 
 const Producers = ({
@@ -26,16 +27,9 @@ const Producers = ({
   hasErrored,
   userLatLng,
   loadMoreProducers,
+  noMoreProducers,
 }: props) => {
   const { latitude, longitude } = userLatLng
-
-  if (isFetching) {
-    return <p>Loading producers ...</p>
-  }
-
-  if (hasErrored) {
-    return <p>There was an error loading producers</p>
-  }
 
   return (
     <div>
@@ -60,16 +54,23 @@ const Producers = ({
           }
         </Layout>
         <div className="u-margin-bottom-lg">
-          <button
-            onClick={() => loadMoreProducers({
-              latitude,
-              longitude,
-              searchProximity,
-              exclude: producersAtSearchProximity,
-            })}
-          >
+          {isFetching ? <p>Loading producers ...</p> : null}
+          {hasErrored ? <p>There was an error loading producers</p> : null}
+        </div>
+        <div className="u-margin-bottom-lg">
+          {noMoreProducers ?
+            <p>That is all the producers we have right now</p> :
+            <button
+              disabled={isFetching || hasErrored || noMoreProducers}
+              onClick={() => loadMoreProducers({
+                latitude,
+                longitude,
+                searchProximity,
+                exclude: producersAtSearchProximity,
+              })}
+            >
             Load more
-          </button>
+            </button>}
         </div>
       </Container>
     </div>

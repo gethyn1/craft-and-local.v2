@@ -7,6 +7,7 @@ import {
   producersReducer,
   searchProximity,
   producersAtSearchProximity,
+  noMoreProducers,
 } from '../reducer'
 
 import { getDistanceBetweenPoints } from '../distances'
@@ -125,6 +126,19 @@ describe('producers > reducers', () => {
           meta: { longitude: 1, latitude: 1 },
         },
       )).toEqual(['3', '4'])
+    })
+  })
+
+  describe('noMoreProducers', () => {
+    it('should return false if no action is defined', () => {
+      expect(noMoreProducers(undefined, {})).toEqual(false)
+    })
+
+    it('should return true if given an empty list of producers', () => {
+      expect(noMoreProducers(
+        false,
+        { type: PRODUCERS_FETCH_DATA_SUCCESS, payload: [] },
+      )).toEqual(true)
     })
   })
 })

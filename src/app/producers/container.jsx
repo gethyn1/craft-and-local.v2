@@ -15,6 +15,7 @@ type Props = {
   latitude: string,
   longitude: string,
   loadMoreProducers: Function,
+  noMoreProducers: boolean,
 }
 
 class ProducersContainer extends React.Component<Props> {
@@ -36,6 +37,7 @@ class ProducersContainer extends React.Component<Props> {
       latitude,
       longitude,
       loadMoreProducers,
+      noMoreProducers,
     } = this.props
 
     return (
@@ -48,6 +50,7 @@ class ProducersContainer extends React.Component<Props> {
         userLatLng={{ latitude, longitude }}
         hasErrored={hasErrored}
         loadMoreProducers={loadMoreProducers}
+        noMoreProducers={noMoreProducers}
       />
     )
   }
@@ -58,6 +61,7 @@ const mapStateToProps = (state: Object) => ({
   markers: state.domain.producers.data.markers,
   searchProximity: state.domain.producers.data.searchProximity,
   producersAtSearchProximity: state.domain.producers.data.producersAtSearchProximity,
+  noMoreProducers: state.domain.producers.meta.noMoreProducers,
   isFetching: state.domain.producers.meta.isFetching,
   hasErrored: state.domain.producers.meta.hasErrored,
   latitude: state.user.location.data.latitude,

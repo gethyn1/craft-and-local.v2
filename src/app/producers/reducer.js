@@ -83,6 +83,18 @@ export const producersAtSearchProximity = (state: Array<string> = [], action: { 
   }
 }
 
+export const noMoreProducers = (state: boolean = false, action: { type: string, payload: any }) => {
+  switch (action.type) {
+    case PRODUCERS_IS_FETCHING_DATA:
+    case PRODUCERS_FETCH_HAS_ERRORED:
+      return false
+    case PRODUCERS_FETCH_DATA_SUCCESS:
+      return isEmpty(action.payload)
+    default:
+      return state
+  }
+}
+
 const isFetching = (state: boolean = false, action: { type: string, payload: any }) => {
   switch (action.type) {
     case PRODUCERS_IS_FETCHING_DATA:
@@ -115,6 +127,7 @@ export default combineReducers({
     producersAtSearchProximity,
   }),
   meta: combineReducers({
+    noMoreProducers,
     isFetching,
     hasErrored,
   }),
