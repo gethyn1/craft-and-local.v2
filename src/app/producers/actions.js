@@ -4,6 +4,7 @@ import {
   PRODUCERS_IS_FETCHING_DATA,
   PRODUCERS_FETCH_DATA_SUCCESS,
   PRODUCERS_FETCH_HAS_ERRORED,
+  PRODUCERS_RESET_DATA,
 } from './action-types'
 
 import api from '../../services/api'
@@ -14,6 +15,7 @@ type GetProps = {
   longitude: number,
   mindistance?: number,
   exclude?: Array<string>,
+  categories?: string,
 }
 
 export const getProducers = (service: Object) => ({
@@ -21,10 +23,11 @@ export const getProducers = (service: Object) => ({
   longitude,
   mindistance,
   exclude,
+  categories,
 }: GetProps) => (dispatch: Function) => {
   dispatch({ type: PRODUCERS_IS_FETCHING_DATA, payload: true })
 
-  return service.getProducers({ latlng: `${latitude},${longitude}`, mindistance, exclude })
+  return service.getProducers({ latlng: `${latitude},${longitude}`, mindistance, exclude, categories })
     .then((data) => {
       dispatch({ type: PRODUCERS_FETCH_DATA_SUCCESS, payload: data, meta: { latitude, longitude } })
     })
@@ -36,6 +39,7 @@ type LoadProps = {
   longitude: number,
   searchProximity: Array<number>,
   exclude?: Array<string>,
+  categories?: string,
 }
 
 export const loadMoreProducers = (service: Object) => ({
@@ -43,6 +47,7 @@ export const loadMoreProducers = (service: Object) => ({
   longitude,
   searchProximity,
   exclude,
+  categories,
 }: LoadProps) => (dispatch: Function) => {
   const mindistance = getDistanceBetweenPoints(
     latitude,
@@ -50,10 +55,15 @@ export const loadMoreProducers = (service: Object) => ({
     searchProximity[1],
     searchProximity[0],
   )
-  dispatch(getProducers(service)({ latitude, longitude, mindistance, exclude }))
+  dispatch(getProducers(service)({ latitude, longitude, mindistance, exclude, categories }))
 }
+
+const resetProducers = () => (dispatch: Function) => dispatch({
+  type: PRODUCERS_RESET_DATA,
+})
 
 export default {
   getProducersWithAPI: getProducers(api),
   loadMoreProducersWithAPI: loadMoreProducers(api),
+  resetProducers,
 }

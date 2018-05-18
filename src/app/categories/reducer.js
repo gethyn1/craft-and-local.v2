@@ -40,10 +40,23 @@ const hasErrored = (state: boolean = false, action: { type: string, payload: any
   }
 }
 
+const hasFetched = (state: boolean = false, action: { type: string, payload: any }) => {
+  switch (action.type) {
+    case CATEGORIES_IS_FETCHING_DATA:
+    case CATEGORIES_FETCH_DATA_HAS_ERRORED:
+      return false
+    case CATEGORIES_FETCH_DATA_SUCCESS:
+      return true
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   data: categories,
   meta: combineReducers({
     isFetching,
     hasErrored,
+    hasFetched,
   }),
 })

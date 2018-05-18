@@ -38,6 +38,18 @@ export const hasErrored = (state: boolean = false, action: { type: string, paylo
   }
 }
 
+export const hasFetched = (state: boolean = false, action: { type: string, payload: any }) => {
+  switch (action.type) {
+    case LOCATION_IS_LOADING:
+    case LOCATION_HAS_ERRORED:
+      return false
+    case LOCATION_GET_POSITION_SUCCESS:
+      return true
+    default:
+      return state
+  }
+}
+
 export const location = (
   state: { latitude: number, longitude: number, address: ?string } = initialState,
   action: { type: string, payload: any },
@@ -64,5 +76,6 @@ export default combineReducers({
   meta: combineReducers({
     isLoading,
     hasErrored,
+    hasFetched,
   }),
 })

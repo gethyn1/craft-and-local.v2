@@ -6,6 +6,7 @@ import {
   PRODUCERS_IS_FETCHING_DATA,
   PRODUCERS_FETCH_DATA_SUCCESS,
   PRODUCERS_FETCH_HAS_ERRORED,
+  PRODUCERS_RESET_DATA,
 } from './action-types'
 
 import { getDistanceBetweenPoints } from './distances'
@@ -49,6 +50,8 @@ export const markers = (state: Array<Object> = [], action: { type: string, paylo
   switch (action.type) {
     case PRODUCERS_FETCH_DATA_SUCCESS:
       return [...state, ...map(createMarker, action.payload)]
+    case PRODUCERS_RESET_DATA:
+      return []
     default:
       return state
   }
@@ -58,6 +61,8 @@ export const producersReducer = (state: Array<Object> = [], action: { type: stri
   switch (action.type) {
     case PRODUCERS_FETCH_DATA_SUCCESS:
       return [...state, ...action.payload]
+    case PRODUCERS_RESET_DATA:
+      return []
     default:
       return state
   }

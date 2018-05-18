@@ -15,7 +15,7 @@ const Filters = ({ categories, active }: Props) => (
     <ul className={styles['filter-list']}>
       <li className={styles['filter-item']}>
         <Link
-          to="/"
+          to="/producers"
           className={`${styles.filter} ${!active ? styles.active : ''}`}
         >
           All
