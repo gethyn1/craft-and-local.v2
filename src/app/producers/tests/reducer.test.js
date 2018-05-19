@@ -11,7 +11,7 @@ import {
 } from '../reducer'
 
 import { getDistanceBetweenPoints } from '../distances'
-import { PRODUCERS_FETCH_DATA_SUCCESS } from '../action-types'
+import { PRODUCERS_FETCH_DATA_SUCCESS, PRODUCERS_RESET_DATA } from '../action-types'
 
 const producers = [
   { _id: '1', title: 'title 1', location: { coordinates: [1, 2] } },
@@ -69,6 +69,15 @@ describe('producers > reducers', () => {
         { type: PRODUCERS_FETCH_DATA_SUCCESS, payload: newProducers },
       )).toEqual(expected)
     })
+
+    it('should reset the state', () => {
+      const currentMarkers = [{ lat: 2, lng: 1, title: 'title 1' }]
+      const expected = []
+      expect(markers(
+        currentMarkers,
+        { type: PRODUCERS_RESET_DATA },
+      )).toEqual(expected)
+    })
   })
 
   describe('producers', () => {
@@ -81,6 +90,14 @@ describe('producers > reducers', () => {
       expect(producersReducer(
         producers,
         { type: PRODUCERS_FETCH_DATA_SUCCESS, payload: newProducers },
+      )).toEqual(expected)
+    })
+
+    it('should reset the state', () => {
+      const expected = []
+      expect(producersReducer(
+        producers,
+        { type: PRODUCERS_RESET_DATA },
       )).toEqual(expected)
     })
   })
