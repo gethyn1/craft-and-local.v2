@@ -39,22 +39,34 @@ class Producers extends React.Component<Props, State> {
     this.loadMoreProducers = this.loadMoreProducers.bind(this)
   }
 
+  componentDidMount() {
+    this.getProducers()
+  }
+
   componentDidUpdate(prevProps: Props) {
-    const { categoriesHaveLoaded, userLocationHasLoaded, category } = this.props
+    this.getProducers()
 
-    if (categoriesHaveLoaded && userLocationHasLoaded && !this.state.hasFetched) {
-      this.getProducers()
-    }
-
-    if (prevProps.category !== category && this.state.hasFetched) {
+    if (prevProps.category !== this.props.category && this.state.hasFetched) {
       this.categoryDidUpdate()
     }
   }
 
+  componentWillUnmount() {
+    this.props.resetProducers()
+  }
+
   getProducers() {
-    const { latitude, longitude, category } = this.props
-    this.props.getProducers({ latitude, longitude, categories: path(['_id'], category) })
-    this.setState({ hasFetched: true })
+    const {
+      categoriesHaveLoaded,
+      userLocationHasLoaded,
+      latitude,
+      longitude,
+      category,
+    } = this.props
+    if (categoriesHaveLoaded && userLocationHasLoaded && !this.state.hasFetched) {
+      this.props.getProducers({ latitude, longitude, categories: path(['_id'], category) })
+      this.setState({ hasFetched: true })
+    }
   }
 
   loadMoreProducers = () => {
