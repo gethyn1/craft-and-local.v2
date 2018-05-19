@@ -1,7 +1,7 @@
 // @flow
 
 import { connect } from 'react-redux'
-import actions from './actions'
+import { getProducersWithAPI, loadMoreProducersWithAPI, resetProducers } from './actions'
 import Producers from './producers'
 
 const mapStateToProps = (state: Object, ownProps: Object) => {
@@ -26,9 +26,9 @@ const mapStateToProps = (state: Object, ownProps: Object) => {
 }
 
 const mapDispatchToProps = ({
-  getProducers: actions.getProducersWithAPI,
-  loadMoreProducers: actions.loadMoreProducersWithAPI,
-  resetProducers: actions.resetProducers,
+  getProducers: getProducersWithAPI,
+  loadMoreProducers: loadMoreProducersWithAPI,
+  resetProducers,
 })
 
 export default connect(

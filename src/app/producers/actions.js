@@ -55,15 +55,13 @@ export const loadMoreProducers = (service: Object) => ({
     searchProximity[1],
     searchProximity[0],
   )
-  dispatch(getProducers(service)({ latitude, longitude, mindistance, exclude, categories }))
+
+  return dispatch(getProducers(service)({ latitude, longitude, mindistance, exclude, categories }))
 }
 
-const resetProducers = () => (dispatch: Function) => dispatch({
+export const resetProducers = () => (dispatch: Function) => dispatch({
   type: PRODUCERS_RESET_DATA,
 })
 
-export default {
-  getProducersWithAPI: getProducers(api),
-  loadMoreProducersWithAPI: loadMoreProducers(api),
-  resetProducers,
-}
+export const getProducersWithAPI = getProducers(api)
+export const loadMoreProducersWithAPI = loadMoreProducers(api)
