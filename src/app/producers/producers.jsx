@@ -124,6 +124,7 @@ class Producers extends React.Component<Props, State> {
             {noMoreProducers ?
               <p>That is all the producers we have right now</p> :
               <button
+                data-test-id="producers/load-more"
                 disabled={isFetching || hasErrored || noMoreProducers}
                 onClick={this.loadMoreProducers}
               >
