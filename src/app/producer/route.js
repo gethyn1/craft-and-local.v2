@@ -1,7 +1,7 @@
 import ProducerContainer from './container'
 
 export default {
-  path: '/producers/:id',
+  path: '/:id',
   name: 'Producer',
   component: ProducerContainer,
 }
