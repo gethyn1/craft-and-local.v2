@@ -1,11 +1,13 @@
 // @flow
 
 import React from 'react'
+import { Helmet } from 'react-helmet'
 import { path } from 'ramda'
 import Button from 'common/components/button'
 import Container from 'common/components/container'
 import GoogleMap from 'common/components/google-map'
 import { Layout, LayoutItem } from 'common/components/layout'
+import { APP_NAME } from '../../config'
 import Card from './card'
 import Filters from './filters'
 
@@ -107,45 +109,54 @@ class Producers extends React.Component<Props, State> {
     } = this.props
 
     return (
-      <div>
-        <div style={{ height: '400px' }} className="u-margin-bottom">
-          <GoogleMap
-            markers={markers}
-            latitude={latitude}
-            longitude={longitude}
-            addCenterMarker={false}
-            zoom={12}
-          />
+      <React.Fragment>
+        <Helmet
+          title={`${APP_NAME}${category ? `: ${category.title}` : ': all producers'}`}
+          meta={[
+            { name: 'description', content: 'Local producers and market traders' },
+            { property: 'og:title', content: `${APP_NAME}${category ? `: ${category.title}` : ': all producers'}` },
+          ]}
+        />
+        <div>
+          <div style={{ height: '400px' }} className="u-margin-bottom">
+            <GoogleMap
+              markers={markers}
+              latitude={latitude}
+              longitude={longitude}
+              addCenterMarker={false}
+              zoom={12}
+            />
+          </div>
+          <Container>
+            <Filters categories={categories} active={path(['_id'], category)} />
+            <Layout>
+              {
+                producers.length
+                ? producers.map(producer => (
+                  <LayoutItem key={producer._id} cols="1/3@tablet" className="u-margin-bottom">
+                    <Card producer={producer} lat={latitude} lng={longitude} />
+                  </LayoutItem>))
+                : (<p>No producers</p>)
+              }
+            </Layout>
+            <div className="u-margin-bottom-lg">
+              {isFetching ? <p>Loading producers ...</p> : null}
+              {hasErrored ? <p>There was an error loading producers</p> : null}
+            </div>
+            <div className="u-margin-bottom-lg">
+              {noMoreProducers ?
+                <p>That is all the producers we have right now</p> :
+                <Button
+                  data-test-id="producers/load-more"
+                  disabled={isFetching || hasErrored || noMoreProducers}
+                  onClick={this.loadMoreProducers}
+                >
+                Load more
+                </Button>}
+            </div>
+          </Container>
         </div>
-        <Container>
-          <Filters categories={categories} active={path(['_id'], category)} />
-          <Layout>
-            {
-              producers.length
-              ? producers.map(producer => (
-                <LayoutItem key={producer._id} cols="1/3@tablet" className="u-margin-bottom">
-                  <Card producer={producer} lat={latitude} lng={longitude} />
-                </LayoutItem>))
-              : (<p>No producers</p>)
-            }
-          </Layout>
-          <div className="u-margin-bottom-lg">
-            {isFetching ? <p>Loading producers ...</p> : null}
-            {hasErrored ? <p>There was an error loading producers</p> : null}
-          </div>
-          <div className="u-margin-bottom-lg">
-            {noMoreProducers ?
-              <p>That is all the producers we have right now</p> :
-              <Button
-                data-test-id="producers/load-more"
-                disabled={isFetching || hasErrored || noMoreProducers}
-                onClick={this.loadMoreProducers}
-              >
-              Load more
-              </Button>}
-          </div>
-        </Container>
-      </div>
+      </React.Fragment>
     )
   }
 }
