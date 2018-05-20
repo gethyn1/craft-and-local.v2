@@ -14,6 +14,7 @@ import locationIcon from 'common/icons/location.svg'
 /* eslint-enable no-unused-vars */
 import { ASSET_BASE } from '../../config'
 import Categories from './categories'
+import ShareProfile from './share-profile'
 import { removeUrlPrefix } from './remove-url-prefix'
 import styles from './producer.scss'
 
@@ -21,12 +22,16 @@ type props = {
   producer: ?Object,
   isFetching: boolean,
   hasErrored: boolean,
+  isSharing: boolean,
+  shareProfile: Function,
 }
 
 const Producer = ({
   producer,
   isFetching,
   hasErrored,
+  isSharing,
+  shareProfile,
 }: props) => {
   if (hasErrored) {
     return <p>There was an error loading producer</p>
@@ -47,6 +52,7 @@ const Producer = ({
           </header>
           <div className="u-margin-bottom-lg u-3/4@tablet u-center u-text-center">
             <p>{producer.description}</p>
+            <ShareProfile isSharing={isSharing} shareProfile={shareProfile} producer={producer} />
           </div>
         </div>
       </Container>
@@ -84,10 +90,12 @@ const Producer = ({
           </List>
         </Container>
       </div>
-      <GoogleMap
-        longitude={producer.location.coordinates[0]}
-        latitude={producer.location.coordinates[1]}
-      />
+      <div id="producer-map">
+        <GoogleMap
+          longitude={producer.location.coordinates[0]}
+          latitude={producer.location.coordinates[1]}
+        />
+      </div>
     </div>
   )
 }

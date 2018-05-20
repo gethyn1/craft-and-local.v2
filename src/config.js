@@ -18,6 +18,9 @@ export const ASSET_BASE = 'https://d3ov3mwru83yk6.cloudfront.net'
 export const GA_ID = 'UA-xxxxxx-xx'
 export const GA_DEBUG = false
 
+export const SHARE_HASHTAGS = 'CraftAndLocal'
+export const TWITTER_HANDLE = 'CraftAndLocal'
+
 export const NOT_FOUND_ROUTE = '404'
 
 export const GOOGLE_MAPS_API_KEY = 'AIzaSyAI0dZaZHkO6pUC1maNGg6HALwRX4nG0w4'
