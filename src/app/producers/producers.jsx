@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { path } from 'ramda'
+import Button from 'common/components/button'
 import Container from 'common/components/container'
 import GoogleMap from 'common/components/google-map'
 import { Layout, LayoutItem } from 'common/components/layout'
@@ -135,13 +136,13 @@ class Producers extends React.Component<Props, State> {
           <div className="u-margin-bottom-lg">
             {noMoreProducers ?
               <p>That is all the producers we have right now</p> :
-              <button
+              <Button
                 data-test-id="producers/load-more"
                 disabled={isFetching || hasErrored || noMoreProducers}
                 onClick={this.loadMoreProducers}
               >
               Load more
-              </button>}
+              </Button>}
           </div>
         </Container>
       </div>

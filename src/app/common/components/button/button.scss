@@ -1,0 +1,59 @@
+/* ==========================================================================
+   #BUTTON
+   ========================================================================== */
+
+@import "common/styles/_global-import.scss";
+
+.button {
+  background-color: $palette-primary;
+  border: none;
+  border-radius: $global-radius;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1em;
+  height: rem($global-input-height);
+  line-height: rem($global-input-height);
+  padding: 0 rem($global-spacing-unit);
+  text-align: center;
+  text-decoration: none;
+  transition: $global-transition;
+  white-space: nowrap;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    background-color: darken($palette-primary, 10);
+  }
+}
+
+.block {
+  display: block;
+  width: 100%;
+}
+
+.recede {
+  background-color: rgba(0,0,0,0.3);
+
+  &:hover {
+    background-color: darken($palette-body-lighten, 10);
+  }
+}
+
+.facebook {
+  background-color: $palette-facebook;
+
+  &:hover {
+    background-color: darken($palette-facebook, 10);
+  }
+}
+
+.twitter {
+  background-color: $palette-twitter;
+
+  &:hover {
+    background-color: darken($palette-twitter, 10);
+  }
+}
