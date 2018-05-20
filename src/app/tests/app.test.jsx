@@ -1,7 +1,14 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import { MemoryRouter } from 'react-router'
-import App from '../app'
+
+jest.doMock('react-router-dom', () => ({
+  Redirect: () => <div />,
+  Route: () => <div />,
+  Link: () => <div />,
+}))
+
+const App = require('../app').default
 
 const getUserLocation = jest.fn()
 const getCategories = jest.fn()

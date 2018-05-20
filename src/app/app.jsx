@@ -2,8 +2,7 @@
 
 import React from 'react'
 import { Switch } from 'react-router'
-import { Route } from 'react-router-dom'
-import Container from 'common/components/container'
+import { Route, Redirect } from 'react-router-dom'
 import attachRoutes from '../core/attach-routes'
 import routes from './manifest'
 import TopBar from './top-bar'
@@ -31,7 +30,7 @@ class App extends React.Component<Props> {
           }}
         />
         <Switch>
-          <Route exact path="/" render={() => <Container><p>This is the homepage</p></Container>} />
+          <Route exact path="/" render={() => <Redirect to="/producers" />} />
           {attachRoutes(routes)}
         </Switch>
       </React.Fragment>
