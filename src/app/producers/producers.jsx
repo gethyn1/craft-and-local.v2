@@ -7,7 +7,7 @@ import Button from 'common/components/button'
 import Container from 'common/components/container'
 import GoogleMap from 'common/components/google-map'
 import { Layout, LayoutItem } from 'common/components/layout'
-import { APP_NAME } from '../../config'
+import { APP_NAME, TWITTER_HANDLE } from '../../config'
 import Card from './card'
 import Filters from './filters'
 
@@ -115,6 +115,12 @@ class Producers extends React.Component<Props, State> {
           meta={[
             { name: 'description', content: 'Local producers and market traders' },
             { property: 'og:title', content: `${APP_NAME}${category ? `: ${category.title}` : ': all producers'}` },
+            { property: 'og:description', content: 'Local producers and market traders' },
+            { property: 'og:type', content: 'website' },
+            { property: 'twitter:card', content: 'summary' },
+            { property: 'twitter:site', content: `@${TWITTER_HANDLE}` },
+            { property: 'twitter:title', content: APP_NAME },
+            { property: 'twitter:description', content: `${APP_NAME}${category ? `: ${category.title}` : ': all producers'}` },
           ]}
         />
         <div>
