@@ -10,8 +10,8 @@ export const WDS_PORT = 8080
 
 export const APP_NAME = 'Craft and Local'
 
-export const API_URL = isProd ? 'https://craftandlocal.herokuapp.com' : 'http://localhost:5000'
-export const APP_URL = isProd ? 'https://piano-tuner-eagle-18310.netlify.com' : `http://localhost:${WDS_PORT}`
+export const API_URL = isProd ? 'https://craftandlocal-v2-production.herokuapp.com' : 'http://localhost:5000'
+export const APP_URL = isProd ? 'https://mystifying-volhard-f16793.netlify.com' : `http://localhost:${WDS_PORT}`
 
 export const ASSET_BASE = 'https://d3ov3mwru83yk6.cloudfront.net'
 
