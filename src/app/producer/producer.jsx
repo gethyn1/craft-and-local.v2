@@ -54,6 +54,7 @@ class Producer extends React.Component<Props> {
             { property: 'og:title', content: `${APP_NAME}: ${producer.title}` },
             { property: 'og:description', content: producer.description },
             { property: 'og:type', content: 'profile' },
+            { property: 'og:image', content: `${ASSET_BASE}/${producer.avatar}` },
             { property: 'twitter:card', content: 'summary' },
             { property: 'twitter:site', content: `@${TWITTER_HANDLE}` },
             { property: 'twitter:title', content: producer.title },
