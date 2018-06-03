@@ -1,12 +1,15 @@
 // @flow
 
 import { connect } from 'react-redux'
+import { equals, path } from 'ramda'
 import { getProducersWithAPI, loadMoreProducersWithAPI, resetProducers } from './actions'
+import { pageNotFound } from '../actions'
 import Producers from './producers'
 
 const mapStateToProps = (state: Object, ownProps: Object) => {
   const categoryFromRoute = ownProps.match.params.category
   const category = state.domain.categories.data.find(cat => cat.slug === categoryFromRoute)
+  const categoryNotFound = !equals(categoryFromRoute, path(['slug'], category))
 
   return {
     producers: state.domain.producers.data.producers,
@@ -22,6 +25,7 @@ const mapStateToProps = (state: Object, ownProps: Object) => {
     categories: state.domain.categories.data,
     category,
     categoriesHaveLoaded: state.domain.categories.meta.hasFetched,
+    categoryNotFound,
   }
 }
 
@@ -29,6 +33,7 @@ const mapDispatchToProps = ({
   getProducers: getProducersWithAPI,
   loadMoreProducers: loadMoreProducersWithAPI,
   resetProducers,
+  pageNotFound,
 })
 
 export default connect(

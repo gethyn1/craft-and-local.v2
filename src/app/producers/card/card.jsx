@@ -34,7 +34,7 @@ const Card = ({ producer, lat, lng }: Props) => {
   ))
 
   return (
-    <Link className={styles.card} to={`/${producer.user_id}`}>
+    <Link className={styles.card} to={`/producer/${producer.user_id}`}>
       <Avatar size="small" className="u-margin-bottom" alt={producer.title} src={`${ASSET_BASE}/${producer.avatar}`} />
       <h2 className={styles.title}>{producer.title}</h2>
       <p className={styles.categories}>{categories}</p>

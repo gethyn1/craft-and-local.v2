@@ -28,6 +28,8 @@ type Props = {
   category: Object,
   categoriesHaveLoaded: boolean,
   resetProducers: Function,
+  categoryNotFound: boolean,
+  pageNotFound: Function,
 }
 
 type State = {
@@ -65,10 +67,17 @@ class Producers extends React.Component<Props, State> {
       latitude,
       longitude,
       category,
+      categoryNotFound,
+      pageNotFound,
     } = this.props
-    if (categoriesHaveLoaded && userLocationHasLoaded && !this.state.hasFetched) {
+
+    if (!this.state.hasFetched && categoriesHaveLoaded && userLocationHasLoaded) {
       this.props.getProducers({ latitude, longitude, categories: path(['_id'], category) })
       this.setState({ hasFetched: true })
+    }
+
+    if (categoriesHaveLoaded && categoryNotFound) {
+      pageNotFound()
     }
   }
 

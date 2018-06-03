@@ -10,6 +10,7 @@ const mapStateToProps = (state: Object, ownProps: Object) => ({
   userId: ownProps.match.params.id,
   producer: state.domain.producer.data,
   isFetching: state.domain.producer.meta.isFetching,
+  hasErrored: state.domain.producer.meta.hasErrored,
   isSharing: state.app.ui.modals.shareProducer.isVisible,
 })
 

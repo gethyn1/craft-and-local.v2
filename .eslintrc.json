@@ -20,10 +20,11 @@
     }
   },
   "rules": {
+    "max-len": [0, 100, 2],
     "object-curly-newline": 0,
     "semi": [2, "never"],
     "no-unexpected-multiline": 2,
-    "compat/compat": 2,
+    "compat/compat": 0,
     "no-underscore-dangle": 0,
     "react/default-props-match-prop-types": 0,
     "jsx-a11y/anchor-is-valid": [ "error", {

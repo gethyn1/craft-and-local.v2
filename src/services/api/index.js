@@ -3,17 +3,14 @@
 import { compose, toPairs, map, join, filter, isNil } from 'ramda'
 import { API_URL } from '../../config'
 
-const catchFetchError = (response: Object) => {
-  if (!response.ok) {
-    if (response.status === 404) {
-      throw new Error()
+const catchFetchError = (response: Object) =>
+  new Promise((resolve, reject) => {
+    if (!response.ok) {
+      reject(response.status)
     }
 
-    throw Error(response.statusText)
-  }
-
-  return response
-}
+    resolve(response)
+  })
 
 const constructQueryString = compose(
   join('&'),
@@ -34,24 +31,33 @@ const api = {
       .then(catchFetchError)
       .then(response => response.json())
       .then(data => data.data.producers)
-      // eslint-disable-next-line no-console
-      .catch(err => console.log(err)),
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log('Error in service:', err)
+        throw Error(err)
+      }),
 
   getProducer: (userId: String) =>
     fetch(`${API_URL}/producers/${String(userId)}`, { method: 'GET' })
       .then(catchFetchError)
       .then(response => response.json())
       .then(data => data.data.producer)
-      // eslint-disable-next-line no-console
-      .catch(err => console.log(err)),
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log('Error in service:', err)
+        throw Error(err)
+      }),
 
   getCategories: () =>
     fetch(`${API_URL}/categories`, { method: 'GET' })
       .then(catchFetchError)
       .then(response => response.json())
       .then(data => data.data.categories)
-      // eslint-disable-next-line no-console
-      .catch(err => console.log(err)),
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log('Error in service:', err)
+        throw Error(err)
+      }),
 }
 
 export default api

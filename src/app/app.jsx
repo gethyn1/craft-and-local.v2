@@ -6,10 +6,12 @@ import { Route, Redirect } from 'react-router-dom'
 import attachRoutes from '../core/attach-routes'
 import routes from './manifest'
 import TopBar from './top-bar'
+import NotFound from './404'
 
 type Props = {
   getUserLocation: Function,
   getCategories: Function,
+  pageNotFound: boolean,
 }
 
 class App extends React.Component<Props> {
@@ -31,7 +33,8 @@ class App extends React.Component<Props> {
         />
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/producers" />} />
-          {attachRoutes(routes)}
+          {attachRoutes(routes, this.props.pageNotFound)}
+          <Route render={() => <NotFound />} />
         </Switch>
       </React.Fragment>
     )

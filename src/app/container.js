@@ -6,7 +6,9 @@ import { getUserLocation } from './location/user'
 import { getCategories } from './categories'
 import App from './app'
 
-const mapStateToProps = (state: Object) => ({}) // eslint-disable-line no-unused-vars
+const mapStateToProps = (state: Object) => ({
+  pageNotFound: state.app.ui.pageErrors.pageNotFound,
+})
 
 const mapDispatchToProps = {
   getUserLocation,
