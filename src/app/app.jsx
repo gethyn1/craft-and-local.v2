@@ -3,6 +3,7 @@
 import React from 'react'
 import { Switch } from 'react-router'
 import { Route, Redirect } from 'react-router-dom'
+import { PRODUCERS_PATH } from '../config'
 import attachRoutes from '../core/attach-routes'
 import routes from './manifest'
 import TopBar from './top-bar'
@@ -32,7 +33,7 @@ class App extends React.Component<Props> {
           }}
         />
         <Switch>
-          <Route exact path="/" render={() => <Redirect to="/producers" />} />
+          <Route exact path="/" render={() => <Redirect to={`/${PRODUCERS_PATH}`} />} />
           {attachRoutes(routes, this.props.pageNotFound)}
           <Route render={() => <NotFound />} />
         </Switch>

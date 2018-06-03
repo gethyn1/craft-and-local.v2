@@ -4,7 +4,7 @@ import React from 'react'
 import Button from 'common/components/button'
 import List from 'common/components/list'
 import Modal from 'common/components/modal'
-import { APP_URL, SHARE_HASHTAGS, TWITTER_HANDLE } from '../../../config'
+import { APP_URL, PRODUCER_PATH, SHARE_HASHTAGS, TWITTER_HANDLE } from '../../../config'
 
 type Props = {
   isSharing: boolean,
@@ -22,7 +22,7 @@ const ShareProfile = ({ isSharing, producer, shareProfile }: Props) => (
           <Button
             level="facebook"
             target="_blank"
-            href={`https://facebook.com/sharer/sharer.php?u=${APP_URL}/${producer.user_id}`}
+            href={`https://facebook.com/sharer/sharer.php?u=${APP_URL}/${PRODUCER_PATH}/${producer.user_id}`}
             block
           >
             Share on Facebook
@@ -32,7 +32,7 @@ const ShareProfile = ({ isSharing, producer, shareProfile }: Props) => (
           <Button
             level="twitter"
             target="_blank"
-            href={`https://twitter.com/intent/tweet/?url=${APP_URL}/${producer.user_id}&text=${producer.title}&hashtags=${SHARE_HASHTAGS}&via=${TWITTER_HANDLE}`}
+            href={`https://twitter.com/intent/tweet/?url=${APP_URL}/${PRODUCER_PATH}/${producer.user_id}&text=${producer.title}&hashtags=${SHARE_HASHTAGS}&via=${TWITTER_HANDLE}`}
             block
           >
             Share on Twitter
