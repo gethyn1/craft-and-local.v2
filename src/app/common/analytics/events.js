@@ -30,7 +30,7 @@ export const loadMoreProducers = (category: ?string, count: ?number) => {
   ReactGA.event({
     category: 'User requested content',
     action: 'Load more producers',
-    label: category,
+    label: category || 'all',
     value: count === null ? 0 : count,
   })
 }

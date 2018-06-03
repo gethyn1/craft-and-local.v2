@@ -3,6 +3,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { path } from 'ramda'
+import * as track from 'common/analytics/events'
 import Button from 'common/components/button'
 import Container from 'common/components/container'
 import GoogleMap from 'common/components/google-map'
@@ -88,6 +89,7 @@ class Producers extends React.Component<Props, State> {
       category,
       searchProximity,
       producersAtSearchProximity,
+      producers,
     } = this.props
 
     this.props.loadMoreProducers({
@@ -97,6 +99,8 @@ class Producers extends React.Component<Props, State> {
       exclude: producersAtSearchProximity,
       categories: path(['_id'], category),
     })
+
+    track.loadMoreProducers(path(['title'], category), producers ? producers.length : null)
   }
 
   categoryDidUpdate() {
