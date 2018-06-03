@@ -5,6 +5,7 @@ import { Switch } from 'react-router'
 import { Route, Redirect } from 'react-router-dom'
 import { PRODUCERS_PATH } from '../config'
 import attachRoutes from '../core/attach-routes'
+import Analytics from './analytics'
 import routes from './manifest'
 import TopBar from './top-bar'
 import NotFound from './404'
@@ -32,6 +33,7 @@ class App extends React.Component<Props> {
             return null
           }}
         />
+        <Route path="/" component={Analytics} />
         <Switch>
           <Route exact path="/" render={() => <Redirect to={`/${PRODUCERS_PATH}`} />} />
           {attachRoutes(routes, this.props.pageNotFound)}

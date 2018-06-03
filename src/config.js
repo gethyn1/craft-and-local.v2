@@ -17,8 +17,8 @@ export const PRODUCERS_PATH = 'producers'
 
 export const ASSET_BASE = 'https://d3ov3mwru83yk6.cloudfront.net'
 
-export const GA_ID = 'UA-xxxxxx-xx'
-export const GA_DEBUG = false
+export const GA_ID = isProd ? 'UA-xxxxxx-xx' : 'UA-xxxxxx-xx'
+export const GA_DEBUG = !isProd
 
 export const SHARE_HASHTAGS = 'CraftAndLocal'
 export const TWITTER_HANDLE = 'CraftAndLocal'
