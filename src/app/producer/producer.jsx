@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { Helmet } from 'react-helmet'
+import * as track from 'common/analytics/events'
 import Avatar from 'common/components/avatar'
 import Container from 'common/components/container'
 import GoogleMap from 'common/components/google-map'
@@ -84,28 +85,28 @@ class Producer extends React.Component<Props> {
               <List bare className={styles.meta__list}>
                 {producer.locality ? (
                   <li className={styles.meta__item}>
-                    <a className={styles.meta__link} href="#producer-map">
+                    <a onClick={() => { track.producerMetaLink('location', producer.user_id) }} className={styles.meta__link} href="#producer-map">
                       <Icon type="location" size="12" /> <span>{producer.locality.title}</span>
                     </a>
                   </li>
                 ) : null}
                 {producer.website ? (
                   <li className={styles.meta__item}>
-                    <a className={styles.meta__link} href={producer.website} target="_blank">
+                    <a onClick={() => { track.producerMetaLink('website', producer.user_id) }} className={styles.meta__link} href={producer.website} target="_blank">
                       <Icon type="link" size="12" /> <span>{removeUrlPrefix(producer.website)}</span>
                     </a>
                   </li>
                 ) : null}
                 {producer.twitter_handle ? (
                   <li className={styles.meta__item}>
-                    <a className={styles.meta__link} href={`https://twitter.com/${producer.twitter_handle}`} target="_blank">
+                    <a onClick={() => { track.producerMetaLink('twitter', producer.user_id) }} className={styles.meta__link} href={`https://twitter.com/${producer.twitter_handle}`} target="_blank">
                       <Icon type="twitter" size="12" /> <span>{producer.twitter_handle}</span>
                     </a>
                   </li>
                 ) : null}
                 {producer.instagram_handle ? (
                   <li className={styles.meta__item}>
-                    <a className={styles.meta__link} href={`https://instagram.com/${producer.instagram_handle}`} target="_blank">
+                    <a onClick={() => { track.producerMetaLink('instagram', producer.user_id) }} className={styles.meta__link} href={`https://instagram.com/${producer.instagram_handle}`} target="_blank">
                       <Icon type="instagram" size="12" /> <span>{producer.instagram_handle}</span>
                     </a>
                   </li>
