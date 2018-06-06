@@ -18,13 +18,11 @@ export const shareProducerButton = (type: string, handle: string) => {
   })
 }
 
-export const producerMetaLink = (type: string, handle: string) => {
-  ReactGA.event({
-    category: 'Meta',
-    action: `Clicked ${type} meta link`,
-    label: handle,
-  })
-}
+export const producerMetaLink = (type: string, handle: string) => ({
+  category: 'Meta',
+  action: `Clicked ${type} meta link`,
+  label: handle,
+})
 
 export const loadMoreProducers = (category: ?string, count: ?number) => ({
   category: 'User requested content',

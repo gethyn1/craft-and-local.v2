@@ -3,7 +3,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import * as track from 'common/analytics/events'
-import actions from './actions'
+import { getProducerWithAPI, trackProducerMetaLink } from './actions'
 import { toggleModal } from '../actions'
 import Producer from './producer'
 
@@ -17,11 +17,14 @@ const mapStateToProps = (state: Object, ownProps: Object) => ({
 
 const mapDispatchToProps = (dispatch: Function) => ({
   getProducer: (userId: String) => {
-    dispatch(actions.getProducerWithAPI(userId))
+    dispatch(getProducerWithAPI(userId))
   },
   shareProfile: (isVisible: boolean, userId: string) => {
     dispatch(toggleModal({ modal: 'shareProducer', isVisible }))
     track.shareProducerModal(userId)
+  },
+  trackProducerMetaLink: (type: string, userId: string) => {
+    dispatch(trackProducerMetaLink(type, userId))
   },
 })
 
