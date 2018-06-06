@@ -1,12 +1,27 @@
+// @flow
+
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+import { path } from 'ramda'
 import { resetPageErrors } from '../actions'
 import NotFound from './404'
+
+const mapStateToProps = (state: Object, ownProps: Object) => ({
+  path: path(['location', 'pathname'], ownProps),
+})
 
 const mapDispatchToProps = {
   resetPageErrors,
 }
 
-export default connect(
-  () => ({}),
+/**
+ * NOTE: Directly connecting and exporting a component wrapped in `withRouter`
+ * causes hot reloader to throw an error.
+ */
+
+const connectedNotFoundContainer = connect(
+  mapStateToProps,
   mapDispatchToProps,
 )(NotFound)
+
+export default withRouter(connectedNotFoundContainer)

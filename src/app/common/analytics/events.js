@@ -35,10 +35,18 @@ export const loadMoreProducers = (category: ?string, count: ?number) => {
   })
 }
 
-export const pageNotFound = (type: string, path: string) => {
+export const producerRenderedInResults = (userId: string) => {
   ReactGA.event({
-    category: '404',
-    action: `${type} not found`,
+    category: 'Producer statistics',
+    action: 'Producer rendered in results',
+    label: userId,
+  })
+}
+
+export const pageNotFound = (path: string) => {
+  ReactGA.event({
+    category: 'Error status code',
+    action: '404',
     label: path,
     nonInteraction: true,
   })

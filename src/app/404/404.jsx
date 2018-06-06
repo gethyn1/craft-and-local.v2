@@ -3,17 +3,19 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
-
+import * as track from 'common/analytics/events'
 import Container from 'common/components/container'
 import { Layout, LayoutItem } from 'common/components/layout'
 
 type Props = {
   resetPageErrors: Function,
+  path: string,
 }
 
 class NotFound extends React.Component<Props> {
   componentWillUnmount() {
     this.props.resetPageErrors()
+    track.pageNotFound(this.props.path)
   }
 
   render() {

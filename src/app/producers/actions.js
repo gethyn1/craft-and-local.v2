@@ -1,5 +1,6 @@
 // @flow
 
+import * as track from 'common/analytics/events'
 import {
   PRODUCERS_IS_FETCHING_DATA,
   PRODUCERS_FETCH_DATA_SUCCESS,
@@ -29,7 +30,8 @@ export const getProducers = (service: Object) => ({
 
   return service.getProducers({ latlng: `${latitude},${longitude}`, mindistance, exclude, categories })
     .then((data) => {
-      dispatch({ type: PRODUCERS_FETCH_DATA_SUCCESS, payload: data, meta: { latitude, longitude } })
+      data.map(producer => track.producerRenderedInResults(producer.user_id))
+      return dispatch({ type: PRODUCERS_FETCH_DATA_SUCCESS, payload: data, meta: { latitude, longitude } })
     })
     .catch(() => dispatch({ type: PRODUCERS_FETCH_HAS_ERRORED, payload: true }))
 }

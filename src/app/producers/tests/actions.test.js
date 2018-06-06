@@ -11,7 +11,7 @@ import {
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares)
 
-const mockGetProducersOnAPI = jest.fn(() => Promise.resolve({})) // eslint-disable-line
+const mockGetProducersOnAPI = jest.fn(() => Promise.resolve([])) // eslint-disable-line
 
 const service = {
   getProducers: mockGetProducersOnAPI,
@@ -32,7 +32,7 @@ describe('producers > actions', () => {
             { type: PRODUCERS_IS_FETCHING_DATA, payload: true },
             {
               type: PRODUCERS_FETCH_DATA_SUCCESS,
-              payload: {},
+              payload: [],
               meta: { latitude: 1, longitude: 1 },
             },
           ])
@@ -70,7 +70,7 @@ describe('producers > actions', () => {
             { type: PRODUCERS_IS_FETCHING_DATA, payload: true },
             {
               type: PRODUCERS_FETCH_DATA_SUCCESS,
-              payload: {},
+              payload: [],
               meta: { latitude: 1, longitude: 1 },
             },
           ])
