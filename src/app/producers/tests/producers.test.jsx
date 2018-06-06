@@ -79,6 +79,7 @@ describe('<Producers />', () => {
 
     it('should load more producers when user clicks load more button', () => {
       const wrapper = shallowProducers()
+      wrapper.setState({ hasFetched: true })
       const button = wrapper.find(`[data-test-id="${LOAD_MORE_PRODUCERS_TEST_ID}"]`)
 
       button.simulate('click')
@@ -87,6 +88,7 @@ describe('<Producers />', () => {
 
     it('should call load more producers with the correct parameters', () => {
       const wrapper = shallowProducers({ ...defaultProps, category: { _id: '3', title: 'category title' } })
+      wrapper.setState({ hasFetched: true })
       const button = wrapper.find(`[data-test-id="${LOAD_MORE_PRODUCERS_TEST_ID}"]`)
 
       button.simulate('click')
@@ -99,6 +101,13 @@ describe('<Producers />', () => {
         categorySlug: 'category title',
         count: 0,
       })
+    })
+
+    it('should not render load more button if producers have not been loaded', () => {
+      const wrapper = shallowProducers()
+      wrapper.setState({ hasFetched: false })
+      const loadMoreButton = wrapper.find(`[data-test-id="${LOAD_MORE_PRODUCERS_TEST_ID}"]`)
+      expect(loadMoreButton.length).toBe(0)
     })
   })
 })

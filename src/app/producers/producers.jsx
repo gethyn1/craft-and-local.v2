@@ -163,15 +163,16 @@ class Producers extends React.Component<Props, State> {
               {hasErrored ? <p>There was an error loading producers</p> : null}
             </div>
             <div className="u-margin-bottom-lg">
-              {noMoreProducers ?
-                <p>That is all the producers we have right now</p> :
+              {noMoreProducers ? <p>That is all the producers we have right now</p> : null}
+              {!noMoreProducers && this.state.hasFetched ?
                 <Button
                   data-test-id={LOAD_MORE_PRODUCERS_TEST_ID}
                   disabled={isFetching || hasErrored || noMoreProducers}
                   onClick={this.loadMoreProducers}
                 >
-                Load more
-                </Button>}
+                  Load more
+                </Button> :
+              null}
             </div>
           </Container>
         </div>
