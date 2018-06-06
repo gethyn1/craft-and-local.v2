@@ -7,6 +7,7 @@ import {
   PRODUCERS_FETCH_HAS_ERRORED,
   PRODUCERS_RESET_DATA,
 } from './action-types'
+import { EMIT_ANALYTICS_EVENT } from '../analytics/action-types'
 
 import api from '../../services/api'
 import { getDistanceBetweenPoints } from './distances'
@@ -19,6 +20,16 @@ type GetProps = {
   categories?: string,
 }
 
+const trackProducerRenderedInResults = (userId: string) => ({
+  type: EMIT_ANALYTICS_EVENT,
+  payload: track.producerRenderedInResults(userId),
+})
+
+const trackLoadMoreProducers = (category: ?string, count: ?number) => ({
+  type: EMIT_ANALYTICS_EVENT,
+  payload: track.loadMoreProducers(category, count),
+})
+
 export const getProducers = (service: Object) => ({
   latitude,
   longitude,
@@ -30,7 +41,7 @@ export const getProducers = (service: Object) => ({
 
   return service.getProducers({ latlng: `${latitude},${longitude}`, mindistance, exclude, categories })
     .then((data) => {
-      data.map(producer => track.producerRenderedInResults(producer.user_id))
+      data.map(producer => dispatch(trackProducerRenderedInResults(producer.user_id)))
       return dispatch({ type: PRODUCERS_FETCH_DATA_SUCCESS, payload: data, meta: { latitude, longitude } })
     })
     .catch(() => dispatch({ type: PRODUCERS_FETCH_HAS_ERRORED, payload: true }))
@@ -42,6 +53,8 @@ type LoadProps = {
   searchProximity: Array<number>,
   exclude?: Array<string>,
   categories?: string,
+  categorySlug?: string,
+  count?: number,
 }
 
 export const loadMoreProducers = (service: Object) => ({
@@ -50,6 +63,8 @@ export const loadMoreProducers = (service: Object) => ({
   searchProximity,
   exclude,
   categories,
+  categorySlug,
+  count,
 }: LoadProps) => (dispatch: Function) => {
   const mindistance = getDistanceBetweenPoints(
     latitude,
@@ -58,6 +73,7 @@ export const loadMoreProducers = (service: Object) => ({
     searchProximity[0],
   )
 
+  dispatch(trackLoadMoreProducers(categorySlug, count))
   return dispatch(getProducers(service)({ latitude, longitude, mindistance, exclude, categories }))
 }
 

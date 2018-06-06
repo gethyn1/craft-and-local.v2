@@ -3,12 +3,12 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { path } from 'ramda'
-import * as track from 'common/analytics/events'
 import Button from 'common/components/button'
 import Container from 'common/components/container'
 import GoogleMap from 'common/components/google-map'
 import { Layout, LayoutItem } from 'common/components/layout'
 import { APP_NAME, TWITTER_HANDLE } from '../../config'
+import { LOAD_MORE_PRODUCERS_TEST_ID } from './constants'
 import Card from './card'
 import Filters from './filters'
 
@@ -98,9 +98,9 @@ class Producers extends React.Component<Props, State> {
       searchProximity,
       exclude: producersAtSearchProximity,
       categories: path(['_id'], category),
+      categorySlug: path(['title'], category),
+      count: producers ? producers.length : null,
     })
-
-    track.loadMoreProducers(path(['title'], category), producers ? producers.length : null)
   }
 
   categoryDidUpdate() {
@@ -166,7 +166,7 @@ class Producers extends React.Component<Props, State> {
               {noMoreProducers ?
                 <p>That is all the producers we have right now</p> :
                 <Button
-                  data-test-id="producers/load-more"
+                  data-test-id={LOAD_MORE_PRODUCERS_TEST_ID}
                   disabled={isFetching || hasErrored || noMoreProducers}
                   onClick={this.loadMoreProducers}
                 >

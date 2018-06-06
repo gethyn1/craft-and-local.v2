@@ -1,0 +1,1 @@
+export const EMIT_ANALYTICS_EVENT = 'analytics/EMIT_ANALYTICS_EVENT'

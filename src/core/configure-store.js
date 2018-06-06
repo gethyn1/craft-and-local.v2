@@ -2,6 +2,7 @@
 
 import { createStore, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
+import trackAnalyticsEvents from '../app/analytics/middleware'
 import { isProd } from '../config'
 
 const configureStore = (preloadedState: Object, reducer: Object) => {
@@ -12,7 +13,10 @@ const configureStore = (preloadedState: Object, reducer: Object) => {
   const store = createStore(
     reducer,
     preloadedState,
-    composeEnhancers(applyMiddleware(thunkMiddleware)),
+    composeEnhancers(applyMiddleware(
+      thunkMiddleware,
+      trackAnalyticsEvents,
+    )),
   )
 
   return store

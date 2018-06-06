@@ -26,22 +26,18 @@ export const producerMetaLink = (type: string, handle: string) => {
   })
 }
 
-export const loadMoreProducers = (category: ?string, count: ?number) => {
-  ReactGA.event({
-    category: 'User requested content',
-    action: 'Load more producers',
-    label: category || 'all',
-    value: count === null ? 0 : count,
-  })
-}
+export const loadMoreProducers = (category: ?string, count: ?number) => ({
+  category: 'User requested content',
+  action: 'Load more producers',
+  label: category || 'all',
+  value: count === null ? 0 : count,
+})
 
-export const producerRenderedInResults = (userId: string) => {
-  ReactGA.event({
-    category: 'Producer statistics',
-    action: 'Producer rendered in results',
-    label: userId,
-  })
-}
+export const producerRenderedInResults = (userId: string) => ({
+  category: 'Producer statistics',
+  action: 'Producer rendered in results',
+  label: userId,
+})
 
 export const pageNotFound = (path: string) => {
   ReactGA.event({

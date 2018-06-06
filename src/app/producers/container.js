@@ -29,12 +29,12 @@ const mapStateToProps = (state: Object, ownProps: Object) => {
   }
 }
 
-const mapDispatchToProps = ({
+const mapDispatchToProps = {
   getProducers: getProducersWithAPI,
   loadMoreProducers: loadMoreProducersWithAPI,
   resetProducers,
   pageNotFound,
-})
+}
 
 export default connect(
   mapStateToProps,

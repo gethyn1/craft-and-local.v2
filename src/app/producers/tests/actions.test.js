@@ -1,5 +1,6 @@
 import configureStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
+import * as track from 'common/analytics/events'
 import { getProducers, loadMoreProducers, resetProducers } from '../actions'
 import {
   PRODUCERS_IS_FETCHING_DATA,
@@ -7,6 +8,7 @@ import {
   PRODUCERS_FETCH_HAS_ERRORED,
   PRODUCERS_RESET_DATA,
 } from '../action-types'
+import { EMIT_ANALYTICS_EVENT } from '../../analytics/action-types'
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares)
@@ -67,6 +69,7 @@ describe('producers > actions', () => {
       store.dispatch(loadMoreProducers(service)({ latitude: 1, longitude: 1, searchProximity: [1, 1], exclude: ['1'], categories: '1' }))
         .then(() => {
           expect(store.getActions()).toEqual([
+            { type: EMIT_ANALYTICS_EVENT, payload: track.loadMoreProducers() },
             { type: PRODUCERS_IS_FETCHING_DATA, payload: true },
             {
               type: PRODUCERS_FETCH_DATA_SUCCESS,

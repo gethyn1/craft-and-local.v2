@@ -1,10 +1,12 @@
 import React from 'react'
 import { shallow } from 'enzyme'
 import Producers from '../Producers'
+import { LOAD_MORE_PRODUCERS_TEST_ID } from '../constants'
 
 const getProducers = jest.fn()
 const resetProducers = jest.fn()
 const loadMoreProducers = jest.fn()
+const trackLoadMoreProducers = jest.fn()
 
 const defaultProps = {
   getProducers,
@@ -23,6 +25,7 @@ const defaultProps = {
   category: null,
   categoriesHaveLoaded: false,
   resetProducers,
+  trackLoadMoreProducers,
 }
 
 const shallowProducers = (props = defaultProps) =>
@@ -33,6 +36,7 @@ describe('<Producers />', () => {
     getProducers.mockReset()
     resetProducers.mockReset()
     loadMoreProducers.mockReset()
+    trackLoadMoreProducers.mockReset()
   })
 
   describe('behaviour', () => {
@@ -75,15 +79,15 @@ describe('<Producers />', () => {
 
     it('should load more producers when user clicks load more button', () => {
       const wrapper = shallowProducers()
-      const button = wrapper.find('[data-test-id="producers/load-more"]')
+      const button = wrapper.find(`[data-test-id="${LOAD_MORE_PRODUCERS_TEST_ID}"]`)
 
       button.simulate('click')
       expect(loadMoreProducers.mock.calls.length).toBe(1)
     })
 
     it('should call load more producers with the correct parameters', () => {
-      const wrapper = shallowProducers({ ...defaultProps, category: { _id: '3' } })
-      const button = wrapper.find('[data-test-id="producers/load-more"]')
+      const wrapper = shallowProducers({ ...defaultProps, category: { _id: '3', title: 'category title' } })
+      const button = wrapper.find(`[data-test-id="${LOAD_MORE_PRODUCERS_TEST_ID}"]`)
 
       button.simulate('click')
       expect(loadMoreProducers.mock.calls[0][0]).toEqual({
@@ -92,6 +96,8 @@ describe('<Producers />', () => {
         searchProximity: defaultProps.searchProximity,
         exclude: defaultProps.producersAtSearchProximity,
         categories: '3',
+        categorySlug: 'category title',
+        count: 0,
       })
     })
   })
