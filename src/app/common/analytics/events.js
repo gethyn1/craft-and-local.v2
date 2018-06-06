@@ -1,7 +1,5 @@
 // @flow
 
-import ReactGA from 'react-ga'
-
 export const shareProducerModal = (userId: string) => ({
   category: 'Share',
   action: 'Opened modal',
@@ -33,11 +31,9 @@ export const producerRenderedInResults = (userId: string) => ({
   label: userId,
 })
 
-export const pageNotFound = (path: string) => {
-  ReactGA.event({
-    category: 'Error status code',
-    action: '404',
-    label: path,
-    nonInteraction: true,
-  })
-}
+export const pageNotFound = (path: string) => ({
+  category: 'Error status code',
+  action: '404',
+  label: path,
+  nonInteraction: true,
+})

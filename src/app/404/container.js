@@ -3,6 +3,7 @@
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { path } from 'ramda'
+import { trackPageNotFound } from './actions'
 import { resetPageErrors } from '../actions'
 import NotFound from './404'
 
@@ -11,6 +12,7 @@ const mapStateToProps = (state: Object, ownProps: Object) => ({
 })
 
 const mapDispatchToProps = {
+  trackPageNotFound,
   resetPageErrors,
 }
 
