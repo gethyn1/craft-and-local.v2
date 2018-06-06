@@ -10,9 +10,19 @@ import { EMIT_ANALYTICS_EVENT } from '../analytics/action-types'
 import { handlePageError } from '../actions'
 import api from '../../services/api'
 
+export const trackShareProducerModal = (userId: string) => ({
+  type: EMIT_ANALYTICS_EVENT,
+  payload: track.shareProducerModal(userId),
+})
+
 export const trackProducerMetaLink = (type: string, userId: string) => ({
   type: EMIT_ANALYTICS_EVENT,
   payload: track.producerMetaLink(type, userId),
+})
+
+export const trackShareProducerButton = (type: string, userId: string) => ({
+  type: EMIT_ANALYTICS_EVENT,
+  payload: track.shareProducerButton(type, userId),
 })
 
 export const getProducer = (service: Object) => (userId: String) => (dispatch: Function) => {

@@ -1,7 +1,6 @@
 // @flow
 
 import React from 'react'
-import * as track from 'common/analytics/events'
 import Button from 'common/components/button'
 import List from 'common/components/list'
 import Modal from 'common/components/modal'
@@ -11,9 +10,10 @@ type Props = {
   isSharing: boolean,
   shareProfile: Function,
   producer: Object,
+  trackShareProducerButton: Function,
 }
 
-const ShareProfile = ({ isSharing, producer, shareProfile }: Props) => (
+const ShareProfile = ({ isSharing, producer, shareProfile, trackShareProducerButton }: Props) => (
   <React.Fragment>
     <Button onClick={() => { shareProfile(!isSharing, producer.user_id) }}>Share this profile</Button>
     <Modal isVisible={isSharing} toggleVisibility={() => { shareProfile(!isSharing) }}>
@@ -25,7 +25,7 @@ const ShareProfile = ({ isSharing, producer, shareProfile }: Props) => (
             target="_blank"
             href={`https://facebook.com/sharer/sharer.php?u=${APP_URL}/${PRODUCER_PATH}/${producer.user_id}`}
             block
-            onClick={() => { track.shareProducerButton('facebook', producer.user_id) }}
+            onClick={() => { trackShareProducerButton('facebook', producer.user_id) }}
           >
             Share on Facebook
           </Button>
@@ -36,7 +36,7 @@ const ShareProfile = ({ isSharing, producer, shareProfile }: Props) => (
             target="_blank"
             href={`https://twitter.com/intent/tweet/?url=${APP_URL}/${PRODUCER_PATH}/${producer.user_id}&text=${producer.title}&hashtags=${SHARE_HASHTAGS}&via=${TWITTER_HANDLE}`}
             block
-            onClick={() => { track.shareProducerButton('twitter', producer.user_id) }}
+            onClick={() => { trackShareProducerButton('twitter', producer.user_id) }}
           >
             Share on Twitter
           </Button>

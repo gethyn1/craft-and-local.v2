@@ -2,26 +2,22 @@
 
 import ReactGA from 'react-ga'
 
-export const shareProducerModal = (handle: string) => {
-  ReactGA.event({
-    category: 'Share',
-    action: 'Opened modal',
-    label: handle,
-  })
-}
+export const shareProducerModal = (userId: string) => ({
+  category: 'Share',
+  action: 'Opened modal',
+  label: userId,
+})
 
-export const shareProducerButton = (type: string, handle: string) => {
-  ReactGA.event({
-    category: 'Share',
-    action: `Clicked ${type} share button`,
-    label: handle,
-  })
-}
+export const shareProducerButton = (type: string, userId: string) => ({
+  category: 'Share',
+  action: `Clicked ${type} share button`,
+  label: userId,
+})
 
-export const producerMetaLink = (type: string, handle: string) => ({
+export const producerMetaLink = (type: string, userId: string) => ({
   category: 'Meta',
   action: `Clicked ${type} meta link`,
-  label: handle,
+  label: userId,
 })
 
 export const loadMoreProducers = (category: ?string, count: ?number) => ({

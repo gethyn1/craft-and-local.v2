@@ -28,6 +28,7 @@ type Props = {
   getProducer: Function,
   userId: string,
   trackProducerMetaLink: Function,
+  trackShareProducerButton: Function,
 }
 
 class Producer extends React.Component<Props> {
@@ -36,7 +37,15 @@ class Producer extends React.Component<Props> {
   }
 
   render() {
-    const { hasErrored, isFetching, producer, isSharing, shareProfile, trackProducerMetaLink } = this.props
+    const {
+      hasErrored,
+      isFetching,
+      producer,
+      isSharing,
+      shareProfile,
+      trackProducerMetaLink,
+      trackShareProducerButton,
+    } = this.props
 
     if (hasErrored) {
       return <p>There was an error loading producer</p>
@@ -76,6 +85,7 @@ class Producer extends React.Component<Props> {
                   isSharing={isSharing}
                   shareProfile={shareProfile}
                   producer={producer}
+                  trackShareProducerButton={trackShareProducerButton}
                 />
               </div>
             </div>
