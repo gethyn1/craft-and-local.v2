@@ -34,7 +34,7 @@ const ShareProfile = ({ isSharing, producer, shareProfile, trackShareProducerBut
           <Button
             level="twitter"
             target="_blank"
-            href={`https://twitter.com/intent/tweet/?url=${APP_URL}/${PRODUCER_PATH}/${producer.user_id}&text=${producer.title}&hashtags=${SHARE_HASHTAGS}&via=${TWITTER_HANDLE}`}
+            href={`https://twitter.com/intent/tweet/?url=${APP_URL}/${PRODUCER_PATH}/${producer.user_id}&text=${encodeURIComponent(producer.title)}&hashtags=${SHARE_HASHTAGS}&via=${TWITTER_HANDLE}`}
             block
             onClick={() => { trackShareProducerButton('twitter', producer.user_id) }}
           >
