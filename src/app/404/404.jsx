@@ -23,7 +23,7 @@ class NotFound extends React.Component<Props> {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         <Helmet
           title="Page not found"
           meta={[
@@ -42,7 +42,7 @@ class NotFound extends React.Component<Props> {
             </LayoutItem>
           </Layout>
         </Container>
-      </div>
+      </React.Fragment>
     )
   }
 }
