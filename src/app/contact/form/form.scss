@@ -1,0 +1,24 @@
+/* ==========================================================================
+   #FORM
+   ========================================================================== */
+
+@import "common/styles/_global-import.scss";
+
+.row {
+  margin-bottom: rem($global-spacing-unit);
+}
+
+.label {
+  display: block;
+  margin-bottom: rem($global-spacing-unit-xsm);
+}
+
+.input {
+  width: 100%;
+  border: 1px solid;
+  padding: rem($global-spacing-unit-sm);
+}
+
+.textarea {
+  min-height: rem(200);
+}

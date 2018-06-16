@@ -8,7 +8,7 @@ global.ENV_ENVIRONMENT = null
 export const isProd = ENV_ENVIRONMENT === 'production'
 export const WDS_PORT = 8080
 
-export const APP_NAME = 'Craft and Local'
+export const APP_NAME = 'Craft & Local'
 
 export const API_URL = isProd ? 'https://craftandlocal-v2-production.herokuapp.com' : 'http://localhost:5000'
 export const APP_URL = isProd ? 'https://mystifying-volhard-f16793.netlify.com' : `http://localhost:${WDS_PORT}`
