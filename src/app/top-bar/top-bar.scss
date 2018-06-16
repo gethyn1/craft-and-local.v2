@@ -5,13 +5,24 @@
 @import "common/styles/_global-import.scss";
 
 .top-bar {
-  padding-top: rem($global-spacing-unit);
+  padding-top: rem($global-spacing-unit-sm);
   padding-bottom: rem($global-spacing-unit);
   position: relative;
+
+  @include mq($from: 'tablet') {
+    padding-top: rem($global-spacing-unit);
+  }
 }
 
 .branding {
+  border-bottom: 1px solid $palette-border;
+  margin-bottom: rem($global-spacing-unit);
+  padding-bottom: rem($global-spacing-unit-sm);
+
   @include mq($from: 'tablet') {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
     margin-right: rem($global-spacing-unit);
   }
 }
@@ -53,5 +64,24 @@
     align-items: center; /* 1 */
     display: flex; /* 1 */
     text-align: auto;
+  }
+}
+
+.nav {
+  font-size: $small-font-size;
+  margin-bottom: 0;
+
+  @include mq($from: 'tablet') {
+    margin-left: auto;
+  }
+}
+
+.nav-link {
+  color: inherit;
+  font-weight: $bold;
+  text-decoration: none;
+
+  &:hover {
+    color: $palette-primary;
   }
 }

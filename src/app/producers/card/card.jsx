@@ -3,7 +3,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Avatar from 'common/components/avatar'
-import { ASSET_BASE, PRODUCER_PATH } from '../../../config'
+import { PRODUCER_PATH } from 'common/constants/paths'
+import { ASSET_BASE } from '../../../config'
 import Distance from './distance'
 import Icon from '../../common/components/icon'
 import styles from './card.scss'
@@ -34,7 +35,7 @@ const Card = ({ producer, lat, lng }: Props) => {
   ))
 
   return (
-    <Link className={styles.card} to={`/${PRODUCER_PATH}/${producer.user_id}`}>
+    <Link className={styles.card} to={`${PRODUCER_PATH}/${producer.user_id}`}>
       <Avatar size="small" className="u-margin-bottom" alt={producer.title} src={`${ASSET_BASE}/${producer.avatar}`} />
       <h2 className={styles.title}>{producer.title}</h2>
       <p className={styles.categories}>{categories}</p>
