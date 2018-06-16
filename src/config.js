@@ -13,7 +13,7 @@ export const APP_NAME = 'Craft & Local'
 export const API_URL = isProd ? 'https://craftandlocal-v2-production.herokuapp.com' : 'http://localhost:5000'
 export const APP_URL = isProd ? 'https://mystifying-volhard-f16793.netlify.com' : `http://localhost:${WDS_PORT}`
 
-export const ASSET_BASE = 'https://d3ov3mwru83yk6.cloudfront.net'
+export const ASSET_BASE = isProd ? 'https://d2ywlpybgqgstg.cloudfront.net' : 'https://d3ov3mwru83yk6.cloudfront.net'
 
 export const GA_ID = isProd ? 'UA-xxxxxx-xx' : 'UA-xxxxxx-xx'
 export const GA_DEBUG = !isProd
