@@ -27,6 +27,17 @@ type Params = {
 }
 
 const api = {
+  getLocations: (params: Params) =>
+    fetch(`${API_URL}/locations?${constructQueryString(params)}`, { method: 'GET' })
+      .then(catchFetchError)
+      .then(response => response.json())
+      .then(data => data.data.locations)
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log('Error in service:', err)
+        throw Error(err)
+      }),
+
   getProducers: (params: Params) =>
     fetch(`${API_URL}/producers?${constructQueryString(params)}`, { method: 'GET' })
       .then(catchFetchError)

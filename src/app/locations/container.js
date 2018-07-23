@@ -2,9 +2,9 @@
 
 import { connect } from 'react-redux'
 import { equals, path } from 'ramda'
-import { getProducersWithAPI, loadMoreProducersWithAPI, resetProducers } from './actions'
+import { getLocationsWithAPI, loadMoreLocationsWithAPI, resetLocations } from './actions'
 import { pageNotFound } from '../actions'
-import Producers from './producers'
+import Locations from './locations'
 
 const mapStateToProps = (state: Object, ownProps: Object) => {
   const categoryFromRoute = ownProps.match.params.category
@@ -12,13 +12,13 @@ const mapStateToProps = (state: Object, ownProps: Object) => {
   const categoryNotFound = !equals(categoryFromRoute, path(['slug'], category))
 
   return {
-    producers: state.domain.producers.data.producers,
-    markers: state.domain.producers.data.markers,
-    searchProximity: state.domain.producers.data.searchProximity,
-    producersAtSearchProximity: state.domain.producers.data.producersAtSearchProximity,
-    noMoreProducers: state.domain.producers.meta.noMoreProducers,
-    isFetching: state.domain.producers.meta.isFetching,
-    hasErrored: state.domain.producers.meta.hasErrored,
+    locations: state.domain.locations.data.locations,
+    markers: state.domain.locations.data.markers,
+    searchProximity: state.domain.locations.data.searchProximity,
+    locationsAtSearchProximity: state.domain.locations.data.locationsAtSearchProximity,
+    noMoreLocations: state.domain.locations.meta.noMoreLocations,
+    isFetching: state.domain.locations.meta.isFetching,
+    hasErrored: state.domain.locations.meta.hasErrored,
     userLocationHasLoaded: state.domain.user.location.meta.hasFetched,
     latitude: state.domain.user.location.data.latitude,
     longitude: state.domain.user.location.data.longitude,
@@ -30,13 +30,13 @@ const mapStateToProps = (state: Object, ownProps: Object) => {
 }
 
 const mapDispatchToProps = {
-  getProducers: getProducersWithAPI,
-  loadMoreProducers: loadMoreProducersWithAPI,
-  resetProducers,
+  getLocations: getLocationsWithAPI,
+  loadMoreLocations: loadMoreLocationsWithAPI,
+  resetLocations,
   pageNotFound,
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Producers)
+)(Locations)

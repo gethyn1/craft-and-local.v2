@@ -1,10 +1,10 @@
-import { route as producersRoute } from './producers'
+import { route as locationsRoute } from './locations'
 import { route as producerRoute } from './producer'
 import { route as contactRoute } from './contact'
 import { routes as adminRoutes } from './admin'
 
 const routes = [
-  producersRoute,
+  locationsRoute,
   producerRoute,
   contactRoute,
   ...adminRoutes,

@@ -11,26 +11,29 @@ import styles from './card.scss'
 import locationIcon from '../../common/icons/location.svg' // eslint-disable-line no-unused-vars
 
 type Props = {
-  producer: {
+  location: {
     location: {
       coordinates: Array<string>
     },
     categories: Array<{ _id: string, title: string }>,
-    user_id: string,
-    title: string,
-    avatar: string,
+    producer: {
+      user_id: string,
+      title: string,
+      avatar: string,
+    },
   },
   lat: number,
   lng: number,
 }
 
-const Card = ({ producer, lat, lng }: Props) => {
-  const coords = producer.location.coordinates
+const Card = ({ location, lat, lng }: Props) => {
+  const { producer } = location
+  const coords = location.location.coordinates
 
-  const categories = producer.categories.map((category, i) => (
+  const categories = location.categories.map((category, i) => (
     <span key={category._id}>
       <span>{category.title}</span>
-      {i + 1 === producer.categories.length ? null : ', '}
+      {i + 1 === location.categories.length ? null : ', '}
     </span>
   ))
 

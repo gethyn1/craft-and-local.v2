@@ -2,7 +2,7 @@
 
 import { combineReducers } from 'redux'
 import { geocoding, uploads, user } from 'src/domain'
-import { reducer as producers } from './producers'
+import { reducer as locations } from './locations'
 import { reducer as producer } from './producer'
 import { reducer as categories } from './categories'
 import { reducer as admin } from './admin'
@@ -65,7 +65,7 @@ const appReducer = combineReducers({
     uploads: uploads.reducer,
     user: user.reducer,
     admin,
-    producers,
+    locations,
     producer,
     categories,
   }),

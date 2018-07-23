@@ -8,27 +8,27 @@ import Container from 'common/components/container'
 import GoogleMap from 'common/components/google-map'
 import { Layout, LayoutItem } from 'common/components/layout'
 import { APP_NAME, TWITTER_HANDLE } from '../../config'
-import { LOAD_MORE_PRODUCERS_TEST_ID } from './constants'
+import { LOAD_MORE_LOCATIONS_TEST_ID } from './constants'
 import Card from './card'
 import Filters from './filters'
 
 type Props = {
-  getProducers: Function,
-  producers: Array<Object>,
+  getLocations: Function,
+  locations: Array<Object>,
   markers: Array<Object>,
   searchProximity: Array<string>,
-  producersAtSearchProximity: Array<string>,
+  locationsAtSearchProximity: Array<string>,
   isFetching: boolean,
   hasErrored: boolean,
-  loadMoreProducers: Function,
-  noMoreProducers: boolean,
+  loadMoreLocations: Function,
+  noMoreLocations: boolean,
   categories: Array<Object>,
   latitude: number,
   longitude: number,
   userLocationHasLoaded: boolean,
   category: Object,
   categoriesHaveLoaded: boolean,
-  resetProducers: Function,
+  resetLocations: Function,
   categoryNotFound: boolean,
   pageNotFound: Function,
 }
@@ -37,20 +37,20 @@ type State = {
   hasFetched: boolean,
 }
 
-class Producers extends React.Component<Props, State> {
+class Locations extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
 
     this.state = { hasFetched: false }
-    this.loadMoreProducers = this.loadMoreProducers.bind(this)
+    this.loadMoreLocations = this.loadMoreLocations.bind(this)
   }
 
   componentDidMount() {
-    this.getProducers()
+    this.getLocations()
   }
 
   componentDidUpdate(prevProps: Props) {
-    this.getProducers()
+    this.getLocations()
 
     if (prevProps.category !== this.props.category && this.state.hasFetched) {
       this.categoryDidUpdate()
@@ -58,10 +58,10 @@ class Producers extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    this.props.resetProducers()
+    this.props.resetLocations()
   }
 
-  getProducers() {
+  getLocations() {
     const {
       categoriesHaveLoaded,
       userLocationHasLoaded,
@@ -73,7 +73,7 @@ class Producers extends React.Component<Props, State> {
     } = this.props
 
     if (!this.state.hasFetched && categoriesHaveLoaded && userLocationHasLoaded) {
-      this.props.getProducers({ latitude, longitude, categories: path(['_id'], category) })
+      this.props.getLocations({ latitude, longitude, categories: path(['_id'], category) })
       this.setState({ hasFetched: true })
     }
 
@@ -82,29 +82,29 @@ class Producers extends React.Component<Props, State> {
     }
   }
 
-  loadMoreProducers = () => {
+  loadMoreLocations = () => {
     const {
       latitude,
       longitude,
       category,
       searchProximity,
-      producersAtSearchProximity,
-      producers,
+      locationsAtSearchProximity,
+      locations,
     } = this.props
 
-    this.props.loadMoreProducers({
+    this.props.loadMoreLocations({
       latitude,
       longitude,
       searchProximity,
-      exclude: producersAtSearchProximity,
+      exclude: locationsAtSearchProximity,
       categories: path(['_id'], category),
       categorySlug: path(['title'], category),
-      count: producers ? producers.length : null,
+      count: locations ? locations.length : null,
     })
   }
 
   categoryDidUpdate() {
-    this.props.resetProducers()
+    this.props.resetLocations()
     this.setState({ hasFetched: false })
   }
 
@@ -112,11 +112,11 @@ class Producers extends React.Component<Props, State> {
     const {
       isFetching,
       hasErrored,
-      producers,
+      locations,
       markers,
       latitude,
       longitude,
-      noMoreProducers,
+      noMoreLocations,
       categories,
       category,
     } = this.props
@@ -124,16 +124,16 @@ class Producers extends React.Component<Props, State> {
     return (
       <React.Fragment>
         <Helmet
-          title={`${APP_NAME}${category ? `: ${category.title}` : ': all producers'}`}
+          title={`${APP_NAME}${category ? `: ${category.title}` : ': all locations'}`}
           meta={[
-            { name: 'description', content: 'Local producers and market traders' },
-            { property: 'og:title', content: `${APP_NAME}${category ? `: ${category.title}` : ': all producers'}` },
-            { property: 'og:description', content: 'Local producers and market traders' },
+            { name: 'description', content: 'Local locations and market traders' },
+            { property: 'og:title', content: `${APP_NAME}${category ? `: ${category.title}` : ': all locations'}` },
+            { property: 'og:description', content: 'Local locations and market traders' },
             { property: 'og:type', content: 'website' },
             { property: 'twitter:card', content: 'summary' },
             { property: 'twitter:site', content: `@${TWITTER_HANDLE}` },
             { property: 'twitter:title', content: APP_NAME },
-            { property: 'twitter:description', content: `${APP_NAME}${category ? `: ${category.title}` : ': all producers'}` },
+            { property: 'twitter:description', content: `${APP_NAME}${category ? `: ${category.title}` : ': all locations'}` },
           ]}
         />
         <div>
@@ -150,25 +150,25 @@ class Producers extends React.Component<Props, State> {
             <Filters categories={categories} active={path(['_id'], category)} />
             <Layout>
               {
-                producers.length
-                ? producers.map(producer => (
-                  <LayoutItem key={producer._id} cols="1/3@tablet" className="u-margin-bottom">
-                    <Card producer={producer} lat={latitude} lng={longitude} />
+                locations.length
+                ? locations.map(location => (
+                  <LayoutItem key={location._id} cols="1/3@tablet" className="u-margin-bottom">
+                    <Card location={location} lat={latitude} lng={longitude} />
                   </LayoutItem>))
-                : (<p>No producers</p>)
+                : (<p>No locations</p>)
               }
             </Layout>
             <div className="u-margin-bottom-lg">
-              {isFetching ? <p>Loading producers ...</p> : null}
-              {hasErrored ? <p>There was an error loading producers</p> : null}
+              {isFetching ? <p>Loading locations ...</p> : null}
+              {hasErrored ? <p>There was an error loading locations</p> : null}
             </div>
             <div className="u-margin-bottom-lg">
-              {noMoreProducers ? <p>That is all the producers we have right now</p> : null}
-              {!noMoreProducers && this.state.hasFetched ?
+              {noMoreLocations ? <p>That is all the locations we have right now</p> : null}
+              {!noMoreLocations && this.state.hasFetched ?
                 <Button
-                  data-test-id={LOAD_MORE_PRODUCERS_TEST_ID}
-                  disabled={isFetching || hasErrored || noMoreProducers}
-                  onClick={this.loadMoreProducers}
+                  data-test-id={LOAD_MORE_LOCATIONS_TEST_ID}
+                  disabled={isFetching || hasErrored || noMoreLocations}
+                  onClick={this.loadMoreLocations}
                 >
                   Load more
                 </Button> :
@@ -181,4 +181,4 @@ class Producers extends React.Component<Props, State> {
   }
 }
 
-export default Producers
+export default Locations
