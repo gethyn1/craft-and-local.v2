@@ -25,10 +25,10 @@ export const trackShareProducerButton = (type: string, userId: string) => ({
   payload: track.shareProducerButton(type, userId),
 })
 
-export const getProducer = (service: Object) => (userId: String) => (dispatch: Function) => {
+export const getProducer = (service: Object) => (locationId: String) => (dispatch: Function) => {
   dispatch({ type: PRODUCER_IS_FETCHING_DATA, payload: true })
 
-  return service.getProducer(userId)
+  return service.getLocation(locationId)
     .then((data) => {
       dispatch({ type: PRODUCER_FETCH_DATA_SUCCESS, payload: data })
     })

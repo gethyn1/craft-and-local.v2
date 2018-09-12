@@ -38,6 +38,17 @@ const api = {
         throw Error(err)
       }),
 
+  getLocation: (id: String) =>
+    fetch(`${API_URL}/locations/${String(id)}`, { method: 'GET' })
+      .then(catchFetchError)
+      .then(response => response.json())
+      .then(data => data.data.location)
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log('Error in service:', err)
+        throw Error(err)
+      }),
+
   getProducers: (params: Params) =>
     fetch(`${API_URL}/producers?${constructQueryString(params)}`, { method: 'GET' })
       .then(catchFetchError)

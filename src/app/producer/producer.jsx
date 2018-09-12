@@ -20,7 +20,7 @@ import { removeUrlPrefix } from './remove-url-prefix'
 import styles from './producer.scss'
 
 type Props = {
-  producer: ?Object,
+  location: ?Object,
   isFetching: boolean,
   hasErrored: boolean,
   isSharing: boolean,
@@ -40,8 +40,8 @@ class Producer extends React.Component<Props> {
     const {
       hasErrored,
       isFetching,
-      producer,
       isSharing,
+      location,
       shareProfile,
       trackProducerMetaLink,
       trackShareProducerButton,
@@ -51,9 +51,11 @@ class Producer extends React.Component<Props> {
       return <p>There was an error loading producer</p>
     }
 
-    if (!producer || isFetching) {
+    if (!location || isFetching) {
       return <p>Loading producer ...</p>
     }
+
+    const { producer } = location
 
     return (
       <React.Fragment>
@@ -77,7 +79,7 @@ class Producer extends React.Component<Props> {
               <header className={styles.header}>
                 <Avatar className="u-margin-bottom-sm" alt={producer.title} src={`${ASSET_BASE}/${producer.avatar}`} />
                 <h1 className={`${styles.title} u-h1`}>{producer.title}</h1>
-                <p className={styles.categories}><Categories categories={producer.categories} /></p>
+                <p className={styles.categories}><Categories categories={location.categories} /></p>
               </header>
               <div className="u-margin-bottom-lg u-3/4@tablet u-center u-text-center">
                 <p>{producer.description}</p>

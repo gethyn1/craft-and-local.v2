@@ -11,11 +11,11 @@ const middlewares = [thunk]
 const mockStore = configureStore(middlewares)
 
 const service = {
-  getProducer: () => Promise.resolve({}), // eslint-disable-line compat/compat
+  getLocation: () => Promise.resolve({}), // eslint-disable-line compat/compat
 }
 
 const serviceWithError = {
-  getProducer: () => Promise.reject(), // eslint-disable-line compat/compat
+  getLocation: () => Promise.reject(), // eslint-disable-line compat/compat
 }
 
 describe('producer > actions > get producer', () => {
