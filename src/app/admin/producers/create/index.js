@@ -1,2 +1,1 @@
-export { route } from './routes'
-export { reducer } from './reducer'
+export { container as Create } from './container'

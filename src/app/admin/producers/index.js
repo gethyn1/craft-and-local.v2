@@ -1,1 +1,2 @@
-export * as create from './create'
+export { reducer } from './reducer'
+export { routes } from './routes'

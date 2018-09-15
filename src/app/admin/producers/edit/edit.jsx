@@ -1,26 +1,43 @@
 // @flow
 
 import React from 'react'
-import { Link } from 'react-router-dom'
 import Container from 'common/components/container'
-import { EDIT_PRODUCERS_PATH } from 'common/constants/paths'
-
-type State = {
-  title: string,
-  user_id: string,
-}
 
 type Props = {
+  user_id: string,
+  producer: Object,
+  onSubmit: Function,
   isFetching: boolean,
   hasErrored: boolean,
   hasUpdated: boolean,
-  onSubmit: Function,
 }
 
-export class Create extends React.Component<Props, State> {
-  state = {
-    title: '',
-    user_id: '',
+type State = {
+  title: ?string,
+  user_id: ?string,
+}
+
+export class Edit extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props)
+
+    this.state = {
+      title: '',
+      user_id: '',
+    }
+  }
+
+  componentWillReceiveProps(nextProps: Props) {
+    if (nextProps.producer) {
+      this.mapProducerToState(nextProps.producer)
+    }
+  }
+
+  mapProducerToState(producer: Object) {
+    this.setState({
+      title: producer.title,
+      user_id: producer.user_id,
+    })
   }
 
   handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
@@ -31,7 +48,7 @@ export class Create extends React.Component<Props, State> {
 
   handleSubmit = (event: Event) => {
     event.preventDefault()
-    this.props.onSubmit(this.state)
+    this.props.onSubmit(this.props.user_id, this.state)
   }
 
   render() {
@@ -39,10 +56,10 @@ export class Create extends React.Component<Props, State> {
 
     return (
       <Container>
-        <h2>Create a producer</h2>
-        {hasUpdated && <p>Producer succesfully created <Link to={`${EDIT_PRODUCERS_PATH}/${this.state.user_id}`}>Edit producer</Link></p>}
-        {isFetching && <p>Creating producer ...</p>}
-        {hasErrored && <p>There was an error creating the producer. Please try again</p>}
+        <h2>Edit Producer: {this.props.user_id}</h2>
+        {hasUpdated && <p>Producer succesfully updated</p>}
+        {isFetching && <p>Updating producer ...</p>}
+        {hasErrored && <p>There was an error updating the producer. Please try again</p>}
         <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="title">Title</label><br />
