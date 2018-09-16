@@ -8,7 +8,7 @@ import {
   GEOCODING_ADDRESS_LOOKUP_RESET,
 } from './action-types'
 
-export const loadingReducer = (state: boolean = true, action: { type: string, payload: any }) => {
+export const isLoading = (state: boolean = true, action: { type: string, payload: any }) => {
   switch (action.type) {
     case GEOCODING_ADDRESS_LOOKUP_IS_LOADING:
       return true
@@ -20,7 +20,7 @@ export const loadingReducer = (state: boolean = true, action: { type: string, pa
   }
 }
 
-export const errorReducer = (state: boolean = false, action: { type: string, payload: any }) => {
+export const hasErrored = (state: boolean = false, action: { type: string, payload: any }) => {
   switch (action.type) {
     case GEOCODING_ADDRESS_LOOKUP_IS_LOADING:
     case GEOCODING_ADDRESS_LOOKUP_SUCCESS:
@@ -32,7 +32,7 @@ export const errorReducer = (state: boolean = false, action: { type: string, pay
   }
 }
 
-export const geocodingReducer = (state: ?Object = null, action: { type: string, payload: any }) => { // eslint-disable-line
+export const geocoding = (state: ?Object = null, action: { type: string, payload: any }) => { // eslint-disable-line
   switch (action.type) {
     case GEOCODING_ADDRESS_LOOKUP_SUCCESS:
       return {
@@ -54,10 +54,10 @@ export const geocodingReducer = (state: ?Object = null, action: { type: string, 
   }
 }
 
-export default combineReducers({
-  data: geocodingReducer,
+export const reducer = combineReducers({
+  data: geocoding,
   meta: combineReducers({
-    isLoading: loadingReducer,
-    hasErrored: errorReducer,
+    isLoading,
+    hasErrored,
   }),
 })

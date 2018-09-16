@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 // @flow
 
-import { GOOGLE_MAPS_API_KEY } from '../../../config'
+import { GOOGLE_MAPS_API_KEY } from '../../config'
 import {
   GEOCODING_ADDRESS_LOOKUP_IS_LOADING,
   GEOCODING_ADDRESS_LOOKUP_HAS_ERRORED,
