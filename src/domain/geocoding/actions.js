@@ -6,7 +6,12 @@ import {
   GEOCODING_ADDRESS_LOOKUP_IS_LOADING,
   GEOCODING_ADDRESS_LOOKUP_HAS_ERRORED,
   GEOCODING_ADDRESS_LOOKUP_SUCCESS,
+  GEOCODING_ADDRESS_LOOKUP_RESET,
 } from './action-types'
+
+export const geocodingAddressLookupReset = () => ({
+  type: GEOCODING_ADDRESS_LOOKUP_RESET,
+})
 
 export const geocodingGetLatLngFromAddress = (address: string) => (dispatch: Function) => {
   const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${GOOGLE_MAPS_API_KEY}`

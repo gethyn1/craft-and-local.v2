@@ -32,7 +32,11 @@ export const hasErrored = (state: boolean = false, action: { type: string, paylo
   }
 }
 
-export const geocoding = (state: ?Object = null, action: { type: string, payload: any }) => { // eslint-disable-line
+const geocodingInitialState = {
+  addressLookupOptions: [],
+}
+
+export const geocoding = (state: Object = geocodingInitialState, action: { type: string, payload: any }) => { // eslint-disable-line
   switch (action.type) {
     case GEOCODING_ADDRESS_LOOKUP_SUCCESS:
       return {

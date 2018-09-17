@@ -3,9 +3,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import { geocoding } from 'src/domain'
 import { Edit } from './edit'
 import { updateProducerWithAPI } from '../actions'
 import { getProducerWithAPI } from '../../../producer/actions'
+
+const {
+  geocodingGetLatLngFromAddress,
+  geocodingAddressLookupReset,
+} = geocoding.actions
 
 type Props = {
   user_id: string,
@@ -15,6 +21,9 @@ type Props = {
   hasErrored: boolean,
   hasUpdated: boolean,
   fetchProducer: Function,
+  geoCodingOptions: ?Array<Object>,
+  geoCodingLookup: Function,
+  onGeoCodingSelect: Function,
 }
 
 class EditContainer extends React.Component<Props> {
@@ -31,10 +40,19 @@ class EditContainer extends React.Component<Props> {
         hasErrored={this.props.hasErrored}
         hasUpdated={this.props.hasUpdated}
         onSubmit={this.props.onSubmit}
+        geoCodingOptions={this.props.geoCodingOptions}
+        geoCodingLookup={this.props.geoCodingLookup}
+        onGeoCodingSelect={this.props.onGeoCodingSelect}
       />
     )
   }
 }
+
+const formatGeoCodingOption = (option: Object) => ({
+  id: option.id,
+  option: option.address,
+  value: `${option.lng},${option.lat}`,
+})
 
 const mapStateToProps = (state: Object, ownProps: Object) => ({
   user_id: ownProps.match.params.userId,
@@ -42,11 +60,14 @@ const mapStateToProps = (state: Object, ownProps: Object) => ({
   isFetching: state.domain.admin.producer.meta.isFetching,
   hasErrored: state.domain.admin.producer.meta.hasErrored,
   hasUpdated: state.domain.admin.producer.meta.hasUpdated,
+  geoCodingOptions: state.domain.geocoding.data.addressLookupOptions.map(formatGeoCodingOption),
 })
 
 const mapDispatchToProps = {
   onSubmit: updateProducerWithAPI,
   fetchProducer: getProducerWithAPI,
+  geoCodingLookup: geocodingGetLatLngFromAddress,
+  onGeoCodingSelect: geocodingAddressLookupReset,
 }
 
 export const container = withRouter(connect(
