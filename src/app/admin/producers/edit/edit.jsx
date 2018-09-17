@@ -1,8 +1,10 @@
 // @flow
 
 import React from 'react'
+import { path } from 'ramda'
 import Container from 'common/components/container'
 import { TextListInput } from './text-list-input'
+import { Category } from './category'
 
 type Props = {
   user_id: string,
@@ -14,6 +16,7 @@ type Props = {
   geoCodingOptions: ?Array<Object>,
   geoCodingLookup: Function,
   onGeoCodingSelect: Function,
+  categories: ?Array<Object>,
 }
 
 type State = {
@@ -22,6 +25,7 @@ type State = {
   address: string,
   lng: number,
   lat: number,
+  categories: ?Array<string>,
 }
 
 export class Edit extends React.Component<Props, State> {
@@ -34,11 +38,12 @@ export class Edit extends React.Component<Props, State> {
       address: '',
       lng: 0,
       lat: 0,
+      categories: null,
     }
   }
 
   componentWillReceiveProps(nextProps: Props) {
-    if (this.props.producer !== nextProps.producer) {
+    if (path(['props', 'producer', '_id'], this) !== path(['producer', '_id'], nextProps)) {
       this.mapProducerToState(nextProps.producer)
     }
   }
@@ -50,6 +55,7 @@ export class Edit extends React.Component<Props, State> {
       address: producer.address,
       lng: producer.location.coordinates[0],
       lat: producer.location.coordinates[1],
+      categories: producer.categories.map(category => category._id),
     })
   }
 
@@ -75,13 +81,36 @@ export class Edit extends React.Component<Props, State> {
     })
   }
 
+  handleCategoryChange = (event: SyntheticEvent<HTMLInputElement>) => {
+    const { categories } = this.state
+    let newCategories = categories || []
+
+    if (event.currentTarget.checked) {
+      newCategories.push(event.currentTarget.value)
+    } else if (categories) {
+      newCategories = categories.filter(cat => cat !== event.currentTarget.value)
+    }
+
+    this.setState({
+      categories: newCategories.length ? newCategories : null,
+    })
+  }
+
   handleSubmit = (event: Event) => {
     event.preventDefault()
     this.props.onSubmit(this.props.user_id, this.state)
   }
 
+  categoryInState = (id: string) => {
+    if (this.state.categories) {
+      return this.state.categories.includes(id)
+    }
+
+    return false
+  }
+
   render() {
-    const { hasUpdated, isFetching, hasErrored } = this.props
+    const { hasUpdated, isFetching, hasErrored, categories } = this.props
 
     return (
       <Container>
@@ -107,6 +136,11 @@ export class Edit extends React.Component<Props, State> {
               onOptionSelect={this.handleAddressSelect}
               name="address_lookup"
             />
+          </div>
+          <div className="u-margin-bottom">
+            <p>Categories:</p>
+            {categories && categories.map((category: Object) =>
+              <Category key={category._id} category={category} checked={this.categoryInState} onChange={this.handleCategoryChange} />)}
           </div>
           <button type="submit">Submit</button>
         </form>

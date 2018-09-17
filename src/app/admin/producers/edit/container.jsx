@@ -24,6 +24,7 @@ type Props = {
   geoCodingOptions: ?Array<Object>,
   geoCodingLookup: Function,
   onGeoCodingSelect: Function,
+  categories: ?Array<Object>,
 }
 
 class EditContainer extends React.Component<Props> {
@@ -43,6 +44,7 @@ class EditContainer extends React.Component<Props> {
         geoCodingOptions={this.props.geoCodingOptions}
         geoCodingLookup={this.props.geoCodingLookup}
         onGeoCodingSelect={this.props.onGeoCodingSelect}
+        categories={this.props.categories}
       />
     )
   }
@@ -61,6 +63,7 @@ const mapStateToProps = (state: Object, ownProps: Object) => ({
   hasErrored: state.domain.admin.producer.meta.hasErrored,
   hasUpdated: state.domain.admin.producer.meta.hasUpdated,
   geoCodingOptions: state.domain.geocoding.data.addressLookupOptions.map(formatGeoCodingOption),
+  categories: state.domain.categories.data,
 })
 
 const mapDispatchToProps = {

@@ -31,9 +31,6 @@ class TextListInput extends React.Component<Props, State> {
       dirty: false,
       value: this.props.value || '',
     }
-
-    this.handleChange = this.handleChange.bind(this)
-    this.handleOptionSelect = this.handleOptionSelect.bind(this)
   }
 
   componentWillReceiveProps(nextProps: Object) {
@@ -45,7 +42,7 @@ class TextListInput extends React.Component<Props, State> {
     }
   }
 
-  handleChange(event: SyntheticEvent<HTMLInputElement>) {
+  handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
     this.props.onChange(event.currentTarget.value)
 
     this.setState({
@@ -54,7 +51,7 @@ class TextListInput extends React.Component<Props, State> {
     })
   }
 
-  handleOptionSelect(option: Option) {
+  handleOptionSelect = (option: Option) => {
     this.props.onOptionSelect(option)
 
     this.setState({
