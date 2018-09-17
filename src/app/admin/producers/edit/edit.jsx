@@ -119,15 +119,15 @@ export class Edit extends React.Component<Props, State> {
         {isFetching && <p>Updating producer ...</p>}
         {hasErrored && <p>There was an error updating the producer. Please try again</p>}
         <form onSubmit={this.handleSubmit}>
-          <div>
+          <div className="u-margin-bottom">
             <label htmlFor="title">Title</label><br />
             <input id="title" type="text" name="title" onChange={this.handleChange} value={this.state.title} />
           </div>
-          <div>
+          <div className="u-margin-bottom">
             <label htmlFor="user_id">User ID</label><br />
             <input id="user_id" type="text" name="user_id" onChange={this.handleChange} value={this.state.user_id} />
           </div>
-          <div>
+          <div className="u-margin-bottom">
             <label htmlFor="address_lookup">Address</label><br />
             <TextListInput
               value={this.state.address}
@@ -136,6 +136,14 @@ export class Edit extends React.Component<Props, State> {
               onOptionSelect={this.handleAddressSelect}
               name="address_lookup"
             />
+          </div>
+          <div className="u-margin-bottom-sm">
+            <label htmlFor="lng">Longitude</label><br />
+            <input onChange={this.handleChange} type="text" name="lng" value={this.state.lng} />
+          </div>
+          <div className="u-margin-bottom">
+            <label htmlFor="lat">Latitude</label><br />
+            <input onChange={this.handleChange} type="text" name="lat" value={this.state.lat} />
           </div>
           <div className="u-margin-bottom">
             <p>Categories:</p>
