@@ -21,7 +21,7 @@ export const resetPageErrors = () => ({
   type: RESET_PAGE_ERRORS,
 })
 
-export const handlePageError = (err: string, defaultAction: { type: string, payload: any }) =>
+export const handlePageError = (err: string, defaultAction: { type: string, payload?: any }) =>
   (dispatch: Function) => {
     switch (path(['message'], err)) {
       case '404':

@@ -96,6 +96,7 @@ export default {
 	resolve: {
 		alias: {
 			common: path.resolve(__dirname, 'src/app/common/'),
+			src: path.resolve(__dirname, 'src/'),
 		},
 		extensions: ['.js', '.jsx'],
 	}

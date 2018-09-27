@@ -33,6 +33,13 @@
       "specialLink": [ "to", "hrefLeft", "hrefRight" ],
       "aspects": [ "noHref", "invalidHref", "preferButton" ]
     }],
+    "jsx-a11y/label-has-for": [ 2, {
+      "components": [ "Label" ],
+      "required": {
+        "every": [ "id" ]
+      },
+      "allowChildren": false
+    }],
     "import/no-unresolved": 0,
     "import/extensions": 0
   }

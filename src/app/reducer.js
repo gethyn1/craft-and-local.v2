@@ -1,10 +1,12 @@
 // @flow
 
 import { combineReducers } from 'redux'
+import { geocoding, uploads } from 'src/domain'
 import { reducer as producers } from './producers'
 import { reducer as userLocation } from './location/user'
 import { reducer as producer } from './producer'
 import { reducer as categories } from './categories'
+import { reducer as admin } from './admin'
 import { TOGGLE_MODAL, PAGE_NOT_FOUND, RESET_PAGE_ERRORS } from './action-types'
 
 const initialModalsState = {
@@ -63,6 +65,9 @@ const appReducer = combineReducers({
     location: userLocation,
   }),
   domain: combineReducers({
+    geocoding: geocoding.reducer,
+    uploads: uploads.reducer,
+    admin,
     producers,
     producer,
     categories,
