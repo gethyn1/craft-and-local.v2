@@ -5,6 +5,7 @@ import { path } from 'ramda'
 import Container from 'common/components/container'
 import { TextListInput } from './text-list-input'
 import { Category } from './category'
+import { Avatar } from './avatar'
 
 type Props = {
   user_id: string,
@@ -129,6 +130,8 @@ export class Edit extends React.Component<Props, State> {
 
     return (
       <Container>
+        <h2>Edit avatar</h2>
+        <Avatar />
         <h2>Edit Producer: {this.props.user_id}</h2>
         {hasUpdated && <p>Producer succesfully updated</p>}
         {isFetching && <p>Updating producer ...</p>}

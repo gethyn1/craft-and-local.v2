@@ -89,6 +89,31 @@ const api = {
         console.log('Error in service:', err)
         throw Error(err)
       }),
+
+  uploadAvatar: (id: string, file: Object, userId: ?string = null) => {
+    const headers = new Headers()
+
+    const formData = new FormData()
+    formData.append(id, file)
+
+    if (userId) {
+      formData.append('user_id', userId)
+    }
+
+    return fetch(`${API_URL}/avatars`, {
+      method: 'POST',
+      body: formData,
+      headers,
+    })
+      .then(catchFetchError)
+      .then(response => response.json())
+      .then(data => data.data.url)
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log('Error in service:', err)
+        throw Error(err)
+      })
+  },
 }
 
 export default api

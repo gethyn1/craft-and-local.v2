@@ -1,0 +1,3 @@
+export const UPLOAD_REQUESTED = 'admin/UPLOAD_REQUESTED'
+export const UPLOAD_SUCCEEDED = 'admin/UPLOAD_SUCCEEDED'
+export const UPLOAD_HAS_ERRORED = 'admin/UPLOAD_HAS_ERRORED'

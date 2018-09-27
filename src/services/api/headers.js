@@ -6,8 +6,13 @@ const setJSONHeaders = (headers: Object) => {
   return null
 }
 
-const createPostHeaders = () => {
+const createPostHeaders = (JSON: boolean = false) => {
   const headers = new Headers()
+
+  if (JSON) {
+    setJSONHeaders(headers)
+  }
+
   setJSONHeaders(headers)
   return headers
 }

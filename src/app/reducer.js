@@ -1,7 +1,7 @@
 // @flow
 
 import { combineReducers } from 'redux'
-import { geocoding } from 'src/domain'
+import { geocoding, uploads } from 'src/domain'
 import { reducer as producers } from './producers'
 import { reducer as userLocation } from './location/user'
 import { reducer as producer } from './producer'
@@ -66,6 +66,7 @@ const appReducer = combineReducers({
   }),
   domain: combineReducers({
     geocoding: geocoding.reducer,
+    uploads: uploads.reducer,
     admin,
     producers,
     producer,
