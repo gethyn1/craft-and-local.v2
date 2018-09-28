@@ -3,11 +3,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { geocoding, location } from 'src/domain'
+import { geocoding, producer } from 'src/domain'
 import { Edit } from './edit'
 import { updateProducerWithAPI } from '../actions'
 
-const { getProducerWithAPI } = location.actions
+const { getProducerWithAPI } = producer.actions
 
 const {
   geocodingGetLatLngFromAddress,

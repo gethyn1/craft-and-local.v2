@@ -1,7 +1,7 @@
 // @flow
 
 import { combineReducers } from 'redux'
-import { location } from 'src/domain'
+import { producer } from 'src/domain'
 import {
   CREATE_PRODUCER_REQUESTED,
   CREATE_PRODUCER_SUCCEEDED,
@@ -15,9 +15,9 @@ const {
   PRODUCER_IS_FETCHING_DATA,
   PRODUCER_FETCH_DATA_SUCCESS,
   PRODUCER_FETCH_HAS_ERRORED,
-} = location
+} = producer.actionTypes
 
-const producer = (state: ?Object = null, action: { type: string, payload: any }) => {
+const producerReducer = (state: ?Object = null, action: { type: string, payload: any }) => {
   switch (action.type) {
     case CREATE_PRODUCER_SUCCEEDED:
     case UPDATE_PRODUCER_SUCCEEDED:
@@ -83,7 +83,7 @@ const hasUpdated = (state: boolean = false, action: { type: string }) => {
 }
 
 export const reducer = combineReducers({
-  data: producer,
+  data: producerReducer,
   meta: combineReducers({
     isFetching,
     hasErrored,
