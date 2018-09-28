@@ -6,11 +6,12 @@ import { location } from 'src/domain'
 import {
   trackShareProducerModal,
   trackShareProducerButton,
+  trackProducerMetaLink,
 } from './actions'
 import { toggleModal } from '../actions'
 import Producer from './producer'
 
-const { getProducerWithAPI, trackProducerMetaLink } = location.actions
+const { getLocationWithAPI } = location.actions
 
 const mapStateToProps = (state: Object, ownProps: Object) => ({
   userId: ownProps.match.params.id,
@@ -22,7 +23,7 @@ const mapStateToProps = (state: Object, ownProps: Object) => ({
 
 const mapDispatchToProps = (dispatch: Function) => ({
   getProducer: (userId: String) => {
-    dispatch(getProducerWithAPI(userId))
+    dispatch(getLocationWithAPI(userId))
   },
   shareProfile: (isVisible: boolean, userId: string) => {
     dispatch(toggleModal({ modal: 'shareProducer', isVisible }))

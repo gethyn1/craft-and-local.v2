@@ -1,10 +1,10 @@
 import configureStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
-import { getProducer } from '../actions'
+import { getLocation } from '../actions'
 import {
-  PRODUCER_IS_FETCHING_DATA,
-  PRODUCER_FETCH_DATA_SUCCESS,
-  PRODUCER_FETCH_HAS_ERRORED,
+  LOCATION_IS_FETCHING_DATA,
+  LOCATION_FETCH_DATA_SUCCESS,
+  LOCATION_FETCH_HAS_ERRORED,
 } from '../action-types'
 
 const middlewares = [thunk]
@@ -22,11 +22,11 @@ describe('location > actions > get producer', () => {
   it('should handle a successful response from the API', (done) => {
     const store = mockStore()
 
-    store.dispatch(getProducer(service)('mockUserId'))
+    store.dispatch(getLocation(service)('mockUserId'))
       .then(() => {
         expect(store.getActions()).toEqual([
-          { type: PRODUCER_IS_FETCHING_DATA, payload: true },
-          { type: PRODUCER_FETCH_DATA_SUCCESS, payload: {} },
+          { type: LOCATION_IS_FETCHING_DATA, payload: true },
+          { type: LOCATION_FETCH_DATA_SUCCESS, payload: {} },
         ])
 
         done()
@@ -36,11 +36,11 @@ describe('location > actions > get producer', () => {
   it('should handle an error response from the API', (done) => {
     const store = mockStore()
 
-    store.dispatch(getProducer(serviceWithError)('mockUserId'))
+    store.dispatch(getLocation(serviceWithError)('mockUserId'))
       .then(() => {
         expect(store.getActions()).toEqual([
-          { type: PRODUCER_IS_FETCHING_DATA, payload: true },
-          { type: PRODUCER_FETCH_HAS_ERRORED, payload: true },
+          { type: LOCATION_IS_FETCHING_DATA, payload: true },
+          { type: LOCATION_FETCH_HAS_ERRORED, payload: true },
         ])
 
         done()
