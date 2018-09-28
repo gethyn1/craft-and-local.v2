@@ -1,7 +1,1 @@
-import route from './route'
-import reducer from './reducer'
-
-export {
-  route,
-  reducer,
-}
+export { route } from './route'

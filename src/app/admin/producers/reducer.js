@@ -1,7 +1,7 @@
 // @flow
 
 import { combineReducers } from 'redux'
-
+import { location } from 'src/domain'
 import {
   CREATE_PRODUCER_REQUESTED,
   CREATE_PRODUCER_SUCCEEDED,
@@ -11,11 +11,11 @@ import {
   UPDATE_PRODUCER_HAS_ERRORED,
 } from './action-types'
 
-import {
+const {
   PRODUCER_IS_FETCHING_DATA,
   PRODUCER_FETCH_DATA_SUCCESS,
   PRODUCER_FETCH_HAS_ERRORED,
-} from '../../producer/action-types'
+} = location
 
 const producer = (state: ?Object = null, action: { type: string, payload: any }) => {
   switch (action.type) {

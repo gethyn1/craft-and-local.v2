@@ -18,7 +18,7 @@ const serviceWithError = {
   getLocation: () => Promise.reject(), // eslint-disable-line compat/compat
 }
 
-describe('producer > actions > get producer', () => {
+describe('location > actions > get producer', () => {
   it('should handle a successful response from the API', (done) => {
     const store = mockStore()
 

@@ -1,9 +1,8 @@
 // @flow
 
 import { combineReducers } from 'redux'
-import { geocoding, uploads, user } from 'src/domain'
+import { geocoding, uploads, user, location } from 'src/domain'
 import { reducer as locations } from './locations'
-import { reducer as producer } from './producer'
 import { reducer as categories } from './categories'
 import { reducer as admin } from './admin'
 import { TOGGLE_MODAL, PAGE_NOT_FOUND, RESET_PAGE_ERRORS } from './action-types'
@@ -66,7 +65,7 @@ const appReducer = combineReducers({
     user: user.reducer,
     admin,
     locations,
-    producer,
+    location: location.reducer,
     categories,
   }),
 })

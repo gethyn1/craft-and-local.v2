@@ -39,7 +39,7 @@ const hasErrored = (state: boolean = false, action: { type: string, payload: any
   }
 }
 
-export default combineReducers({
+export const reducer = combineReducers({
   data: producer,
   meta: combineReducers({
     isFetching,

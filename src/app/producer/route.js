@@ -1,6 +1,6 @@
 import ProducerContainer from './container'
 
-export default {
+export const route = {
   path: '/producer/:userId/:id',
   name: 'Producer',
   component: ProducerContainer,
