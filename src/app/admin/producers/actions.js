@@ -7,6 +7,9 @@ import {
   UPDATE_PRODUCER_REQUESTED,
   UPDATE_PRODUCER_SUCCEEDED,
   UPDATE_PRODUCER_HAS_ERRORED,
+  GET_LOCATIONS_FOR_PRODUCER_REQUESTED,
+  GET_LOCATIONS_FOR_PRODUCER_SUCCEEDED,
+  GET_LOCATIONS_FOR_PRODUCER_HAS_ERRORED,
 } from './action-types'
 
 import api from '../../../services/api'
@@ -34,5 +37,17 @@ export const updateProducer = (service: Object) => (userId: string, producer: Ob
       dispatch(handlePageError(err, { type: UPDATE_PRODUCER_HAS_ERRORED })))
 }
 
+export const getLocationsForProducer = (service: Object) => (id: string) => (dispatch: Function) => {
+  dispatch({ type: GET_LOCATIONS_FOR_PRODUCER_REQUESTED })
+
+  return service.getLocations({ producer: id })
+    .then((data) => {
+      dispatch({ type: GET_LOCATIONS_FOR_PRODUCER_SUCCEEDED, payload: data })
+    })
+    .catch(err =>
+      dispatch(handlePageError(err, { type: GET_LOCATIONS_FOR_PRODUCER_HAS_ERRORED })))
+}
+
 export const createProducerWithAPI = createProducer(api)
 export const updateProducerWithAPI = updateProducer(api)
+export const getLocationsForProducerWithAPI = getLocationsForProducer(api)

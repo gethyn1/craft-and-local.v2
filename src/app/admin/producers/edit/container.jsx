@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { geocoding, producer } from 'src/domain'
 import { Edit } from './edit'
-import { updateProducerWithAPI } from '../actions'
+import { updateProducerWithAPI, getLocationsForProducerWithAPI } from '../actions'
 
 const { getProducerWithAPI } = producer.actions
 
@@ -26,11 +26,23 @@ type Props = {
   geoCodingLookup: Function,
   onGeoCodingSelect: Function,
   categories: ?Array<Object>,
+  getLocations: Function,
+  locations: ?Array<Object>,
+  locationsHasLoaded: boolean,
+  locationsIsLoading: boolean,
+  locationsHasErrored: boolean,
 }
 
 class EditContainer extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchProducer(this.props.user_id)
+  }
+
+  componentDidUpdate() {
+    const { locationsIsLoading, locationsHasLoaded } = this.props
+    if (this.props.producer && !locationsHasLoaded && !locationsIsLoading) {
+      this.props.getLocations(this.props.producer._id)
+    }
   }
 
   render() {
@@ -46,6 +58,9 @@ class EditContainer extends React.Component<Props> {
         geoCodingLookup={this.props.geoCodingLookup}
         onGeoCodingSelect={this.props.onGeoCodingSelect}
         categories={this.props.categories}
+        locations={this.props.locations}
+        locationsIsLoading={this.props.locationsIsLoading}
+        locationsHasErrored={this.props.locationsHasErrored}
       />
     )
   }
@@ -65,6 +80,9 @@ const mapStateToProps = (state: Object, ownProps: Object) => ({
   hasUpdated: state.domain.admin.producer.meta.hasUpdated,
   geoCodingOptions: state.domain.geocoding.data.addressLookupOptions.map(formatGeoCodingOption),
   categories: state.domain.categories.data,
+  locationsHasLoaded: state.domain.admin.producer.locations.meta.hasLoaded,
+  locationsIsLoading: state.domain.admin.producer.locations.meta.isFetching,
+  locationsHasErrored: state.domain.admin.producer.locations.meta.hasErrored,
 })
 
 const mapDispatchToProps = {
@@ -72,6 +90,7 @@ const mapDispatchToProps = {
   fetchProducer: getProducerWithAPI,
   geoCodingLookup: geocodingGetLatLngFromAddress,
   onGeoCodingSelect: geocodingAddressLookupReset,
+  getLocations: getLocationsForProducerWithAPI,
 }
 
 export const container = withRouter(connect(

@@ -1,6 +1,5 @@
 // @flow
 
-import { combineReducers } from 'redux'
 import { producer } from 'src/domain'
 import {
   CREATE_PRODUCER_REQUESTED,
@@ -9,7 +8,7 @@ import {
   UPDATE_PRODUCER_REQUESTED,
   UPDATE_PRODUCER_SUCCEEDED,
   UPDATE_PRODUCER_HAS_ERRORED,
-} from './action-types'
+} from '../action-types'
 
 const {
   PRODUCER_IS_FETCHING_DATA,
@@ -17,18 +16,7 @@ const {
   PRODUCER_FETCH_HAS_ERRORED,
 } = producer.actionTypes
 
-const producerReducer = (state: ?Object = null, action: { type: string, payload: any }) => {
-  switch (action.type) {
-    case CREATE_PRODUCER_SUCCEEDED:
-    case UPDATE_PRODUCER_SUCCEEDED:
-    case PRODUCER_FETCH_DATA_SUCCESS:
-      return action.payload
-    default:
-      return state
-  }
-}
-
-const isFetching = (state: boolean = false, action: { type: string }) => {
+export const isFetching = (state: boolean = false, action: { type: string }) => {
   switch (action.type) {
     case CREATE_PRODUCER_REQUESTED:
     case UPDATE_PRODUCER_REQUESTED:
@@ -46,7 +34,7 @@ const isFetching = (state: boolean = false, action: { type: string }) => {
   }
 }
 
-const hasErrored = (state: boolean = false, action: { type: string }) => {
+export const hasErrored = (state: boolean = false, action: { type: string }) => {
   switch (action.type) {
     case CREATE_PRODUCER_REQUESTED:
     case CREATE_PRODUCER_SUCCEEDED:
@@ -64,7 +52,7 @@ const hasErrored = (state: boolean = false, action: { type: string }) => {
   }
 }
 
-const hasUpdated = (state: boolean = false, action: { type: string }) => {
+export const hasUpdated = (state: boolean = false, action: { type: string }) => {
   switch (action.type) {
     case CREATE_PRODUCER_REQUESTED:
     case CREATE_PRODUCER_HAS_ERRORED:
@@ -81,12 +69,3 @@ const hasUpdated = (state: boolean = false, action: { type: string }) => {
       return state
   }
 }
-
-export const reducer = combineReducers({
-  data: producerReducer,
-  meta: combineReducers({
-    isFetching,
-    hasErrored,
-    hasUpdated,
-  }),
-})
