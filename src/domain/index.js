@@ -1,5 +1,6 @@
 export * as geocoding from './geocoding'
+export * as location from './location'
+export * as locations from './locations'
+export * as producer from './producer'
 export * as uploads from './uploads'
 export * as user from './user'
-export * as location from './location'
-export * as producer from './producer'

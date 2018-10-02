@@ -1,5 +1,6 @@
 // @flow
 
+import { path } from 'ramda'
 import * as track from 'common/analytics/events'
 import {
   LOCATIONS_IS_FETCHING_DATA,
@@ -7,9 +8,10 @@ import {
   LOCATIONS_FETCH_HAS_ERRORED,
   LOCATIONS_RESET_DATA,
 } from './action-types'
-import { EMIT_ANALYTICS_EVENT } from '../analytics/action-types'
+import { EMIT_ANALYTICS_EVENT } from '../../app/analytics/action-types'
 
 import api from '../../services/api'
+import { locationsWithAssociatedProducer } from './adapters'
 import { getDistanceBetweenPoints } from './distances'
 
 type GetProps = {
@@ -41,8 +43,9 @@ export const getLocations = (service: Object) => ({
 
   return service.getLocations({ latlng: `${latitude},${longitude}`, mindistance, exclude, categories })
     .then((data) => {
-      data.map(location => dispatch(trackProducerRenderedInResults(location.producer.user_id)))
-      return dispatch({ type: LOCATIONS_FETCH_DATA_SUCCESS, payload: data, meta: { latitude, longitude } })
+      const locations = locationsWithAssociatedProducer(data)
+      locations.map(location => dispatch(trackProducerRenderedInResults(path(['producer', 'user_id'], location))))
+      return dispatch({ type: LOCATIONS_FETCH_DATA_SUCCESS, payload: locations, meta: { latitude, longitude } })
     })
     .catch(() => dispatch({ type: LOCATIONS_FETCH_HAS_ERRORED, payload: true }))
 }

@@ -2,9 +2,11 @@
 
 import { connect } from 'react-redux'
 import { equals, path } from 'ramda'
-import { getLocationsWithAPI, loadMoreLocationsWithAPI, resetLocations } from './actions'
+import { locations } from 'src/domain'
 import { pageNotFound } from '../actions'
 import Locations from './locations'
+
+const { getLocationsWithAPI, loadMoreLocationsWithAPI, resetLocations } = locations.actions
 
 const mapStateToProps = (state: Object, ownProps: Object) => {
   const categoryFromRoute = ownProps.match.params.category
@@ -12,8 +14,8 @@ const mapStateToProps = (state: Object, ownProps: Object) => {
   const categoryNotFound = !equals(categoryFromRoute, path(['slug'], category))
 
   return {
-    locations: state.domain.locations.data.locations,
-    markers: state.domain.locations.data.markers,
+    locations: locations.selectors.locations(state),
+    markers: locations.selectors.markers(state),
     searchProximity: state.domain.locations.data.searchProximity,
     locationsAtSearchProximity: state.domain.locations.data.locationsAtSearchProximity,
     noMoreLocations: state.domain.locations.meta.noMoreLocations,

@@ -24,6 +24,7 @@ type Params = {
   latLng?: string,
   mindistance?: number,
   exclude?: Array<string>,
+  producer?: string,
 }
 
 const api = {

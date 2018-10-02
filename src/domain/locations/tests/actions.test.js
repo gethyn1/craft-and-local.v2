@@ -8,7 +8,7 @@ import {
   LOCATIONS_FETCH_HAS_ERRORED,
   LOCATIONS_RESET_DATA,
 } from '../action-types'
-import { EMIT_ANALYTICS_EVENT } from '../../analytics/action-types'
+import { EMIT_ANALYTICS_EVENT } from '../../../app/analytics/action-types'
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares)

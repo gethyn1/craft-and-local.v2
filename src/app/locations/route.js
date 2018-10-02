@@ -1,6 +1,6 @@
 import Container from './container'
 
-export default {
+export const route = {
   exact: true,
   path: '/producers/:category?',
   name: 'Producers',
