@@ -1,6 +1,8 @@
 // @flow
 
 import React from 'react'
+import { Link } from 'react-router-dom'
+import { EDIT_LOCATION_PATH } from 'common/constants/paths'
 
 type Props = {
   isLoading: boolean,
@@ -19,7 +21,11 @@ const Locations = ({ isLoading, hasErrored, locations }: Props) => {
 
   return (
     <ul>
-      {locations.map(location => <li key={location._id}>{location.address}</li>)}
+      {locations.map(location => (
+        <li key={location._id}>
+          <Link to={`${EDIT_LOCATION_PATH}/${location._id}`}>{location.address}</Link>
+        </li>
+      ))}
     </ul>
   )
 }
