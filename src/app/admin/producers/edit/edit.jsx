@@ -6,6 +6,7 @@ import Container from 'common/components/container'
 import { TextListInput } from './text-list-input'
 import { Category } from './category'
 import { Avatar } from './avatar'
+import { Locations } from './locations'
 
 type Props = {
   user_id: string,
@@ -18,6 +19,9 @@ type Props = {
   geoCodingLookup: Function,
   onGeoCodingSelect: Function,
   categories: ?Array<Object>,
+  locations: ?Array<Object>,
+  locationsIsLoading: boolean,
+  locationsHasErrored: boolean,
 }
 
 type State = {
@@ -130,6 +134,12 @@ export class Edit extends React.Component<Props, State> {
 
     return (
       <Container>
+        <h2>Producer locations</h2>
+        <Locations
+          isLoading={this.props.locationsIsLoading}
+          hasErrored={this.props.locationsHasErrored}
+          locations={this.props.locations}
+        />
         <h2>Edit avatar</h2>
         <Avatar />
         <h2>Edit Producer: {this.props.user_id}</h2>

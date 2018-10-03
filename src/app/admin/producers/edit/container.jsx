@@ -80,6 +80,7 @@ const mapStateToProps = (state: Object, ownProps: Object) => ({
   hasUpdated: state.domain.admin.producer.meta.hasUpdated,
   geoCodingOptions: state.domain.geocoding.data.addressLookupOptions.map(formatGeoCodingOption),
   categories: state.domain.categories.data,
+  locations: state.domain.admin.producer.locations.data,
   locationsHasLoaded: state.domain.admin.producer.locations.meta.hasLoaded,
   locationsIsLoading: state.domain.admin.producer.locations.meta.isFetching,
   locationsHasErrored: state.domain.admin.producer.locations.meta.hasErrored,
