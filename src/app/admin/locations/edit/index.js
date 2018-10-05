@@ -1,1 +1,1 @@
-export { Edit } from './edit'
+export { container as Edit } from './container'
