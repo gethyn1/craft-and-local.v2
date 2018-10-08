@@ -11,6 +11,7 @@ const { getLocationWithAPI, updateLocationWithAPI } = location.actions
 type Props = {
   id: string,
   location: Object,
+  activeProducer: Object,
   getLocation: Function,
   isFetching: boolean,
   hasErrored: boolean,
@@ -32,6 +33,7 @@ class EditContainer extends React.Component<Props> {
     return (
       <Edit
         location={this.props.location}
+        activeProducer={this.props.activeProducer}
         isFetching={this.props.isFetching}
         hasErrored={this.props.hasErrored}
         isUpdating={this.props.isUpdating}
@@ -55,6 +57,7 @@ const formatGeoCodingOption = (option: Object) => ({
 const mapStateToProps = (state: Object, ownProps: Object) => ({
   id: ownProps.match.params.id,
   location: state.domain.admin.location.data,
+  activeProducer: state.domain.admin.location.activeProducer,
   isFetching: state.domain.admin.location.meta.isFetching,
   hasErrored: state.domain.admin.location.meta.hasErrored,
   isUpdating: state.domain.admin.location.meta.isUpdating,

@@ -10,10 +10,14 @@ const {
   LOCATION_UPDATE_REQUESTED,
   LOCATION_UPDATE_SUCCEEDED,
   LOCATION_UPDATE_FAILED,
+  CREATE_LOCATION_REQUESTED,
+  CREATE_LOCATION_SUCCEEDED,
+  CREATE_LOCATION_FAILED,
 } = location.actionTypes
 
-const locationProducer = (state: ?Array<Object> = null, action: { type: string, payload: any }) => {
+const locationReducer = (state: ?Array<Object> = null, action: { type: string, payload: any }) => {
   switch (action.type) {
+    case CREATE_LOCATION_SUCCEEDED:
     case LOCATION_FETCH_DATA_SUCCESS:
     case LOCATION_UPDATE_SUCCEEDED:
       return action.payload
@@ -26,6 +30,8 @@ const isFetching = (state: boolean = false, action: { type: string }) => {
   switch (action.type) {
     case LOCATION_IS_FETCHING_DATA:
       return true
+    case CREATE_LOCATION_SUCCEEDED:
+    case CREATE_LOCATION_FAILED:
     case LOCATION_FETCH_DATA_SUCCESS:
     case LOCATION_FETCH_HAS_ERRORED:
       return false
@@ -36,9 +42,12 @@ const isFetching = (state: boolean = false, action: { type: string }) => {
 
 const hasErrored = (state: boolean = false, action: { type: string }) => {
   switch (action.type) {
+    case CREATE_LOCATION_SUCCEEDED:
+    case CREATE_LOCATION_REQUESTED:
     case LOCATION_IS_FETCHING_DATA:
     case LOCATION_FETCH_DATA_SUCCESS:
       return false
+    case CREATE_LOCATION_FAILED:
     case LOCATION_FETCH_HAS_ERRORED:
       return true
     default:
@@ -60,9 +69,12 @@ const hasLoaded = (state: boolean = false, action: { type: string }) => {
 
 const isUpdating = (state: boolean = false, action: { type: string }) => {
   switch (action.type) {
+    case CREATE_LOCATION_SUCCEEDED:
+    case CREATE_LOCATION_FAILED:
     case LOCATION_UPDATE_SUCCEEDED:
     case LOCATION_UPDATE_FAILED:
       return false
+    case CREATE_LOCATION_REQUESTED:
     case LOCATION_UPDATE_REQUESTED:
       return true
     default:
@@ -72,9 +84,12 @@ const isUpdating = (state: boolean = false, action: { type: string }) => {
 
 const hasUpdated = (state: boolean = false, action: { type: string }) => {
   switch (action.type) {
+    case CREATE_LOCATION_REQUESTED:
+    case LOCATION_IS_FETCHING_DATA:
     case LOCATION_UPDATE_REQUESTED:
     case LOCATION_UPDATE_FAILED:
       return false
+    case CREATE_LOCATION_SUCCEEDED:
     case LOCATION_UPDATE_SUCCEEDED:
       return true
     default:
@@ -83,7 +98,7 @@ const hasUpdated = (state: boolean = false, action: { type: string }) => {
 }
 
 export const reducer = combineReducers({
-  data: locationProducer,
+  data: locationReducer,
   meta: combineReducers({
     isFetching,
     hasErrored,

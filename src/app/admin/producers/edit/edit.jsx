@@ -57,14 +57,22 @@ export class Edit extends React.Component<Props, State> {
     }
   }
 
-  componentWillReceiveProps(nextProps: Props) {
-    if (path(['props', 'producer', '_id'], this) !== path(['producer', '_id'], nextProps)) {
-      this.mapProducerToState(nextProps.producer)
+  componentDidMount() {
+    this.mapProducerToState(this.props.producer)
+  }
+
+  componentDidUpdate(prevProps: Props) {
+    if (path(['producer', '_id'], this.props) !== path(['producer', '_id'], prevProps)) {
+      this.mapProducerToState(this.props.producer)
     }
   }
 
   mapProducerToState(producer: Object) {
-    this.setState({
+    if (!producer) {
+      return null
+    }
+
+    return this.setState({
       title: producer.title,
       user_id: producer.user_id,
       address: producer.address,
@@ -139,6 +147,7 @@ export class Edit extends React.Component<Props, State> {
           isLoading={this.props.locationsIsLoading}
           hasErrored={this.props.locationsHasErrored}
           locations={this.props.locations}
+          producerId={this.props.user_id}
         />
         <h2>Edit avatar</h2>
         <Avatar />

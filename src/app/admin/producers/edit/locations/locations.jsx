@@ -2,15 +2,16 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { EDIT_LOCATION_PATH } from 'common/constants/paths'
+import { EDIT_LOCATION_PATH, CREATE_LOCATION_PATH } from 'common/constants/paths'
 
 type Props = {
   isLoading: boolean,
   hasErrored: boolean,
   locations: Array<Object>,
+  producerId: String,
 }
 
-const Locations = ({ isLoading, hasErrored, locations }: Props) => {
+const Locations = ({ isLoading, hasErrored, locations, producerId }: Props) => {
   if (isLoading || !locations) {
     return <p>Loading...</p>
   }
@@ -20,13 +21,16 @@ const Locations = ({ isLoading, hasErrored, locations }: Props) => {
   }
 
   return (
-    <ul>
-      {locations.map(location => (
-        <li key={location._id}>
-          <Link to={`${EDIT_LOCATION_PATH}/${location._id}`}>{location.address}</Link>
-        </li>
-      ))}
-    </ul>
+    <div>
+      <ul>
+        {locations.map(location => (
+          <li key={location._id}>
+            <Link to={`${EDIT_LOCATION_PATH}/${location._id}`}>{location.alias || location.address}</Link>
+          </li>
+        ))}
+      </ul>
+      <Link to={CREATE_LOCATION_PATH(producerId)}>+ Add location</Link>
+    </div>
   )
 }
 
