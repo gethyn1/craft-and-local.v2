@@ -1,0 +1,17 @@
+/* ==========================================================================
+   #INPUT
+   ========================================================================== */
+
+@import "common/styles/_global-import.scss";
+
+/**
+ * 1. Allow button alignment and stop padding clip
+ */
+
+.input {
+  border: 1px solid $palette-border;
+  height: rem(50px); /* 1 */
+  line-height: rem(50px); /* 1 */
+  padding: 0 $global-spacing-unit-sm; /* 1 */
+  width: 100%;
+}

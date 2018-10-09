@@ -13,9 +13,6 @@ type Props = {
   hasErrored: boolean,
   isUpdating: boolean,
   hasUpdated: boolean,
-  geoCodingOptions: ?Array<Object>,
-  geoCodingLookup: Function,
-  onGeoCodingSelect: Function,
   categories: ?Array<Object>,
 }
 
@@ -26,9 +23,6 @@ export const Edit = ({
   isUpdating,
   location,
   onSubmit,
-  geoCodingOptions,
-  geoCodingLookup,
-  onGeoCodingSelect,
   categories,
 }: Props) => (
   <Container>
@@ -40,9 +34,6 @@ export const Edit = ({
     {!isFetching && <Form
       location={location}
       onSubmit={onSubmit}
-      geoCodingOptions={geoCodingOptions}
-      geoCodingLookup={geoCodingLookup}
-      onGeoCodingSelect={onGeoCodingSelect}
       categories={categories}
     />}
   </Container>

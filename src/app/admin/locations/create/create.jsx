@@ -25,9 +25,11 @@ export const Create = ({ producer, location, hasUpdated, hasErrored, isUpdating,
     <Container>
       <h2>Create location{producer ? ` for ${producer.user_id}` : null}</h2>
       {producer ?
-        <Link to={`${EDIT_PRODUCERS_PATH}/${producer.user_id}`}>
-          Back to producer {producer.user_id}
-        </Link> :
+        <div className="u-margin-bottom">
+          <Link to={`${EDIT_PRODUCERS_PATH}/${producer.user_id}`}>
+            Back to producer {producer.user_id}
+          </Link>
+        </div> :
         null}
       {hasUpdated && <p>Location succesfully created. <Link to={`${EDIT_LOCATION_PATH}/${location._id}`}>Edit location</Link></p>}
       {isUpdating && <p>Creating location ...</p>}

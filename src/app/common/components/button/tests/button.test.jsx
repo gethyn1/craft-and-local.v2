@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import Button, { generateClassList } from '../button'
+import { Button, generateClassList } from '../button'
 import styles from '../button.scss'
 
 describe('generateClassList()', () => {

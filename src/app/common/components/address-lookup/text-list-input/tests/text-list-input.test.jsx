@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import { TextListInput } from '../index'
+import { TextListInput } from '../text-list-input'
 
 const mockOptions = [
   { id: '1', option: 'option 1', value: 'value 1' },
@@ -29,11 +29,6 @@ describe('<TextListInput />', () => {
     }
 
     mountedTextListInput = undefined
-  })
-
-  it('always renders a containing div', () => {
-    const div = textListInput().find('div')
-    expect(div.length).toBe(1)
   })
 
   it('only displays a single input', () => {

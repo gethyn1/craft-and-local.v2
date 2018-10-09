@@ -2,20 +2,21 @@
 
 import React from 'react'
 import { path } from 'ramda'
-import { Input } from 'common/components/input'
 import { Button } from 'common/components/button'
+import { Input } from 'common/components/input'
 import { AddressLookup } from 'common/components/address-lookup'
 import { Categories } from 'common/components/categories'
 
 type Props = {
-  location: Object,
+  userId: string,
+  producer: Object,
   onSubmit: Function,
   categories: ?Array<Object>,
 }
 
 type State = {
-  alias: string,
-  id: string,
+  title: string,
+  user_id: string,
   address: string,
   lng: number,
   lat: number,
@@ -32,8 +33,8 @@ export class Form extends React.Component<Props, State> {
     super(props)
 
     this.state = {
-      alias: '',
-      id: '',
+      title: '',
+      user_id: '',
       address: '',
       lng: 0,
       lat: 0,
@@ -47,32 +48,32 @@ export class Form extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    this.mapLocationToState(this.props.location)
+    this.mapProducerToState(this.props.producer)
   }
 
   componentDidUpdate(prevProps: Props) {
-    if (path(['props', 'location', '_id'], this) !== path(['location', '_id'], prevProps)) {
-      this.mapLocationToState(this.props.location)
+    if (path(['producer', '_id'], this.props) !== path(['producer', '_id'], prevProps)) {
+      this.mapProducerToState(this.props.producer)
     }
   }
 
-  mapLocationToState(location: Object) {
-    if (!location) {
+  mapProducerToState(producer: Object) {
+    if (!producer) {
       return null
     }
 
     return this.setState({
-      alias: location.alias || '',
-      id: location._id || '',
-      address: location.address || '',
-      lng: location.location.coordinates[0] || 0,
-      lat: location.location.coordinates[1] || 0,
-      categories: path(['categories'], location) ? location.categories.map(category => category._id) : null,
-      instagram_handle: location.instagram_handle || '',
-      twitter_handle: location.twitter_handle || '',
-      website: location.website || '',
-      contact_email: location.contact_email || '',
-      contact_telephone: location.contact_telephone || '',
+      title: producer.title,
+      user_id: producer.user_id,
+      address: producer.address,
+      lng: producer.location.coordinates[0],
+      lat: producer.location.coordinates[1],
+      categories: producer.categories.map(category => category._id),
+      instagram_handle: producer.instagram_handle,
+      twitter_handle: producer.twitter_handle,
+      website: producer.website,
+      contact_email: producer.contact_email,
+      contact_telephone: producer.contact_telephone,
     })
   }
 
@@ -94,14 +95,17 @@ export class Form extends React.Component<Props, State> {
 
   handleSubmit = (event: Event) => {
     event.preventDefault()
-    this.props.onSubmit(this.props.location._id, this.state)
+    this.props.onSubmit(this.props.userId, this.state)
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="u-margin-bottom">
-          <Input id="title" label="Alias" name="alias" onChange={this.handleChange} value={this.state.alias} />
+          <Input id="title" label="Title" name="title" onChange={this.handleChange} value={this.state.title} />
+        </div>
+        <div className="u-margin-bottom">
+          <Input id="user_id" label="User ID" name="user_id" onChange={this.handleChange} value={this.state.user_id} />
         </div>
         <div className="u-margin-bottom">
           <AddressLookup address={this.state.address} onSelect={this.handleAddressSelect} />

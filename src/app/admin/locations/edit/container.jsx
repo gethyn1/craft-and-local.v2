@@ -3,7 +3,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { geocoding, location } from 'src/domain'
+import { location } from 'src/domain'
 import { Edit } from './edit'
 
 const { getLocationWithAPI, updateLocationWithAPI } = location.actions
@@ -48,12 +48,6 @@ class EditContainer extends React.Component<Props> {
   }
 }
 
-const formatGeoCodingOption = (option: Object) => ({
-  id: option.id,
-  option: option.address,
-  value: `${option.lng},${option.lat}`,
-})
-
 const mapStateToProps = (state: Object, ownProps: Object) => ({
   id: ownProps.match.params.id,
   location: state.domain.admin.location.data,
@@ -62,14 +56,11 @@ const mapStateToProps = (state: Object, ownProps: Object) => ({
   hasErrored: state.domain.admin.location.meta.hasErrored,
   isUpdating: state.domain.admin.location.meta.isUpdating,
   hasUpdated: state.domain.admin.location.meta.hasUpdated,
-  geoCodingOptions: state.domain.geocoding.data.addressLookupOptions.map(formatGeoCodingOption),
   categories: state.domain.categories.data,
 })
 
 const mapDispatchToProps = {
   getLocation: getLocationWithAPI,
-  geoCodingLookup: geocoding.actions.geocodingGetLatLngFromAddress,
-  onGeoCodingSelect: geocoding.actions.geocodingAddressLookupReset,
   onSubmit: updateLocationWithAPI,
 }
 

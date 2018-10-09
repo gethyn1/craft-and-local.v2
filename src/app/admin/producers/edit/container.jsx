@@ -15,7 +15,7 @@ const {
 } = geocoding.actions
 
 type Props = {
-  user_id: string,
+  userId: string,
   producer: Object,
   onSubmit: Function,
   isFetching: boolean,
@@ -35,7 +35,7 @@ type Props = {
 
 class EditContainer extends React.Component<Props> {
   componentDidMount() {
-    this.props.fetchProducer(this.props.user_id)
+    this.props.fetchProducer(this.props.userId)
   }
 
   componentDidUpdate() {
@@ -48,7 +48,7 @@ class EditContainer extends React.Component<Props> {
   render() {
     return (
       <Edit
-        user_id={this.props.user_id}
+        userId={this.props.userId}
         producer={this.props.producer}
         isFetching={this.props.isFetching}
         hasErrored={this.props.hasErrored}
@@ -73,7 +73,7 @@ const formatGeoCodingOption = (option: Object) => ({
 })
 
 const mapStateToProps = (state: Object, ownProps: Object) => ({
-  user_id: ownProps.match.params.userId,
+  userId: ownProps.match.params.userId,
   producer: state.domain.admin.producer.data,
   isFetching: state.domain.admin.producer.meta.isFetching,
   hasErrored: state.domain.admin.producer.meta.hasErrored,

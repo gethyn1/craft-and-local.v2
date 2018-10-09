@@ -1,6 +1,6 @@
 import React from 'react'
 import { shallow } from 'enzyme'
-import Locations from '../Locations'
+import Locations from '../locations'
 import { LOAD_MORE_LOCATIONS_TEST_ID } from '../constants'
 
 const getLocations = jest.fn()

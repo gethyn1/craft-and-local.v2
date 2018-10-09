@@ -1,6 +1,8 @@
 // @flow
 
 import React from 'react'
+import { Input } from 'common/components/input'
+import { DataList } from './data-list'
 
 type Option = {
   id: string,
@@ -9,6 +11,7 @@ type Option = {
 }
 
 type Props = {
+  label: String,
   options: ?Array<Option>,
   name: string,
   onChange: Function,
@@ -59,40 +62,19 @@ class TextListInput extends React.Component<Props, State> {
     })
   }
 
-  renderDataList() {
-    const { options } = this.props
-
-    if (options) {
-      return (
-        <ul>
-          {options.map(option => (
-            <li
-              key={option.id}
-              role="presentation"
-              onClick={() => { this.handleOptionSelect(option) }}
-            >
-              {option.option}
-            </li>
-          ))}
-        </ul>
-      )
-    }
-
-    return null
-  }
-
   render() {
     return (
-      <div>
-        <input
-          type="text"
-          onChange={this.handleChange}
-          name={this.props.name}
-          value={this.state.value}
+      <React.Fragment>
+        <Input
           autoComplete="off"
+          id={this.props.name}
+          label={this.props.label}
+          name={this.props.name}
+          onChange={this.handleChange}
+          value={this.state.value}
         />
-        {this.renderDataList()}
-      </div>
+        {this.props.options && <DataList items={this.props.options} onSelect={this.handleOptionSelect} />}
+      </React.Fragment>
     )
   }
 }

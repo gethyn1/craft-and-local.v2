@@ -5,12 +5,12 @@ import { Input } from 'common/components/input'
 import { Button } from 'common/components/button'
 
 type Props = {
-  producerId: String,
   onSubmit: Function,
 }
 
 type State = {
-  alias: string,
+  title: string,
+  user_id: string,
 }
 
 export class Form extends React.Component<Props, State> {
@@ -18,7 +18,8 @@ export class Form extends React.Component<Props, State> {
     super(props)
 
     this.state = {
-      alias: '',
+      title: '',
+      user_id: '',
     }
   }
 
@@ -30,16 +31,19 @@ export class Form extends React.Component<Props, State> {
 
   handleSubmit = (event: Event) => {
     event.preventDefault()
-    this.props.onSubmit({ ...this.state, producer: this.props.producerId })
+    this.props.onSubmit(this.state)
   }
 
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="u-margin-bottom">
-          <Input id="alias" label="Alias" name="alias" onChange={this.handleChange} value={this.state.alias} />
+          <Input id="title" label="Title" name="title" onChange={this.handleChange} value={this.state.title} />
         </div>
-        <Button type="submit">Create location</Button>
+        <div className="u-margin-bottom">
+          <Input id="user_id" label="User ID" name="user_id" onChange={this.handleChange} value={this.state.user_id} />
+        </div>
+        <Button type="submit">Submit</Button>
       </form>
     )
   }
