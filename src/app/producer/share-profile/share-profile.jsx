@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import Button from 'common/components/button'
+import { Button } from 'common/components/button'
 import List from 'common/components/list'
 import Modal from 'common/components/modal'
 import { APP_URL, PRODUCER_PATH, SHARE_HASHTAGS, TWITTER_HANDLE } from '../../../config'

@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import Button from 'common/components/button'
+import { Button } from 'common/components/button'
 import styles from './form.scss'
 
 const Form = () => (

@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { equals, path } from 'ramda'
 import { locations } from 'src/domain'
 import { pageNotFound } from '../actions'
-import Locations from './locations'
+import { Locations } from './locations'
 
 const { getLocationsWithAPI, loadMoreLocationsWithAPI, resetLocations } = locations.actions
 

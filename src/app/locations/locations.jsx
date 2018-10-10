@@ -3,7 +3,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { path } from 'ramda'
-import Button from 'common/components/button'
+import { Button } from 'common/components/button'
 import Container from 'common/components/container'
 import GoogleMap from 'common/components/google-map'
 import { Layout, LayoutItem } from 'common/components/layout'
@@ -37,7 +37,7 @@ type State = {
   hasFetched: boolean,
 }
 
-class Locations extends React.Component<Props, State> {
+export class Locations extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props)
 
@@ -180,5 +180,3 @@ class Locations extends React.Component<Props, State> {
     )
   }
 }
-
-export default Locations
