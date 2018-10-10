@@ -18,7 +18,7 @@ export const producerMetaLink = (type: string, userId: string) => ({
   label: userId,
 })
 
-export const loadMoreProducers = (category: ?string, count: ?number) => ({
+export const loadMoreLocations = (category: ?string, count: ?number) => ({
   category: 'User requested content',
   action: 'Load more producers',
   label: category || 'all',

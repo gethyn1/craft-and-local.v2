@@ -26,7 +26,7 @@ type Props = {
  * Return a space separated string from an array.
  */
 
-export const generateClassList = (classes: Array<*>) =>
+const generateClassList = (classes: Array<*>) =>
   classes
     .filter(className => className)
     .join(' ')
@@ -72,4 +72,4 @@ Button.defaultProps = {
   type: null,
 }
 
-export default Button
+export { generateClassList, Button }

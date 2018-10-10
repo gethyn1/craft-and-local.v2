@@ -2,26 +2,28 @@
 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import { location } from 'src/domain'
 import {
-  getProducerWithAPI,
-  trackProducerMetaLink,
   trackShareProducerModal,
   trackShareProducerButton,
+  trackProducerMetaLink,
 } from './actions'
 import { toggleModal } from '../actions'
 import Producer from './producer'
 
+const { getLocationWithAPI } = location.actions
+
 const mapStateToProps = (state: Object, ownProps: Object) => ({
   userId: ownProps.match.params.id,
-  producer: state.domain.producer.data,
-  isFetching: state.domain.producer.meta.isFetching,
-  hasErrored: state.domain.producer.meta.hasErrored,
+  location: state.domain.location.data,
+  isFetching: state.domain.location.meta.isFetching,
+  hasErrored: state.domain.location.meta.hasErrored,
   isSharing: state.app.ui.modals.shareProducer.isVisible,
 })
 
 const mapDispatchToProps = (dispatch: Function) => ({
   getProducer: (userId: String) => {
-    dispatch(getProducerWithAPI(userId))
+    dispatch(getLocationWithAPI(userId))
   },
   shareProfile: (isVisible: boolean, userId: string) => {
     dispatch(toggleModal({ modal: 'shareProducer', isVisible }))

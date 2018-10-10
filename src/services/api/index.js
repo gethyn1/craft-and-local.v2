@@ -24,9 +24,62 @@ type Params = {
   latLng?: string,
   mindistance?: number,
   exclude?: Array<string>,
+  producer?: string,
 }
 
 const api = {
+  getLocations: (params: Params) =>
+    fetch(`${API_URL}/locations?${constructQueryString(params)}`, { method: 'GET' })
+      .then(catchFetchError)
+      .then(response => response.json())
+      .then(data => data.data.locations)
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log('Error in service:', err)
+        throw Error(err)
+      }),
+
+  getLocation: (id: String) =>
+    fetch(`${API_URL}/locations/${String(id)}`, { method: 'GET' })
+      .then(catchFetchError)
+      .then(response => response.json())
+      .then(data => data.data.location)
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log('Error in service:', err)
+        throw Error(err)
+      }),
+
+  createLocation: (location: Object) =>
+    fetch(`${API_URL}/locations`, {
+      method: 'POST',
+      body: JSON.stringify(location),
+      headers: createPostHeaders(),
+    })
+      .then(catchFetchError)
+      .then(response => response.json())
+      .then(data => data.data.location)
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log('Error in service:', err)
+        throw Error(err)
+      }),
+
+  updateLocation: (id: string, location: Object) =>
+    fetch(`${API_URL}/locations/${id}`, {
+      method: 'POST',
+      body: JSON.stringify(location),
+      headers: createPostHeaders(),
+    })
+      .then(catchFetchError)
+      .then(response => response.json())
+      .then(data => data.data.location)
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log('Error in service:', err)
+        throw Error(err)
+      }),
+
   getProducers: (params: Params) =>
     fetch(`${API_URL}/producers?${constructQueryString(params)}`, { method: 'GET' })
       .then(catchFetchError)

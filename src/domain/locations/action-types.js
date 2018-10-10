@@ -1,0 +1,4 @@
+export const LOCATIONS_IS_FETCHING_DATA = 'locations/IS_FETCHING_DATA'
+export const LOCATIONS_FETCH_DATA_SUCCESS = 'locations/FETCH_DATA_SUCCESS'
+export const LOCATIONS_FETCH_HAS_ERRORED = 'locations/FETCH_HAS_ERRORED'
+export const LOCATIONS_RESET_DATA = 'locations/RESET_DATA'
