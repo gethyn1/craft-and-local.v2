@@ -26,6 +26,7 @@ const Edit = (props: Props) => (
       isLoading={props.locationsIsLoading}
       hasErrored={props.locationsHasErrored}
       locations={props.locations}
+      producerId={props.userId}
     />
     <h2>Edit avatar</h2>
     <Avatar />

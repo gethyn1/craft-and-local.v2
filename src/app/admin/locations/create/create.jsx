@@ -6,7 +6,7 @@ import Container from 'common/components/container'
 import { EDIT_PRODUCERS_PATH, EDIT_LOCATION_PATH } from 'common/constants/paths'
 import { Form } from './form'
 
-type Props = {
+export type Props = {
   producer: Object,
   location: Object,
   onSubmit: Function,
@@ -16,7 +16,7 @@ type Props = {
 }
 
 const NoProducerDefined = () => (
-  <Container><p>No producer defined. Need to hit a producer page first or finish building this component!!</p></Container>
+  <Container><p>There was an error finding the producer.</p></Container>
 )
 
 /* eslint-disable-next-line arrow-body-style */
