@@ -10,3 +10,4 @@ export const CREATE_LOCATION_PATH = (producerId: String) => `/admin/${producerId
 export const CREATE_LOCATION_FOR_PRODUCER_ROUTE = '/admin/:producerId/locations/create'
 export const EDIT_LOCATION_ROUTE = '/admin/locations/edit/:id'
 export const EDIT_LOCATION_PATH = '/admin/locations/edit'
+export const LOGIN_PATH = '/admin/login'

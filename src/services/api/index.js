@@ -143,6 +143,21 @@ const api = {
         throw Error(err)
       }),
 
+  authenticateUser: (email: string, password: string) =>
+    fetch(`${API_URL}/users/authenticate`, {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+      headers: createPostHeaders(),
+    })
+      .then(catchFetchError)
+      .then(response => response.json())
+      .then(data => data.data)
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log('Error in service:', err)
+        throw Error(err)
+      }),
+
   uploadAvatar: (id: string, file: Object, userId: ?string = null) => {
     const headers = new Headers()
 
