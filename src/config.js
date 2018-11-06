@@ -25,3 +25,5 @@ export const NOT_FOUND_ROUTE = '404'
 
 export const GOOGLE_MAPS_API_KEY = 'AIzaSyAI0dZaZHkO6pUC1maNGg6HALwRX4nG0w4'
 export const GOOGLE_MAPS_URL = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=geometry`
+
+export const STORAGE_JSON_WEB_TOKEN = 'jwt'
