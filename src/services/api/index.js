@@ -54,7 +54,7 @@ const api = {
     fetch(`${API_URL}/locations`, {
       method: 'POST',
       body: JSON.stringify(location),
-      headers: createPostHeaders(),
+      headers: createPostHeaders(true),
     })
       .then(catchFetchError)
       .then(response => response.json())
@@ -69,7 +69,7 @@ const api = {
     fetch(`${API_URL}/locations/${id}`, {
       method: 'POST',
       body: JSON.stringify(location),
-      headers: createPostHeaders(),
+      headers: createPostHeaders(true),
     })
       .then(catchFetchError)
       .then(response => response.json())
@@ -106,7 +106,7 @@ const api = {
     fetch(`${API_URL}/producers`, {
       method: 'POST',
       body: JSON.stringify(producer),
-      headers: createPostHeaders(),
+      headers: createPostHeaders(true),
     })
       .then(catchFetchError)
       .then(response => response.json())
@@ -121,7 +121,7 @@ const api = {
     fetch(`${API_URL}/producers/${userId}`, {
       method: 'POST',
       body: JSON.stringify(producer),
-      headers: createPostHeaders(),
+      headers: createPostHeaders(true),
     })
       .then(catchFetchError)
       .then(response => response.json())
@@ -159,8 +159,6 @@ const api = {
       }),
 
   uploadAvatar: (id: string, file: Object, userId: ?string = null) => {
-    const headers = new Headers()
-
     const formData = new FormData()
     formData.append(id, file)
 
@@ -171,7 +169,7 @@ const api = {
     return fetch(`${API_URL}/avatars`, {
       method: 'POST',
       body: formData,
-      headers,
+      headers: createPostHeaders(true, false),
     })
       .then(catchFetchError)
       .then(response => response.json())
