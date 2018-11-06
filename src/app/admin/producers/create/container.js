@@ -1,14 +1,22 @@
 // @flow
 
+import { path } from 'ramda'
 import { connect } from 'react-redux'
 import { Create } from './create'
 import { createProducerWithAPI } from '../actions'
 
-const mapStateToProps = (state: Object) => ({
-  isFetching: state.domain.admin.producer.meta.isFetching,
-  hasErrored: state.domain.admin.producer.meta.hasErrored,
-  hasUpdated: state.domain.admin.producer.meta.hasUpdated,
-})
+const mapStateToProps = (state: Object) => {
+  const producer = path(['domain', 'admin', 'producer'], state)
+  const meta = path(['meta'], producer)
+  const data = path(['data'], producer)
+
+  return {
+    isFetching: path(['isFetching'], meta),
+    hasErrored: path(['hasErrored'], meta),
+    hasUpdated: path(['hasUpdated'], meta),
+    producerId: path(['user_id'], data),
+  }
+}
 
 const mapDispatchToProps = {
   onSubmit: createProducerWithAPI,
