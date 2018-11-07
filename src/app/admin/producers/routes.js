@@ -10,10 +10,14 @@ export const routes = [
     path: CREATE_PRODUCERS_PATH,
     name: 'Create producer',
     component: Create,
+    authenticated: true,
+    isAdminRoute: true,
   },
   {
     path: EDIT_PRODUCERS_ROUTE,
     name: 'Edit producer',
     component: Edit,
+    authenticated: true,
+    isAdminRoute: true,
   },
 ]
