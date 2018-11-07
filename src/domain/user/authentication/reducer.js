@@ -4,6 +4,7 @@ import {
   USER_AUTHENTICATION_REQUESTED,
   USER_AUTHENTICATION_FAILED,
   USER_AUTHENTICATION_SUCCEEDED,
+  USER_AUTHENTICATION_REFERRER_PATH_SET,
 } from './action-types'
 
 const authentication = (state: ?Object = null, action: { type: string, payload: any }) => {
@@ -51,11 +52,21 @@ const hasErrored = (state: boolean = false, action: { type: string, payload: any
   }
 }
 
+const referrerPath = (state: ?string = null, action: { type: string, payload: any }) => {
+  switch (action.type) {
+    case USER_AUTHENTICATION_REFERRER_PATH_SET:
+      return action.payload
+    default:
+      return state
+  }
+}
+
 export const reducer = combineReducers({
   data: authentication,
   meta: combineReducers({
     isAuthenticating,
     hasErrored,
     hasAuthenticated,
+    referrerPath,
   }),
 })

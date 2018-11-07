@@ -10,6 +10,7 @@ const mapStateToProps = (state: Object) => ({
   isAuthenticating: state.domain.user.authentication.meta.isAuthenticating,
   hasErrored: state.domain.user.authentication.meta.hasErrored,
   hasAuthenticated: state.domain.user.authentication.meta.hasAuthenticated,
+  referrerPath: state.domain.user.authentication.meta.referrerPath,
 })
 
 const mapDispatchToProps = {

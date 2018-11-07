@@ -1,6 +1,7 @@
 // @flow
 
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 import Container from 'common/components/container'
 import { Form } from './form'
 
@@ -9,13 +10,15 @@ type Props = {
   hasErrored: boolean,
   hasAuthenticated: boolean,
   onSubmit: Function,
+  referrerPath: ?string,
 }
 
-const Login = ({ isAuthenticating, hasErrored, hasAuthenticated, onSubmit }: Props) => (
+const Login = ({ isAuthenticating, hasErrored, hasAuthenticated, onSubmit, referrerPath }: Props) => (
   <Container>
     <h2>Login</h2>
     {hasErrored && <p>Authentication error</p>}
     {isAuthenticating && <p>Loading ...</p>}
+    {hasAuthenticated && referrerPath && <Redirect to={referrerPath} />}
     {hasAuthenticated && <p>Great - you have logged in!!</p>}
     <Form onSubmit={onSubmit} />
   </Container>
