@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { geocoding, producer } from 'src/domain'
 import { Edit } from './edit'
-import { updateProducerWithAPI, getLocationsForProducerWithAPI } from '../actions'
+import { updateProducerWithAPI, getLocationsForProducerWithAPI, resetProducer } from '../actions'
 
 const { getProducerWithAPI } = producer.actions
 
@@ -31,6 +31,7 @@ type Props = {
   locationsHasLoaded: boolean,
   locationsIsLoading: boolean,
   locationsHasErrored: boolean,
+  resetProducer: Function,
 }
 
 class EditContainer extends React.Component<Props> {
@@ -43,6 +44,10 @@ class EditContainer extends React.Component<Props> {
     if (this.props.producer && !locationsHasLoaded && !locationsIsLoading) {
       this.props.getLocations(this.props.producer._id)
     }
+  }
+
+  componentWillUnmount() {
+    this.props.resetProducer()
   }
 
   render() {
@@ -92,6 +97,7 @@ const mapDispatchToProps = {
   geoCodingLookup: geocodingGetLatLngFromAddress,
   onGeoCodingSelect: geocodingAddressLookupReset,
   getLocations: getLocationsForProducerWithAPI,
+  resetProducer,
 }
 
 export const container = withRouter(connect(

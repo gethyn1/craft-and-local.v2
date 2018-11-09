@@ -18,8 +18,7 @@ const Login = ({ isAuthenticating, hasErrored, hasAuthenticated, onSubmit, refer
     <h2>Login</h2>
     {hasErrored && <p>Authentication error</p>}
     {isAuthenticating && <p>Loading ...</p>}
-    {hasAuthenticated && referrerPath && <Redirect to={referrerPath} />}
-    {hasAuthenticated && <p>Great - you have logged in!!</p>}
+    {hasAuthenticated && <Redirect to={referrerPath} />}
     <Form onSubmit={onSubmit} />
   </Container>
 )

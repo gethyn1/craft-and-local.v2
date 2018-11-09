@@ -10,6 +10,7 @@ import {
   GET_LOCATIONS_FOR_PRODUCER_REQUESTED,
   GET_LOCATIONS_FOR_PRODUCER_SUCCEEDED,
   GET_LOCATIONS_FOR_PRODUCER_HAS_ERRORED,
+  PRODUCER_DATA_RESET,
 } from './action-types'
 
 import api from '../../../services/api'
@@ -47,6 +48,8 @@ export const getLocationsForProducer = (service: Object) => (id: string) => (dis
     .catch(err =>
       dispatch(handlePageError(err, { type: GET_LOCATIONS_FOR_PRODUCER_HAS_ERRORED })))
 }
+
+export const resetProducer = () => (dispatch: Function) => dispatch({ type: PRODUCER_DATA_RESET })
 
 export const createProducerWithAPI = createProducer(api)
 export const updateProducerWithAPI = updateProducer(api)
