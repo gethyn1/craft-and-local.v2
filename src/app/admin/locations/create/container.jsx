@@ -3,7 +3,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import { Helmet } from 'react-helmet'
 import { omit } from 'ramda'
+import { APP_NAME } from 'src/config'
 import { producer, location } from 'src/domain'
 import { Create } from './create'
 import type { Props } from './create'
@@ -25,7 +27,17 @@ class CreateContainer extends React.Component<ContainerProps> {
   render() {
     const props = omit(['getProducer', 'producerId'], this.props)
 
-    return <Create {...props} />
+    return (
+      <React.Fragment>
+        <Helmet
+          title={`${APP_NAME}: create location`}
+          meta={[
+            { name: 'robots', content: 'noindex, nofollow' },
+          ]}
+        />
+        <Create {...props} />
+      </React.Fragment>
+    )
   }
 }
 

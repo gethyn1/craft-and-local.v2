@@ -3,6 +3,8 @@
 import React from 'react'
 import { omit } from 'ramda'
 import { connect } from 'react-redux'
+import { Helmet } from 'react-helmet'
+import { APP_NAME } from 'src/config'
 import { producers } from 'src/domain'
 import { Producers } from './producers'
 
@@ -19,7 +21,17 @@ class ProducersContainer extends React.Component<Props> {
   }
 
   render() {
-    return <Producers {...omit(['getProducers'], this.props)} />
+    return (
+      <React.Fragment>
+        <Helmet
+          title={`${APP_NAME}: producers`}
+          meta={[
+            { name: 'robots', content: 'noindex, nofollow' },
+          ]}
+        />
+        <Producers {...omit(['getProducers'], this.props)} />
+      </React.Fragment>
+    )
   }
 }
 

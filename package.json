@@ -27,7 +27,8 @@
       "common/components(.*)$": "<rootDir>/src/app/common/components/$1",
       "common/analytics(.*)$": "<rootDir>/src/app/common/analytics/$1",
       "common/constants(.*)$": "<rootDir>/src/app/common/constants/$1",
-      "src/domain(.*)$": "<rootDir>/src/domain/$1"
+      "src/domain(.*)$": "<rootDir>/src/domain/$1",
+      "src/config(.*)$": "<rootDir>/src/config/$1"
     },
     "automock": false,
     "setupFiles": [
