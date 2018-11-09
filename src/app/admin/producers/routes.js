@@ -3,6 +3,7 @@ import { container as Producers } from './container'
 
 export const routes = [
   {
+    id: 'admin-producers',
     path: PRODUCERS_ADMIN_ROUTE,
     name: 'Producers admin',
     component: Producers,

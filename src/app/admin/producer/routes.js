@@ -7,6 +7,7 @@ import { Edit } from './edit'
 
 export const routes = [
   {
+    id: 'admin-create-producer',
     path: CREATE_PRODUCERS_PATH,
     name: 'Create producer',
     component: Create,
@@ -14,6 +15,7 @@ export const routes = [
     isAdminRoute: true,
   },
   {
+    id: 'admin-edit-producer',
     path: EDIT_PRODUCERS_ROUTE,
     name: 'Edit producer',
     component: Edit,

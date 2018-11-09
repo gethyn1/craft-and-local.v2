@@ -12,20 +12,32 @@ type RouteType = {
   exact: Boolean,
   authenticated: boolean,
   isAdminRoute: boolean,
+  id: string,
 }
 
-export const assignRoute = (pageNotFound: boolean, route: RouteType, i: number) => {
+export const assignRoute = (pageNotFound: boolean, route: RouteType) => {
   const component = pageNotFound ? NotFound : route.component
 
   if (route.authenticated) {
-    return route.exact
-      ? (<AuthenticatedRoute path={route.path} exact component={component} key={i} adminComponent={route.isAdminRoute} />)
-      : (<AuthenticatedRoute path={route.path} component={component} key={i} adminComponent={route.isAdminRoute} />)
+    return (
+      <AuthenticatedRoute
+        path={route.path}
+        exact={route.exact}
+        component={component}
+        key={route.id}
+        adminComponent={route.isAdminRoute}
+      />
+    )
   }
 
-  return route.exact
-    ? (<Route path={route.path} exact component={component} key={i} />)
-    : (<Route path={route.path} component={component} key={i} />)
+  return (
+    <Route
+      path={route.path}
+      exact={route.exact}
+      component={component}
+      key={route.id}
+    />
+  )
 }
 
 const attachRoutes : Function = (routes: Array<RouteType>, pageNotFound: boolean) =>
