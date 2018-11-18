@@ -4,6 +4,7 @@ import {
   GET_LOCATIONS_FOR_PRODUCER_REQUESTED,
   GET_LOCATIONS_FOR_PRODUCER_SUCCEEDED,
   GET_LOCATIONS_FOR_PRODUCER_HAS_ERRORED,
+  PRODUCER_DATA_RESET,
 } from '../action-types'
 
 export const locations = (state: ?Array<Object> = null, action: { type: string, payload: any }) => {
@@ -43,6 +44,7 @@ export const hasLoaded = (state: boolean = false, action: { type: string }) => {
   switch (action.type) {
     case GET_LOCATIONS_FOR_PRODUCER_REQUESTED:
     case GET_LOCATIONS_FOR_PRODUCER_HAS_ERRORED:
+    case PRODUCER_DATA_RESET:
       return false
     case GET_LOCATIONS_FOR_PRODUCER_SUCCEEDED:
       return true
