@@ -4,7 +4,6 @@ import React from 'react'
 import { path } from 'ramda'
 import { Button } from 'common/components/button'
 import { Input } from 'common/components/input'
-import { AddressLookup } from 'common/components/address-lookup'
 import { Categories } from 'common/components/categories'
 
 type Props = {
@@ -17,9 +16,6 @@ type Props = {
 type State = {
   title: string,
   userId: string,
-  address: string,
-  lng: number,
-  lat: number,
   categories: ?Array<String>,
   instagram_handle: ?string,
   twitter_handle: ?string,
@@ -35,9 +31,6 @@ export class Form extends React.Component<Props, State> {
     this.state = {
       title: '',
       userId: '',
-      address: '',
-      lng: 0,
-      lat: 0,
       categories: [],
       instagram_handle: '',
       twitter_handle: '',
@@ -64,10 +57,7 @@ export class Form extends React.Component<Props, State> {
 
     return this.setState({
       title: producer.title,
-      userId: producer.userId,
-      address: producer.address,
-      lng: producer.location.coordinates[0],
-      lat: producer.location.coordinates[1],
+      userId: producer.user_id,
       categories: producer.categories.map(category => category._id),
       instagram_handle: producer.instagram_handle,
       twitter_handle: producer.twitter_handle,
@@ -75,10 +65,6 @@ export class Form extends React.Component<Props, State> {
       contact_email: producer.contact_email,
       contact_telephone: producer.contact_telephone,
     })
-  }
-
-  handleAddressSelect = (address: Object) => {
-    this.setState(address)
   }
 
   handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
@@ -106,15 +92,6 @@ export class Form extends React.Component<Props, State> {
         </div>
         <div className="u-margin-bottom">
           <Input id="userId" label="User ID" name="userId" onChange={this.handleChange} value={this.state.userId} />
-        </div>
-        <div className="u-margin-bottom">
-          <AddressLookup address={this.state.address} onSelect={this.handleAddressSelect} />
-        </div>
-        <div className="u-margin-bottom-sm">
-          <Input id="lng" label="Longitude" name="lng" onChange={this.handleChange} value={this.state.lng} />
-        </div>
-        <div className="u-margin-bottom">
-          <Input id="lat" label="Latitude" name="lat" onChange={this.handleChange} value={this.state.lat} />
         </div>
         <div className="u-margin-bottom">
           <Categories categories={this.props.categories} selected={this.state.categories} onCategorySelect={this.handleCategoryChange} />
