@@ -3,6 +3,8 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
+import { Helmet } from 'react-helmet'
+import { APP_NAME } from 'src/config'
 import { location } from 'src/domain'
 import { Edit } from './edit'
 
@@ -31,19 +33,27 @@ class EditContainer extends React.Component<Props> {
 
   render() {
     return (
-      <Edit
-        location={this.props.location}
-        activeProducer={this.props.activeProducer}
-        isFetching={this.props.isFetching}
-        hasErrored={this.props.hasErrored}
-        isUpdating={this.props.isUpdating}
-        hasUpdated={this.props.hasUpdated}
-        geoCodingOptions={this.props.geoCodingOptions}
-        categories={this.props.categories}
-        geoCodingLookup={this.props.geoCodingLookup}
-        onGeoCodingSelect={this.props.onGeoCodingSelect}
-        onSubmit={this.props.onSubmit}
-      />
+      <React.Fragment>
+        <Helmet
+          title={`${APP_NAME}: edit location`}
+          meta={[
+            { name: 'robots', content: 'noindex, nofollow' },
+          ]}
+        />
+        <Edit
+          location={this.props.location}
+          activeProducer={this.props.activeProducer}
+          isFetching={this.props.isFetching}
+          hasErrored={this.props.hasErrored}
+          isUpdating={this.props.isUpdating}
+          hasUpdated={this.props.hasUpdated}
+          geoCodingOptions={this.props.geoCodingOptions}
+          categories={this.props.categories}
+          geoCodingLookup={this.props.geoCodingLookup}
+          onGeoCodingSelect={this.props.onGeoCodingSelect}
+          onSubmit={this.props.onSubmit}
+        />
+      </React.Fragment>
     )
   }
 }

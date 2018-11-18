@@ -14,6 +14,7 @@ module.name_mapper='.*\(.css\)' -> '<PROJECT_ROOT>/flow/GeneralStub.js.flow'
 module.name_mapper='.*\(.scss\)' -> '<PROJECT_ROOT>/flow/GeneralStub.js.flow'
 module.name_mapper='^common' -> '<PROJECT_ROOT>/src/app/common'
 module.name_mapper='^src/domain' -> '<PROJECT_ROOT>/src/domain'
+module.name_mapper='^src/config' -> '<PROJECT_ROOT>/src/config'
 
 [ignore]
 .*/node_modules/.*

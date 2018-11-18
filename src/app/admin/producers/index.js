@@ -1,2 +1,2 @@
-export { reducer } from './reducers'
+export { reducer } from './reducer'
 export { routes } from './routes'

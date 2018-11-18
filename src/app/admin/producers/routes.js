@@ -1,19 +1,13 @@
-import {
-  CREATE_PRODUCERS_PATH,
-  EDIT_PRODUCERS_ROUTE,
-} from 'common/constants/paths'
-import { Create } from './create'
-import { Edit } from './edit'
+import { PRODUCERS_ADMIN_ROUTE } from 'common/constants/paths'
+import { container as Producers } from './container'
 
 export const routes = [
   {
-    path: CREATE_PRODUCERS_PATH,
-    name: 'Create producer',
-    component: Create,
-  },
-  {
-    path: EDIT_PRODUCERS_ROUTE,
-    name: 'Edit producer',
-    component: Edit,
+    id: 'admin-producers',
+    path: PRODUCERS_ADMIN_ROUTE,
+    name: 'Producers admin',
+    component: Producers,
+    authenticated: true,
+    isAdminRoute: true,
   },
 ]

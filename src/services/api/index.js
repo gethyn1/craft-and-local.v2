@@ -54,7 +54,7 @@ const api = {
     fetch(`${API_URL}/locations`, {
       method: 'POST',
       body: JSON.stringify(location),
-      headers: createPostHeaders(),
+      headers: createPostHeaders(true),
     })
       .then(catchFetchError)
       .then(response => response.json())
@@ -69,7 +69,7 @@ const api = {
     fetch(`${API_URL}/locations/${id}`, {
       method: 'POST',
       body: JSON.stringify(location),
-      headers: createPostHeaders(),
+      headers: createPostHeaders(true),
     })
       .then(catchFetchError)
       .then(response => response.json())
@@ -106,7 +106,7 @@ const api = {
     fetch(`${API_URL}/producers`, {
       method: 'POST',
       body: JSON.stringify(producer),
-      headers: createPostHeaders(),
+      headers: createPostHeaders(true),
     })
       .then(catchFetchError)
       .then(response => response.json())
@@ -121,7 +121,7 @@ const api = {
     fetch(`${API_URL}/producers/${userId}`, {
       method: 'POST',
       body: JSON.stringify(producer),
-      headers: createPostHeaders(),
+      headers: createPostHeaders(true),
     })
       .then(catchFetchError)
       .then(response => response.json())
@@ -143,9 +143,22 @@ const api = {
         throw Error(err)
       }),
 
-  uploadAvatar: (id: string, file: Object, userId: ?string = null) => {
-    const headers = new Headers()
+  authenticateUser: (email: string, password: string) =>
+    fetch(`${API_URL}/users/authenticate`, {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+      headers: createPostHeaders(),
+    })
+      .then(catchFetchError)
+      .then(response => response.json())
+      .then(data => data.data)
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log('Error in service:', err)
+        throw Error(err)
+      }),
 
+  uploadAvatar: (id: string, file: Object, userId: ?string = null) => {
     const formData = new FormData()
     formData.append(id, file)
 
@@ -156,7 +169,7 @@ const api = {
     return fetch(`${API_URL}/avatars`, {
       method: 'POST',
       body: formData,
-      headers,
+      headers: createPostHeaders(true, false),
     })
       .then(catchFetchError)
       .then(response => response.json())
