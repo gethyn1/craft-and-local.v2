@@ -1,22 +1,23 @@
 // @flow
 
-import { path } from 'ramda'
 import { connect } from 'react-redux'
 import { user } from 'src/domain'
+import {
+  STORAGE_IS_AUTHENTICATED,
+  STORAGE_IS_ADMIN,
+} from '../../config'
 import { AuthenticatedRoute } from './authenticated-route'
 
 const { setAuthenticationReferrerPath } = user.authentication.actions
 
-const mapStateToProps = (state: Object, ownProps: Object) => {
-  const authentication = path(['domain', 'user', 'authentication'], state)
+const parseBooleanString = string => string === 'true'
 
-  return {
-    isAuthenticated: path(['meta', 'hasAuthenticated'], authentication),
-    isAdmin: path(['data', 'isAdmin'], authentication),
-    Component: ownProps.component,
-    isAdminComponent: ownProps.adminComponent,
-  }
-}
+const mapStateToProps = (state: Object, ownProps: Object) => ({
+  isAuthenticated: parseBooleanString(sessionStorage.getItem(STORAGE_IS_AUTHENTICATED)),
+  isAdmin: parseBooleanString(sessionStorage.getItem(STORAGE_IS_ADMIN)),
+  Component: ownProps.component,
+  isAdminComponent: ownProps.adminComponent,
+})
 
 const mapDispatchToProps = (dispatch: Function) => ({
   setReferrerPath: (referrerPath: string) => {

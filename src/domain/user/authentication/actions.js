@@ -1,7 +1,12 @@
 // @flow
 
 import { omit } from 'ramda'
-import { STORAGE_JSON_WEB_TOKEN } from '../../../config'
+import {
+  STORAGE_JSON_WEB_TOKEN,
+  STORAGE_IS_AUTHENTICATED,
+  STORAGE_IS_ADMIN,
+  STORAGE_EMAIL,
+} from '../../../config'
 
 import {
   USER_AUTHENTICATION_REQUESTED,
@@ -19,6 +24,9 @@ export const authenticateUser = (service: Object) => (email: String, password: S
   return service.authenticateUser(email, password)
     .then((data) => {
       sessionStorage.setItem(STORAGE_JSON_WEB_TOKEN, data.token)
+      sessionStorage.setItem(STORAGE_IS_AUTHENTICATED, 'true')
+      sessionStorage.setItem(STORAGE_IS_ADMIN, data.isAdmin)
+      sessionStorage.setItem(STORAGE_EMAIL, data.email)
 
       dispatch({ type: USER_AUTHENTICATION_SUCCEEDED, payload: omit(['token'], data) })
     })
