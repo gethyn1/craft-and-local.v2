@@ -7,10 +7,10 @@ import { EDIT_PRODUCERS_PATH } from 'common/constants/paths'
 type Props = {
   producer: {
     title: string,
-    user_id: string,
+    userId: string,
   },
 }
 
 export const Producer = ({ producer }: Props) => (
-  <p>{producer.title} - <Link to={`${EDIT_PRODUCERS_PATH}/${producer.user_id}`}>Edit producer</Link></p>
+  <p>{producer.title} - <Link to={`${EDIT_PRODUCERS_PATH}/${producer.userId}`}>Edit producer</Link></p>
 )

@@ -16,7 +16,7 @@ type Props = {
 
 type State = {
   title: string,
-  user_id: string,
+  userId: string,
   address: string,
   lng: number,
   lat: number,
@@ -34,7 +34,7 @@ export class Form extends React.Component<Props, State> {
 
     this.state = {
       title: '',
-      user_id: '',
+      userId: '',
       address: '',
       lng: 0,
       lat: 0,
@@ -64,7 +64,7 @@ export class Form extends React.Component<Props, State> {
 
     return this.setState({
       title: producer.title,
-      user_id: producer.user_id,
+      userId: producer.userId,
       address: producer.address,
       lng: producer.location.coordinates[0],
       lat: producer.location.coordinates[1],
@@ -105,7 +105,7 @@ export class Form extends React.Component<Props, State> {
           <Input id="title" label="Title" name="title" onChange={this.handleChange} value={this.state.title} />
         </div>
         <div className="u-margin-bottom">
-          <Input id="user_id" label="User ID" name="user_id" onChange={this.handleChange} value={this.state.user_id} />
+          <Input id="userId" label="User ID" name="userId" onChange={this.handleChange} value={this.state.userId} />
         </div>
         <div className="u-margin-bottom">
           <AddressLookup address={this.state.address} onSelect={this.handleAddressSelect} />

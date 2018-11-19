@@ -68,7 +68,7 @@ class Producer extends React.Component<Props> {
             { property: 'og:description', content: producer.description },
             { property: 'og:type', content: 'profile' },
             { property: 'og:image', content: `${ASSET_BASE}/${producer.avatar}` },
-            { property: 'og:url', content: `${APP_URL}${PRODUCER_PATH}/${producer.user_id}/${location._id}` },
+            { property: 'og:url', content: `${APP_URL}${PRODUCER_PATH}/${producer.userId}/${location._id}` },
             { property: 'twitter:card', content: 'summary' },
             { property: 'twitter:site', content: `@${TWITTER_HANDLE}` },
             { property: 'twitter:title', content: producer.title },
@@ -99,28 +99,28 @@ class Producer extends React.Component<Props> {
               <List bare className={styles.meta__list}>
                 {producer.locality ? (
                   <li className={styles.meta__item}>
-                    <a onClick={() => { trackProducerMetaLink('location', producer.user_id) }} className={styles.meta__link} href="#producer-map">
+                    <a onClick={() => { trackProducerMetaLink('location', producer.userId) }} className={styles.meta__link} href="#producer-map">
                       <Icon type="location" size="12" /> <span>{producer.locality.title}</span>
                     </a>
                   </li>
                 ) : null}
                 {producer.website ? (
                   <li className={styles.meta__item}>
-                    <a onClick={() => { trackProducerMetaLink('website', producer.user_id) }} className={styles.meta__link} href={producer.website} target="_blank">
+                    <a onClick={() => { trackProducerMetaLink('website', producer.userId) }} className={styles.meta__link} href={producer.website} target="_blank">
                       <Icon type="link" size="12" /> <span>{removeUrlPrefix(producer.website)}</span>
                     </a>
                   </li>
                 ) : null}
                 {producer.twitter_handle ? (
                   <li className={styles.meta__item}>
-                    <a onClick={() => { trackProducerMetaLink('twitter', producer.user_id) }} className={styles.meta__link} href={`https://twitter.com/${producer.twitter_handle}`} target="_blank">
+                    <a onClick={() => { trackProducerMetaLink('twitter', producer.userId) }} className={styles.meta__link} href={`https://twitter.com/${producer.twitter_handle}`} target="_blank">
                       <Icon type="twitter" size="12" /> <span>{producer.twitter_handle}</span>
                     </a>
                   </li>
                 ) : null}
                 {producer.instagram_handle ? (
                   <li className={styles.meta__item}>
-                    <a onClick={() => { trackProducerMetaLink('instagram', producer.user_id) }} className={styles.meta__link} href={`https://instagram.com/${producer.instagram_handle}`} target="_blank">
+                    <a onClick={() => { trackProducerMetaLink('instagram', producer.userId) }} className={styles.meta__link} href={`https://instagram.com/${producer.instagram_handle}`} target="_blank">
                       <Icon type="instagram" size="12" /> <span>{producer.instagram_handle}</span>
                     </a>
                   </li>

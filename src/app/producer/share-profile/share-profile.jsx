@@ -15,7 +15,7 @@ type Props = {
 
 const ShareProfile = ({ isSharing, producer, shareProfile, trackShareProducerButton }: Props) => (
   <React.Fragment>
-    <Button onClick={() => { shareProfile(!isSharing, producer.user_id) }}>Share this profile</Button>
+    <Button onClick={() => { shareProfile(!isSharing, producer.userId) }}>Share this profile</Button>
     <Modal isVisible={isSharing} toggleVisibility={() => { shareProfile(!isSharing) }}>
       <h3 className="u-h2">Share {producer.title} with the world</h3>
       <List bare className="u-margin-none">
@@ -23,9 +23,9 @@ const ShareProfile = ({ isSharing, producer, shareProfile, trackShareProducerBut
           <Button
             level="facebook"
             target="_blank"
-            href={`https://facebook.com/sharer/sharer.php?u=${APP_URL}/${PRODUCER_PATH}/${producer.user_id}`}
+            href={`https://facebook.com/sharer/sharer.php?u=${APP_URL}/${PRODUCER_PATH}/${producer.userId}`}
             block
-            onClick={() => { trackShareProducerButton('facebook', producer.user_id) }}
+            onClick={() => { trackShareProducerButton('facebook', producer.userId) }}
           >
             Share on Facebook
           </Button>
@@ -34,9 +34,9 @@ const ShareProfile = ({ isSharing, producer, shareProfile, trackShareProducerBut
           <Button
             level="twitter"
             target="_blank"
-            href={`https://twitter.com/intent/tweet/?url=${APP_URL}/${PRODUCER_PATH}/${producer.user_id}&text=${encodeURIComponent(producer.title)}&hashtags=${SHARE_HASHTAGS}&via=${TWITTER_HANDLE}`}
+            href={`https://twitter.com/intent/tweet/?url=${APP_URL}/${PRODUCER_PATH}/${producer.userId}&text=${encodeURIComponent(producer.title)}&hashtags=${SHARE_HASHTAGS}&via=${TWITTER_HANDLE}`}
             block
-            onClick={() => { trackShareProducerButton('twitter', producer.user_id) }}
+            onClick={() => { trackShareProducerButton('twitter', producer.userId) }}
           >
             Share on Twitter
           </Button>

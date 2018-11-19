@@ -10,7 +10,7 @@ type Props = {
 
 type State = {
   title: string,
-  user_id: string,
+  userId: string,
 }
 
 export class Form extends React.Component<Props, State> {
@@ -19,7 +19,7 @@ export class Form extends React.Component<Props, State> {
 
     this.state = {
       title: '',
-      user_id: '',
+      userId: '',
     }
   }
 
@@ -41,7 +41,7 @@ export class Form extends React.Component<Props, State> {
           <Input id="title" label="Title" name="title" onChange={this.handleChange} value={this.state.title} />
         </div>
         <div className="u-margin-bottom">
-          <Input id="user_id" label="User ID" name="user_id" onChange={this.handleChange} value={this.state.user_id} />
+          <Input id="userId" label="User ID" name="userId" onChange={this.handleChange} value={this.state.userId} />
         </div>
         <Button type="submit">Submit</Button>
       </form>

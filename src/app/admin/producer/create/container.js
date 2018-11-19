@@ -14,7 +14,7 @@ const mapStateToProps = (state: Object) => {
     isFetching: path(['isFetching'], meta),
     hasErrored: path(['hasErrored'], meta),
     hasUpdated: path(['hasUpdated'], meta),
-    producerId: path(['user_id'], data),
+    producerId: path(['userId'], data),
   }
 }
 
