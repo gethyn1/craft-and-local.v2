@@ -163,7 +163,7 @@ const api = {
     formData.append(id, file)
 
     if (userId) {
-      formData.append('user_id', userId)
+      formData.append('userId', userId)
     }
 
     return fetch(`${API_URL}/avatars`, {

@@ -23,11 +23,11 @@ const NoProducerDefined = () => (
 export const Create = ({ producer, location, hasUpdated, hasErrored, isUpdating, onSubmit }: Props) => {
   return producer ? (
     <Container>
-      <h2>Create location{producer ? ` for ${producer.user_id}` : null}</h2>
+      <h2>Create location{producer ? ` for ${producer.userId}` : null}</h2>
       {producer ?
         <div className="u-margin-bottom">
-          <Link to={`${EDIT_PRODUCERS_PATH}/${producer.user_id}`}>
-            Back to producer {producer.user_id}
+          <Link to={`${EDIT_PRODUCERS_PATH}/${producer.userId}`}>
+            Back to producer {producer.userId}
           </Link>
         </div> :
         null}

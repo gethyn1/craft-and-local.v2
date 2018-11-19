@@ -44,7 +44,7 @@ export const getLocations = (service: Object) => ({
   return service.getLocations({ latlng: `${latitude},${longitude}`, mindistance, exclude, categories })
     .then((data) => {
       const locations = locationsWithAssociatedProducer(data)
-      locations.map(location => dispatch(trackProducerRenderedInResults(path(['producer', 'user_id'], location), location)))
+      locations.map(location => dispatch(trackProducerRenderedInResults(path(['producer', 'userId'], location), location)))
       return dispatch({ type: LOCATIONS_FETCH_DATA_SUCCESS, payload: locations, meta: { latitude, longitude } })
     })
     .catch(() => dispatch({ type: LOCATIONS_FETCH_HAS_ERRORED, payload: true }))

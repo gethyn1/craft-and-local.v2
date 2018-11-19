@@ -18,7 +18,7 @@ type Props = {
     },
     categories: Array<{ _id: string, title: string }>,
     producer: {
-      user_id: string,
+      userId: string,
       title: string,
       avatar: string,
     },
@@ -39,7 +39,7 @@ const Card = ({ location, lat, lng }: Props) => {
   ))
 
   return (
-    <Link className={styles.card} to={`${PRODUCER_PATH}/${producer.user_id}/${location._id}`}>
+    <Link className={styles.card} to={`${PRODUCER_PATH}/${producer.userId}/${location._id}`}>
       <Avatar size="small" className="u-margin-bottom" alt={producer.title} src={`${ASSET_BASE}/${producer.avatar}`} />
       <h2 className={styles.title}>{producer.title}</h2>
       <p className={styles.categories}>{categories}</p>
