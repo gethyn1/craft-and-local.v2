@@ -43,11 +43,11 @@ class CreateContainer extends React.Component<ContainerProps> {
 
 const mapStateToProps = (state: Object, ownProps: Object) => ({
   producerId: ownProps.match.params.producerId,
-  location: state.domain.admin.location.data,
-  producer: state.domain.admin.producer.data,
-  hasErrored: state.domain.admin.location.meta.hasErrored,
-  isUpdating: state.domain.admin.location.meta.isUpdating,
-  hasUpdated: state.domain.admin.location.meta.hasUpdated,
+  location: state.admin.location.data,
+  producer: state.admin.producer.data,
+  hasErrored: state.admin.location.meta.hasErrored,
+  isUpdating: state.admin.location.meta.isUpdating,
+  hasUpdated: state.admin.location.meta.hasUpdated,
 })
 
 const mapDispatchToProps = {

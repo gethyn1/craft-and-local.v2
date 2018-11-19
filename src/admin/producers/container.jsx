@@ -36,9 +36,9 @@ class ProducersContainer extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: Object) => ({
-  isLoading: state.domain.admin.producers.meta.isLoading,
-  hasErrored: state.domain.admin.producers.meta.hasErrored,
-  producers: state.domain.admin.producers.data,
+  isLoading: state.admin.producers.meta.isLoading,
+  hasErrored: state.admin.producers.meta.hasErrored,
+  producers: state.admin.producers.data,
 })
 
 const mapDispatchToProps = {

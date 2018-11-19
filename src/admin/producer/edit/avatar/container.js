@@ -14,7 +14,7 @@ const mapStateToProps = (state: Object, ownProps: Object) => ({
   hasErrored: state.domain.uploads.meta.hasErrored.includes(AVATAR_UPLOAD_ID),
   upload: state.domain.uploads.data.find(upload => upload.id === AVATAR_UPLOAD_ID),
   userId: ownProps.match.params.userId,
-  previewPath: state.domain.admin.producer.data ? state.domain.admin.producer.data.avatar : null,
+  previewPath: state.admin.producer.data ? state.admin.producer.data.avatar : null,
 })
 
 const mapDispatchToProps = {

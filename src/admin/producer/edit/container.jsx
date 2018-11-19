@@ -62,15 +62,15 @@ class EditContainer extends React.Component<Props> {
 
 const mapStateToProps = (state: Object, ownProps: Object) => ({
   userId: ownProps.match.params.userId,
-  producer: state.domain.admin.producer.data,
-  isFetching: state.domain.admin.producer.meta.isFetching,
-  hasErrored: state.domain.admin.producer.meta.hasErrored,
-  hasUpdated: state.domain.admin.producer.meta.hasUpdated,
+  producer: state.admin.producer.data,
+  isFetching: state.admin.producer.meta.isFetching,
+  hasErrored: state.admin.producer.meta.hasErrored,
+  hasUpdated: state.admin.producer.meta.hasUpdated,
   categories: state.domain.categories.data,
-  locations: state.domain.admin.producer.locations.data,
-  locationsHasLoaded: state.domain.admin.producer.locations.meta.hasLoaded,
-  locationsIsLoading: state.domain.admin.producer.locations.meta.isFetching,
-  locationsHasErrored: state.domain.admin.producer.locations.meta.hasErrored,
+  locations: state.admin.producer.locations.data,
+  locationsHasLoaded: state.admin.producer.locations.meta.hasLoaded,
+  locationsIsLoading: state.admin.producer.locations.meta.isFetching,
+  locationsHasErrored: state.admin.producer.locations.meta.hasErrored,
 })
 
 const mapDispatchToProps = {

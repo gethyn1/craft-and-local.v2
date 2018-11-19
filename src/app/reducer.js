@@ -58,11 +58,11 @@ const appReducer = combineReducers({
       pageErrors,
     }),
   }),
+  admin,
   domain: combineReducers({
     geocoding: geocoding.reducer,
     uploads: uploads.reducer,
     user: user.reducer,
-    admin,
     locations: locations.reducer,
     location: location.reducer,
     categories,

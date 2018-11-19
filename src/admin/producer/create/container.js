@@ -6,7 +6,7 @@ import { Create } from './create'
 import { createProducerWithAPI } from '../actions'
 
 const mapStateToProps = (state: Object) => {
-  const producer = path(['domain', 'admin', 'producer'], state)
+  const producer = path(['admin', 'producer'], state)
   const meta = path(['meta'], producer)
   const data = path(['data'], producer)
 

@@ -60,12 +60,12 @@ class EditContainer extends React.Component<Props> {
 
 const mapStateToProps = (state: Object, ownProps: Object) => ({
   id: ownProps.match.params.id,
-  location: state.domain.admin.location.data,
-  activeProducer: state.domain.admin.location.activeProducer,
-  isFetching: state.domain.admin.location.meta.isFetching,
-  hasErrored: state.domain.admin.location.meta.hasErrored,
-  isUpdating: state.domain.admin.location.meta.isUpdating,
-  hasUpdated: state.domain.admin.location.meta.hasUpdated,
+  location: state.admin.location.data,
+  activeProducer: state.admin.location.activeProducer,
+  isFetching: state.admin.location.meta.isFetching,
+  hasErrored: state.admin.location.meta.hasErrored,
+  isUpdating: state.admin.location.meta.isUpdating,
+  hasUpdated: state.admin.location.meta.hasUpdated,
   categories: state.domain.categories.data,
 })
 
