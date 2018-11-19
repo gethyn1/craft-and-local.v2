@@ -2,11 +2,11 @@
 
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import Avatar from 'common/components/avatar'
-import Container from 'common/components/container'
-import GoogleMap from 'common/components/google-map'
-import Icon from 'common/components/icon'
-import List from 'common/components/list'
+import Avatar from 'components/avatar'
+import Container from 'components/container'
+import GoogleMap from 'components/google-map'
+import Icon from 'components/icon'
+import List from 'components/list'
 /* eslint-disable no-unused-vars */
 import twitterIcon from 'common/icons/twitter.svg'
 import instagramIcon from 'common/icons/instagram.svg'

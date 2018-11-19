@@ -2,10 +2,10 @@
 
 import React from 'react'
 import { path } from 'ramda'
-import { Input } from 'common/components/input'
-import { Button } from 'common/components/button'
-import { AddressLookup } from 'common/components/address-lookup'
-import { Categories } from 'common/components/categories'
+import { Input } from 'components/input'
+import { Button } from 'components/button'
+import { AddressLookup } from 'components/address-lookup'
+import { Categories } from 'components/categories'
 
 type Props = {
   location: Object,

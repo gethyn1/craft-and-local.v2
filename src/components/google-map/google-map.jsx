@@ -4,7 +4,7 @@
 import React from 'react'
 import scriptLoader from 'react-async-script-loader'
 
-import { GOOGLE_MAPS_URL } from '../../../../config'
+import { GOOGLE_MAPS_URL } from '../../config'
 
 type Props = {
   latitude?: number,

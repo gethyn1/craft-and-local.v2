@@ -2,8 +2,8 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Container from 'common/components/container'
-import List from 'common/components/list'
+import Container from 'components/container'
+import List from 'components/list'
 import { CONTACT_PATH, PRODUCERS_PATH } from 'common/constants/paths'
 import styles from './top-bar.scss'
 

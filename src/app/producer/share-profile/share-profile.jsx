@@ -1,9 +1,9 @@
 // @flow
 
 import React from 'react'
-import { Button } from 'common/components/button'
-import List from 'common/components/list'
-import Modal from 'common/components/modal'
+import { Button } from 'components/button'
+import List from 'components/list'
+import Modal from 'components/modal'
 import { APP_URL, PRODUCER_PATH, SHARE_HASHTAGS, TWITTER_HANDLE } from '../../../config'
 
 type Props = {

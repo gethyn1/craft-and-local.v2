@@ -101,6 +101,7 @@ module.exports = {
   resolve: {
     alias: {
       common: path.resolve(__dirname, 'src/app/common/'),
+      components: path.resolve(__dirname, 'src/components/'),
       src: path.resolve(__dirname, 'src/'),
     },
     extensions: ['.js', '.jsx'],

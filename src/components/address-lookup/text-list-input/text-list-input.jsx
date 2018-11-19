@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { Input } from 'common/components/input'
+import { Input } from 'components/input'
 import { DataList } from './data-list'
 
 type Option = {

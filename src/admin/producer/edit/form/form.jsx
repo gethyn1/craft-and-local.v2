@@ -2,9 +2,9 @@
 
 import React from 'react'
 import { path } from 'ramda'
-import { Button } from 'common/components/button'
-import { Input } from 'common/components/input'
-import { Categories } from 'common/components/categories'
+import { Button } from 'components/button'
+import { Input } from 'components/input'
+import { Categories } from 'components/categories'
 
 type Props = {
   userId: string,

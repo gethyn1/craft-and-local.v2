@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react'
-import Container from 'common/components/container'
-import List from 'common/components/list'
+import Container from 'components/container'
+import List from 'components/list'
 import { Producer } from './producer'
 
 type Props = {

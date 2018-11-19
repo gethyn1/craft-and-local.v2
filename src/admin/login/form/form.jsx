@@ -1,8 +1,8 @@
 // @flow
 
 import React from 'react'
-import { Input } from 'common/components/input'
-import { Button } from 'common/components/button'
+import { Input } from 'components/input'
+import { Button } from 'components/button'
 
 type Props = {
   onSubmit: Function,

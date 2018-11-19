@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react'
-import { FileUpload } from 'common/components/file-upload'
+import { FileUpload } from 'components/file-upload'
 import { ASSET_BASE } from '../../../../config'
 
 type Props = {

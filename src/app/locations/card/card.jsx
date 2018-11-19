@@ -2,11 +2,11 @@
 
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Avatar from 'common/components/avatar'
+import Avatar from 'components/avatar'
+import Icon from 'components/icon'
 import { PRODUCER_PATH } from 'common/constants/paths'
 import { ASSET_BASE } from '../../../config'
 import Distance from './distance'
-import Icon from '../../common/components/icon'
 import styles from './card.scss'
 import locationIcon from '../../common/icons/location.svg' // eslint-disable-line no-unused-vars
 

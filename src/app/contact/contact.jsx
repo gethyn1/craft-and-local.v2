@@ -2,8 +2,8 @@
 
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import Container from 'common/components/container'
-import { Layout, LayoutItem } from 'common/components/layout'
+import Container from 'components/container'
+import { Layout, LayoutItem } from 'components/layout'
 import { APP_NAME } from '../../config'
 import Form from './form'
 

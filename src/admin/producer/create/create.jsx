@@ -4,7 +4,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 import { APP_NAME } from 'src/config'
-import Container from 'common/components/container'
+import Container from 'components/container'
 import { EDIT_PRODUCERS_PATH } from 'common/constants/paths'
 import { Form } from './form'
 

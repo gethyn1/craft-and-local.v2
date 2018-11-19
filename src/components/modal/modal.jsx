@@ -2,7 +2,7 @@
 
 import * as React from 'react'
 import closeIcon from 'common/icons/close.svg' // eslint-disable-line no-unused-vars
-import Icon from 'common/components/icon'
+import Icon from 'components/icon'
 import styles from './modal.scss'
 
 type Props = {

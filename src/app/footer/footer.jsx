@@ -1,8 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Container from 'common/components/container'
+import Container from 'components/container'
 import { PRODUCERS_PATH, CONTACT_PATH } from 'common/constants/paths'
-import List from 'common/components/list'
+import List from 'components/list'
 import { APP_NAME } from '../../config'
 import styles from './footer.scss'
 

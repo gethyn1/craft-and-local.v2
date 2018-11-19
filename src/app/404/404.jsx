@@ -3,8 +3,8 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import { Link } from 'react-router-dom'
-import Container from 'common/components/container'
-import { Layout, LayoutItem } from 'common/components/layout'
+import Container from 'components/container'
+import { Layout, LayoutItem } from 'components/layout'
 import { PRODUCERS_PATH, CONTACT_PATH } from 'common/constants/paths'
 
 type Props = {
