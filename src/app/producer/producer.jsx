@@ -13,7 +13,8 @@ import instagramIcon from 'common/icons/instagram.svg'
 import linkIcon from 'common/icons/link.svg'
 import locationIcon from 'common/icons/location.svg'
 /* eslint-enable no-unused-vars */
-import { ASSET_BASE, APP_NAME, TWITTER_HANDLE } from '../../config'
+import { PRODUCER_PATH } from 'common/constants/paths'
+import { APP_URL, ASSET_BASE, APP_NAME, TWITTER_HANDLE } from '../../config'
 import Categories from './categories'
 import ShareProfile from './share-profile'
 import { removeUrlPrefix } from './remove-url-prefix'
@@ -67,6 +68,7 @@ class Producer extends React.Component<Props> {
             { property: 'og:description', content: producer.description },
             { property: 'og:type', content: 'profile' },
             { property: 'og:image', content: `${ASSET_BASE}/${producer.avatar}` },
+            { property: 'og:url', content: `${APP_URL}${PRODUCER_PATH}/${producer.user_id}/${location._id}` },
             { property: 'twitter:card', content: 'summary' },
             { property: 'twitter:site', content: `@${TWITTER_HANDLE}` },
             { property: 'twitter:title', content: producer.title },

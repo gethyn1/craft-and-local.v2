@@ -7,7 +7,8 @@ import { Button } from 'common/components/button'
 import Container from 'common/components/container'
 import GoogleMap from 'common/components/google-map'
 import { Layout, LayoutItem } from 'common/components/layout'
-import { APP_NAME, TWITTER_HANDLE } from '../../config'
+import { PRODUCERS_PATH } from 'common/constants/paths'
+import { APP_URL, APP_NAME, TWITTER_HANDLE } from '../../config'
 import { LOAD_MORE_LOCATIONS_TEST_ID } from './constants'
 import Card from './card'
 import Filters from './filters'
@@ -130,6 +131,7 @@ export class Locations extends React.Component<Props, State> {
             { property: 'og:title', content: `${APP_NAME}${category ? `: ${category.title}` : ': all locations'}` },
             { property: 'og:description', content: 'Local locations and market traders' },
             { property: 'og:type', content: 'website' },
+            { property: 'og:url', content: `${APP_URL}${PRODUCERS_PATH}` },
             { property: 'twitter:card', content: 'summary' },
             { property: 'twitter:site', content: `@${TWITTER_HANDLE}` },
             { property: 'twitter:title', content: APP_NAME },
