@@ -13,8 +13,8 @@ import {
   PRODUCER_DATA_RESET,
 } from './action-types'
 
-import api from '../../../services/api'
-import { handlePageError } from '../../actions'
+import api from '../../services/api'
+import { handlePageError } from '../../app/actions'
 
 export const createProducer = (service: Object) => (producer: Object) => (dispatch: Function) => {
   dispatch({ type: CREATE_PRODUCER_REQUESTED })
