@@ -14,6 +14,7 @@
     "start:dev": "NODE_ENV=development webpack-dev-server --progress",
     "start:json": "./node_modules/.bin/json-server --watch ./src/data/db.json",
     "prod:build": "rimraf lib dist && babel src -d lib --ignore .test.js && cross-env NODE_ENV=production webpack -p --progress && cp _redirects dist/",
+    "build:stats": "webpack --env production --json > stats.json",
     "lint": "eslint src --ext .js,.jsx",
     "test": "yarn lint && flow && jest --coverage",
     "test:watch": "jest --watch",
