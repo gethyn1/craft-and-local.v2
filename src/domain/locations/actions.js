@@ -22,9 +22,9 @@ type GetProps = {
   categories?: string,
 }
 
-const trackProducerRenderedInResults = (userId: string) => ({
+const trackProducerRenderedInResults = (userId: string, location: Object) => ({
   type: EMIT_ANALYTICS_EVENT,
-  payload: track.producerRenderedInResults(userId),
+  payload: track.producerRenderedInResults(userId, location),
 })
 
 const trackLoadMoreLocations = (category: ?string, count: ?number) => ({
@@ -44,7 +44,7 @@ export const getLocations = (service: Object) => ({
   return service.getLocations({ latlng: `${latitude},${longitude}`, mindistance, exclude, categories })
     .then((data) => {
       const locations = locationsWithAssociatedProducer(data)
-      locations.map(location => dispatch(trackProducerRenderedInResults(path(['producer', 'user_id'], location))))
+      locations.map(location => dispatch(trackProducerRenderedInResults(path(['producer', 'user_id'], location), location)))
       return dispatch({ type: LOCATIONS_FETCH_DATA_SUCCESS, payload: locations, meta: { latitude, longitude } })
     })
     .catch(() => dispatch({ type: LOCATIONS_FETCH_HAS_ERRORED, payload: true }))

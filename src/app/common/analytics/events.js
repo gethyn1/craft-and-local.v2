@@ -25,10 +25,10 @@ export const loadMoreLocations = (category: ?string, count: ?number) => ({
   value: count === null ? 0 : count,
 })
 
-export const producerRenderedInResults = (userId: string) => ({
+export const producerRenderedInResults = (userId: string, location: Object) => ({
   category: 'Producer statistics',
   action: 'Producer rendered in results',
-  label: userId,
+  label: `${userId}, ${location.alias}, ${location._id}`,
 })
 
 export const pageNotFound = (path: string) => ({
