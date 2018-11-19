@@ -1,9 +1,7 @@
 // @flow
 
 import React from 'react'
-// import { Link } from 'react-router-dom'
 import Container from 'common/components/container'
-// import { EDIT_PRODUCERS_PATH } from 'common/constants/paths'
 import { Form } from './form'
 
 type Props = {
