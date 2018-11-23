@@ -7,9 +7,8 @@ import { PRODUCERS_PATH } from 'common/constants/paths'
 import attachRoutes from '../core/attach-routes'
 import Analytics from './analytics'
 import routes from './manifest'
-import TopBar from './top-bar'
 import NotFound from './404'
-import Footer from './footer'
+import { Default } from '../layouts/default'
 
 type Props = {
   getUserLocation: Function,
@@ -25,8 +24,7 @@ class App extends React.Component<Props> {
 
   render() {
     return (
-      <React.Fragment>
-        <TopBar />
+      <Default>
         <Route
           path="/"
           render={() => {
@@ -40,8 +38,7 @@ class App extends React.Component<Props> {
           {attachRoutes(routes, this.props.pageNotFound)}
           <Route render={() => <NotFound />} />
         </Switch>
-        <Footer />
-      </React.Fragment>
+      </Default>
     )
   }
 }
