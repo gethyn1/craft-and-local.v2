@@ -14,7 +14,7 @@ import {
 } from './action-types'
 
 import api from '../../services/api'
-import { handlePageError } from '../../app/actions'
+import { handlePageError } from '../../pages/actions'
 
 export const createProducer = (service: Object) => (producer: Object) => (dispatch: Function) => {
   dispatch({ type: CREATE_PRODUCER_REQUESTED })

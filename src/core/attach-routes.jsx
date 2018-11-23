@@ -4,7 +4,7 @@ import * as React from 'react'
 import { Route } from 'react-router-dom'
 import { curry } from 'ramda'
 import { AuthenticatedRoute } from './authenticated-route'
-import NotFound from '../app/404'
+import NotFound from '../pages/404'
 
 type RouteType = {
   path: string,

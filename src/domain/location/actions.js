@@ -11,7 +11,7 @@ import {
   CREATE_LOCATION_SUCCEEDED,
   CREATE_LOCATION_FAILED,
 } from './action-types'
-import { handlePageError } from '../../app/actions'
+import { handlePageError } from '../../pages/actions'
 import api from '../../services/api'
 
 export const getLocation = (service: Object) => (locationId: String) => (dispatch: Function) => {

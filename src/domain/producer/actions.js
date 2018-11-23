@@ -5,7 +5,7 @@ import {
   PRODUCER_FETCH_DATA_SUCCESS,
   PRODUCER_FETCH_HAS_ERRORED,
 } from './action-types'
-import { handlePageError } from '../../app/actions'
+import { handlePageError } from '../../pages/actions'
 import api from '../../services/api'
 
 export const getProducer = (service: Object) => (userId: String) => (dispatch: Function) => {

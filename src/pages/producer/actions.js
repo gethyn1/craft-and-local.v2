@@ -1,7 +1,7 @@
 // @flow
 
 import * as track from 'common/analytics/events'
-import { EMIT_ANALYTICS_EVENT } from '../analytics/action-types'
+import { EMIT_ANALYTICS_EVENT } from '../../components/analytics/action-types'
 
 export const trackShareProducerModal = (userId: string) => ({
   type: EMIT_ANALYTICS_EVENT,

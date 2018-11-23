@@ -8,7 +8,7 @@ import {
   LOCATIONS_FETCH_HAS_ERRORED,
   LOCATIONS_RESET_DATA,
 } from './action-types'
-import { EMIT_ANALYTICS_EVENT } from '../../app/analytics/action-types'
+import { EMIT_ANALYTICS_EVENT } from '../../components/analytics/action-types'
 
 import api from '../../services/api'
 import { locationsWithAssociatedProducer } from './adapters'

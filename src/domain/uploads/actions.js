@@ -7,7 +7,7 @@ import {
 } from './action-types'
 
 import api from '../../services/api'
-import { handlePageError } from '../../app/actions'
+import { handlePageError } from '../../pages/actions'
 
 const uploadFile = (service: Object) => (id: string, file: Object, userId: ?string) => (dispatch: Function) => {
   dispatch({

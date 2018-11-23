@@ -7,13 +7,13 @@ import ReactGA from 'react-ga'
 
 import configureStore from './core/configure-store'
 import { loadState } from './core/local-storage'
-import appReducer from './app/reducer'
+import appReducer from './pages/reducer'
 import { GA_DEBUG, GA_ID } from './config'
 
-import App from './app'
+import App from './pages'
 
 // eslint-disable-next-line
-import sass from 'common/styles/style.scss'
+import sass from './common/styles/style.scss'
 
 // Google Analytics
 ReactGA.initialize(GA_ID, {
@@ -39,9 +39,9 @@ ReactDOM.render(wrapApp(App, store), rootEl)
 
 if (module.hot) {
   // flow-disable-next-line
-  module.hot.accept('./app', () => {
+  module.hot.accept('./pages', () => {
     // eslint-disable-next-line global-require
-    const NextApp = require('./app').default
+    const NextApp = require('./pages').default
     ReactDOM.render(wrapApp(NextApp, store), rootEl)
   })
 }

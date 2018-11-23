@@ -15,7 +15,7 @@ import {
   USER_AUTHENTICATION_REFERRER_PATH_SET,
 } from './action-types'
 
-import { handlePageError } from '../../../app/actions'
+import { handlePageError } from '../../../pages/actions'
 import api from '../../../services/api'
 
 export const authenticateUser = (service: Object) => (email: String, password: String) => (dispatch: Function) => {

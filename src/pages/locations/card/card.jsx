@@ -5,10 +5,10 @@ import { Link } from 'react-router-dom'
 import Avatar from 'components/avatar'
 import Icon from 'components/icon'
 import { PRODUCER_PATH } from 'common/constants/paths'
+import locationIcon from 'common/icons/location.svg' // eslint-disable-line no-unused-vars
 import { ASSET_BASE } from '../../../config'
 import Distance from './distance'
 import styles from './card.scss'
-import locationIcon from '../../common/icons/location.svg' // eslint-disable-line no-unused-vars
 
 type Props = {
   location: {
