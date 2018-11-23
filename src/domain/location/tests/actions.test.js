@@ -5,7 +5,7 @@ import {
   LOCATION_IS_FETCHING_DATA,
   LOCATION_FETCH_DATA_SUCCESS,
   LOCATION_FETCH_HAS_ERRORED,
-} from '../action-types'
+} from '../types'
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares)

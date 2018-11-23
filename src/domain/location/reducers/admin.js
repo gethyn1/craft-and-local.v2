@@ -1,9 +1,7 @@
 // @flow
 
 import { combineReducers } from 'redux'
-import { location } from 'src/domain'
-
-const {
+import {
   LOCATION_IS_FETCHING_DATA,
   LOCATION_FETCH_DATA_SUCCESS,
   LOCATION_FETCH_HAS_ERRORED,
@@ -13,7 +11,7 @@ const {
   CREATE_LOCATION_REQUESTED,
   CREATE_LOCATION_SUCCEEDED,
   CREATE_LOCATION_FAILED,
-} = location.actionTypes
+} from '../types'
 
 const locationReducer = (state: ?Array<Object> = null, action: { type: string, payload: any }) => {
   switch (action.type) {
@@ -97,7 +95,7 @@ const hasUpdated = (state: boolean = false, action: { type: string }) => {
   }
 }
 
-export const reducer = combineReducers({
+export const admin = combineReducers({
   data: locationReducer,
   meta: combineReducers({
     isFetching,

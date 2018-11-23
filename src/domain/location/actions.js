@@ -10,7 +10,7 @@ import {
   CREATE_LOCATION_REQUESTED,
   CREATE_LOCATION_SUCCEEDED,
   CREATE_LOCATION_FAILED,
-} from './action-types'
+} from './types'
 import { actions } from '../app'
 import api from '../../services/api'
 

@@ -1,12 +1,13 @@
 // @flow
+
 import { combineReducers } from 'redux'
 import {
   LOCATION_IS_FETCHING_DATA,
   LOCATION_FETCH_DATA_SUCCESS,
   LOCATION_FETCH_HAS_ERRORED,
-} from './action-types'
+} from '../types'
 
-const producer = (state: ?Object = null, action: { type: string, payload: any }) => {
+const location = (state: ?Object = null, action: { type: string, payload: any }) => {
   switch (action.type) {
     case LOCATION_FETCH_DATA_SUCCESS:
       return action.payload
@@ -40,7 +41,7 @@ const hasErrored = (state: boolean = false, action: { type: string, payload: any
 }
 
 export const reducer = combineReducers({
-  data: producer,
+  data: location,
   meta: combineReducers({
     isFetching,
     hasErrored,
