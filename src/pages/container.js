@@ -2,8 +2,7 @@
 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { user } from 'src/domain'
-import { getCategories } from './categories'
+import { categories, user } from 'src/domain'
 import App from './app'
 
 const mapStateToProps = (state: Object) => ({
@@ -12,7 +11,7 @@ const mapStateToProps = (state: Object) => ({
 
 const mapDispatchToProps = {
   getUserLocation: user.location.actions.getUserLocation,
-  getCategories,
+  getCategories: categories.actions.getCategoriesWithAPI,
 }
 
 /**
