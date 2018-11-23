@@ -3,7 +3,7 @@
 import React from 'react'
 import Container from 'components/container'
 import { Form } from './form'
-import { DefaultLayout } from '../../../../layouts/default-layout'
+import { AdminLayout } from '../../../../layouts/admin-layout'
 
 type Props = {
   location: Object,
@@ -24,7 +24,7 @@ export const Edit = ({
   onSubmit,
   categories,
 }: Props) => (
-  <DefaultLayout>
+  <AdminLayout>
     <Container>
       <h2>Edit Location</h2>
       {hasUpdated && <p>Location succesfully updated</p>}
@@ -37,5 +37,5 @@ export const Edit = ({
         categories={categories}
       />}
     </Container>
-  </DefaultLayout>
+  </AdminLayout>
 )

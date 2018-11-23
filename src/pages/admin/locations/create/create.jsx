@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import Container from 'components/container'
 import { EDIT_PRODUCERS_PATH, EDIT_LOCATION_PATH } from 'common/constants/paths'
 import { Form } from './form'
-import { DefaultLayout } from '../../../../layouts/default-layout'
+import { AdminLayout } from '../../../../layouts/admin-layout'
 
 export type Props = {
   producer: Object,
@@ -23,7 +23,7 @@ const NoProducerDefined = () => (
 /* eslint-disable-next-line arrow-body-style */
 export const Create = ({ producer, location, hasUpdated, hasErrored, isUpdating, onSubmit }: Props) => {
   return (
-    <DefaultLayout>
+    <AdminLayout>
       {producer ? (
         <Container>
           <h2>Create location{producer ? ` for ${producer.userId}` : null}</h2>
@@ -40,6 +40,6 @@ export const Create = ({ producer, location, hasUpdated, hasErrored, isUpdating,
           <Form producerId={producer._id} onSubmit={onSubmit} />
         </Container>
     ) : <NoProducerDefined />}
-    </DefaultLayout>
+    </AdminLayout>
   )
 }

@@ -4,7 +4,7 @@ import React from 'react'
 import Container from 'components/container'
 import List from 'components/list'
 import { Producer } from './producer'
-import { DefaultLayout } from '../../../layouts/default-layout'
+import { AdminLayout } from '../../../layouts/admin-layout'
 
 type Props = {
   isLoading: boolean,
@@ -13,7 +13,7 @@ type Props = {
 }
 
 export const Producers = ({ isLoading, hasErrored, producers }: Props) => (
-  <DefaultLayout>
+  <AdminLayout>
     <Container>
       <h2>Producers</h2>
       {isLoading && <p>Loading producers ...</p>}
@@ -25,5 +25,5 @@ export const Producers = ({ isLoading, hasErrored, producers }: Props) => (
           </li>))}
       </List>
     </Container>
-  </DefaultLayout>
+  </AdminLayout>
 )

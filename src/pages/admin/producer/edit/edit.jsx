@@ -7,6 +7,7 @@ import { APP_NAME } from 'src/config'
 import { Avatar } from './avatar'
 import { Locations } from './locations'
 import { Form } from './form'
+import { AdminLayout } from '../../../../layouts/admin-layout'
 
 type Props = {
   userId: string,
@@ -29,27 +30,29 @@ const Edit = (props: Props) => (
         { name: 'robots', content: 'noindex, nofollow' },
       ]}
     />
-    <Container>
-      <h2>Producer locations</h2>
-      <Locations
-        isLoading={props.locationsIsLoading}
-        hasErrored={props.locationsHasErrored}
-        locations={props.locations}
-        producerId={props.userId}
-      />
-      <h2>Edit avatar</h2>
-      <Avatar />
-      <h2>Edit Producer: {props.userId}</h2>
-      {props.hasUpdated && <p>Producer succesfully updated</p>}
-      {props.isFetching && <p>Updating producer ...</p>}
-      {props.hasErrored && <p>There was an error updating the producer. Please try again</p>}
-      <Form
-        producer={props.producer}
-        onSubmit={props.onSubmit}
-        categories={props.categories}
-        userId={props.userId}
-      />
-    </Container>
+    <AdminLayout>
+      <Container>
+        <h2>Producer locations</h2>
+        <Locations
+          isLoading={props.locationsIsLoading}
+          hasErrored={props.locationsHasErrored}
+          locations={props.locations}
+          producerId={props.userId}
+        />
+        <h2>Edit avatar</h2>
+        <Avatar />
+        <h2>Edit Producer: {props.userId}</h2>
+        {props.hasUpdated && <p>Producer succesfully updated</p>}
+        {props.isFetching && <p>Updating producer ...</p>}
+        {props.hasErrored && <p>There was an error updating the producer. Please try again</p>}
+        <Form
+          producer={props.producer}
+          onSubmit={props.onSubmit}
+          categories={props.categories}
+          userId={props.userId}
+        />
+      </Container>
+    </AdminLayout>
   </React.Fragment>
 )
 
