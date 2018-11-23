@@ -4,10 +4,10 @@ import { reducer as admin } from '../admin'
 
 export const reducer = combineReducers({
   app: app.reducer,
-  admin: {
+  admin: combineReducers({
     ...admin,
     location: location.reducers.admin,
-  },
+  }),
   domain: combineReducers({
     categories: categories.reducer,
     geocoding: geocoding.reducer,
