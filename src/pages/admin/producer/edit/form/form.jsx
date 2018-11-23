@@ -57,7 +57,7 @@ export class Form extends React.Component<Props, State> {
 
     return this.setState({
       title: producer.title,
-      userId: producer.user_id,
+      userId: producer.userId,
       categories: producer.categories.map(category => category._id),
       instagram_handle: producer.instagram_handle,
       twitter_handle: producer.twitter_handle,
