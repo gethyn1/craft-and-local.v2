@@ -10,8 +10,8 @@ import {
   CREATE_LOCATION_REQUESTED,
   CREATE_LOCATION_SUCCEEDED,
   CREATE_LOCATION_FAILED,
-} from './action-types'
-import { handlePageError } from '../../app/actions'
+} from './types'
+import { actions } from '../app'
 import api from '../../services/api'
 
 export const getLocation = (service: Object) => (locationId: String) => (dispatch: Function) => {
@@ -22,7 +22,7 @@ export const getLocation = (service: Object) => (locationId: String) => (dispatc
       dispatch({ type: LOCATION_FETCH_DATA_SUCCESS, payload: data })
     })
     .catch(err =>
-      dispatch(handlePageError(err, { type: LOCATION_FETCH_HAS_ERRORED, payload: true })))
+      dispatch(actions.handlePageError(err, { type: LOCATION_FETCH_HAS_ERRORED, payload: true })))
 }
 
 export const createLocation = (service: Object) => (location: Object) => (dispatch: Function) => {
@@ -33,7 +33,7 @@ export const createLocation = (service: Object) => (location: Object) => (dispat
       dispatch({ type: CREATE_LOCATION_SUCCEEDED, payload: data })
     })
     .catch(err =>
-      dispatch(handlePageError(err, { type: CREATE_LOCATION_FAILED })))
+      dispatch(actions.handlePageError(err, { type: CREATE_LOCATION_FAILED })))
 }
 
 export const updateLocation = (service: Object) => (id: string, location: Object) => (dispatch: Function) => {
@@ -44,7 +44,7 @@ export const updateLocation = (service: Object) => (id: string, location: Object
       dispatch({ type: LOCATION_UPDATE_SUCCEEDED, payload: data })
     })
     .catch(err =>
-      dispatch(handlePageError(err, { type: LOCATION_UPDATE_FAILED })))
+      dispatch(actions.handlePageError(err, { type: LOCATION_UPDATE_FAILED })))
 }
 
 export const getLocationWithAPI = getLocation(api)

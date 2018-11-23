@@ -3,7 +3,7 @@ import { MemoryRouter, Route } from 'react-router'
 import { shallow } from 'enzyme'
 import { assignRoute } from '../attach-routes'
 import { AuthenticatedRoute } from '../authenticated-route'
-import NotFound from '../../app/404'
+import NotFound from '../../pages/404'
 
 const MockComponent = () => <div />
 

@@ -5,15 +5,11 @@ import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
 import ReactGA from 'react-ga'
 
-import configureStore from './core/configure-store'
-import { loadState } from './core/local-storage'
-import appReducer from './app/reducer'
+import { reducer as coreReducer, App, configureStore, loadState } from './core'
 import { GA_DEBUG, GA_ID } from './config'
 
-import App from './app'
-
 // eslint-disable-next-line
-import sass from 'common/styles/style.scss'
+import sass from './common/styles/style.scss'
 
 // Google Analytics
 ReactGA.initialize(GA_ID, {
@@ -22,8 +18,8 @@ ReactGA.initialize(GA_ID, {
 
 // Get persisted state from local storage and create store
 const persistedState = loadState()
-const store = configureStore(persistedState, appReducer)
-const rootEl = document.getElementById('app')
+const store = configureStore(persistedState, coreReducer)
+const rootNode = document.getElementById('app')
 
 const wrapApp = (AppComponent, reduxStore) => (
   <Provider store={reduxStore}>
@@ -35,13 +31,13 @@ const wrapApp = (AppComponent, reduxStore) => (
   </Provider>
 )
 
-ReactDOM.render(wrapApp(App, store), rootEl)
+ReactDOM.render(wrapApp(App, store), rootNode)
 
 if (module.hot) {
   // flow-disable-next-line
-  module.hot.accept('./app', () => {
+  module.hot.accept('./core', () => {
     // eslint-disable-next-line global-require
-    const NextApp = require('./app').default
-    ReactDOM.render(wrapApp(NextApp, store), rootEl)
+    const NextApp = require('./core').App
+    ReactDOM.render(wrapApp(NextApp, store), rootNode)
   })
 }

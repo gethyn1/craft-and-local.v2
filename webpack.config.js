@@ -77,7 +77,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        include: path.join(__dirname, 'src/app/common/icons'),
+        include: path.join(__dirname, 'src/common/icons'),
         loaders: [
           'svg-sprite-loader?' + JSON.stringify({
             name: '[name].[hash]',
@@ -100,7 +100,8 @@ module.exports = {
   },
   resolve: {
     alias: {
-      common: path.resolve(__dirname, 'src/app/common/'),
+      common: path.resolve(__dirname, 'src/common/'),
+      components: path.resolve(__dirname, 'src/components/'),
       src: path.resolve(__dirname, 'src/'),
     },
     extensions: ['.js', '.jsx'],

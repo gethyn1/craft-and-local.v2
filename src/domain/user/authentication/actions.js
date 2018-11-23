@@ -15,7 +15,7 @@ import {
   USER_AUTHENTICATION_REFERRER_PATH_SET,
 } from './action-types'
 
-import { handlePageError } from '../../../app/actions'
+import { actions } from '../../app'
 import api from '../../../services/api'
 
 export const authenticateUser = (service: Object) => (email: String, password: String) => (dispatch: Function) => {
@@ -31,7 +31,7 @@ export const authenticateUser = (service: Object) => (email: String, password: S
       dispatch({ type: USER_AUTHENTICATION_SUCCEEDED, payload: omit(['token'], data) })
     })
     .catch(err =>
-      dispatch(handlePageError(err, { type: USER_AUTHENTICATION_FAILED })))
+      dispatch(actions.handlePageError(err, { type: USER_AUTHENTICATION_FAILED })))
 }
 
 export const setAuthenticationReferrerPath = (payload: ?string) => ({
