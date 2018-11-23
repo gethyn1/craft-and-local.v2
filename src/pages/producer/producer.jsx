@@ -19,6 +19,7 @@ import Categories from './categories'
 import ShareProfile from './share-profile'
 import { removeUrlPrefix } from './remove-url-prefix'
 import styles from './producer.scss'
+import { DefaultLayout } from '../../layouts/default-layout'
 
 type Props = {
   location: ?Object,
@@ -75,66 +76,68 @@ class Producer extends React.Component<Props> {
             { property: 'twitter:description', content: producer.description },
           ]}
         />
-        <div className={styles.producer}>
-          <Container>
-            <div>
-              <header className={styles.header}>
-                <Avatar className="u-margin-bottom-sm" alt={producer.title} src={`${ASSET_BASE}/${producer.avatar}`} />
-                <h1 className={`${styles.title} u-h1`}>{producer.title}</h1>
-                <p className={styles.categories}><Categories categories={location.categories} /></p>
-              </header>
-              <div className="u-margin-bottom-lg u-3/4@tablet u-center u-text-center">
-                <p>{producer.description}</p>
-                <ShareProfile
-                  isSharing={isSharing}
-                  shareProfile={shareProfile}
-                  producer={producer}
-                  trackShareProducerButton={trackShareProducerButton}
-                />
-              </div>
-            </div>
-          </Container>
-          <div className={styles.meta}>
+        <DefaultLayout>
+          <div className={styles.producer}>
             <Container>
-              <List bare className={styles.meta__list}>
-                {producer.locality ? (
-                  <li className={styles.meta__item}>
-                    <a onClick={() => { trackProducerMetaLink('location', producer.userId) }} className={styles.meta__link} href="#producer-map">
-                      <Icon type="location" size="12" /> <span>{producer.locality.title}</span>
-                    </a>
-                  </li>
-                ) : null}
-                {producer.website ? (
-                  <li className={styles.meta__item}>
-                    <a onClick={() => { trackProducerMetaLink('website', producer.userId) }} className={styles.meta__link} href={producer.website} target="_blank">
-                      <Icon type="link" size="12" /> <span>{removeUrlPrefix(producer.website)}</span>
-                    </a>
-                  </li>
-                ) : null}
-                {producer.twitter_handle ? (
-                  <li className={styles.meta__item}>
-                    <a onClick={() => { trackProducerMetaLink('twitter', producer.userId) }} className={styles.meta__link} href={`https://twitter.com/${producer.twitter_handle}`} target="_blank">
-                      <Icon type="twitter" size="12" /> <span>{producer.twitter_handle}</span>
-                    </a>
-                  </li>
-                ) : null}
-                {producer.instagram_handle ? (
-                  <li className={styles.meta__item}>
-                    <a onClick={() => { trackProducerMetaLink('instagram', producer.userId) }} className={styles.meta__link} href={`https://instagram.com/${producer.instagram_handle}`} target="_blank">
-                      <Icon type="instagram" size="12" /> <span>{producer.instagram_handle}</span>
-                    </a>
-                  </li>
-                ) : null}
-              </List>
+              <div>
+                <header className={styles.header}>
+                  <Avatar className="u-margin-bottom-sm" alt={producer.title} src={`${ASSET_BASE}/${producer.avatar}`} />
+                  <h1 className={`${styles.title} u-h1`}>{producer.title}</h1>
+                  <p className={styles.categories}><Categories categories={location.categories} /></p>
+                </header>
+                <div className="u-margin-bottom-lg u-3/4@tablet u-center u-text-center">
+                  <p>{producer.description}</p>
+                  <ShareProfile
+                    isSharing={isSharing}
+                    shareProfile={shareProfile}
+                    producer={producer}
+                    trackShareProducerButton={trackShareProducerButton}
+                  />
+                </div>
+              </div>
             </Container>
+            <div className={styles.meta}>
+              <Container>
+                <List bare className={styles.meta__list}>
+                  {producer.locality ? (
+                    <li className={styles.meta__item}>
+                      <a onClick={() => { trackProducerMetaLink('location', producer.userId) }} className={styles.meta__link} href="#producer-map">
+                        <Icon type="location" size="12" /> <span>{producer.locality.title}</span>
+                      </a>
+                    </li>
+                  ) : null}
+                  {producer.website ? (
+                    <li className={styles.meta__item}>
+                      <a onClick={() => { trackProducerMetaLink('website', producer.userId) }} className={styles.meta__link} href={producer.website} target="_blank">
+                        <Icon type="link" size="12" /> <span>{removeUrlPrefix(producer.website)}</span>
+                      </a>
+                    </li>
+                  ) : null}
+                  {producer.twitter_handle ? (
+                    <li className={styles.meta__item}>
+                      <a onClick={() => { trackProducerMetaLink('twitter', producer.userId) }} className={styles.meta__link} href={`https://twitter.com/${producer.twitter_handle}`} target="_blank">
+                        <Icon type="twitter" size="12" /> <span>{producer.twitter_handle}</span>
+                      </a>
+                    </li>
+                  ) : null}
+                  {producer.instagram_handle ? (
+                    <li className={styles.meta__item}>
+                      <a onClick={() => { trackProducerMetaLink('instagram', producer.userId) }} className={styles.meta__link} href={`https://instagram.com/${producer.instagram_handle}`} target="_blank">
+                        <Icon type="instagram" size="12" /> <span>{producer.instagram_handle}</span>
+                      </a>
+                    </li>
+                  ) : null}
+                </List>
+              </Container>
+            </div>
+            <div id="producer-map">
+              <GoogleMap
+                longitude={producer.location.coordinates[0]}
+                latitude={producer.location.coordinates[1]}
+              />
+            </div>
           </div>
-          <div id="producer-map">
-            <GoogleMap
-              longitude={producer.location.coordinates[0]}
-              latitude={producer.location.coordinates[1]}
-            />
-          </div>
-        </div>
+        </DefaultLayout>
       </React.Fragment>
     )
   }

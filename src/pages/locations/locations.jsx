@@ -12,6 +12,7 @@ import { APP_URL, APP_NAME, TWITTER_HANDLE } from '../../config'
 import { LOAD_MORE_LOCATIONS_TEST_ID } from './constants'
 import Card from './card'
 import Filters from './filters'
+import { DefaultLayout } from '../../layouts/default-layout'
 
 type Props = {
   getLocations: Function,
@@ -138,7 +139,7 @@ export class Locations extends React.Component<Props, State> {
             { property: 'twitter:description', content: `${APP_NAME}${category ? `: ${category.title}` : ': all locations'}` },
           ]}
         />
-        <div>
+        <DefaultLayout>
           <div style={{ height: '400px' }} className="u-margin-bottom">
             <GoogleMap
               markers={markers}
@@ -177,7 +178,7 @@ export class Locations extends React.Component<Props, State> {
               null}
             </div>
           </Container>
-        </div>
+        </DefaultLayout>
       </React.Fragment>
     )
   }

@@ -8,14 +8,13 @@ import attachRoutes from '../core/attach-routes'
 import Analytics from '../components/analytics'
 import routes from './manifest'
 import NotFound from '../pages/404'
-import { DefaultLayout } from '../layouts/default-layout'
 
 type Props = {
   pageNotFound: boolean,
 }
 
 const App = ({ pageNotFound }: Props) => (
-  <DefaultLayout>
+  <React.Fragment>
     <Route
       path="/"
       render={() => {
@@ -29,7 +28,7 @@ const App = ({ pageNotFound }: Props) => (
       {attachRoutes(routes, pageNotFound)}
       <Route render={() => <NotFound />} />
     </Switch>
-  </DefaultLayout>
+  </React.Fragment>
 )
 
 export default App
