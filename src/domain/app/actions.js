@@ -1,7 +1,7 @@
 // @flow
 
 import { path } from 'ramda'
-import { TOGGLE_MODAL, PAGE_NOT_FOUND, RESET_PAGE_ERRORS } from './action-types'
+import { TOGGLE_MODAL, PAGE_NOT_FOUND, RESET_PAGE_ERRORS } from './types'
 
 type ModalProps = {
   isVisible: boolean,

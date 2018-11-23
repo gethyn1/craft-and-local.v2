@@ -1,5 +1,5 @@
 import { modals } from '../reducer'
-import { TOGGLE_MODAL } from '../action-types'
+import { TOGGLE_MODAL } from '../types'
 
 describe('app > reducer', () => {
   describe('ui > modals', () => {

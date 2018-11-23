@@ -5,7 +5,7 @@ import {
   PRODUCER_FETCH_DATA_SUCCESS,
   PRODUCER_FETCH_HAS_ERRORED,
 } from './action-types'
-import { handlePageError } from '../../pages/actions'
+import { actions } from '../app'
 import api from '../../services/api'
 
 export const getProducer = (service: Object) => (userId: String) => (dispatch: Function) => {
@@ -16,7 +16,7 @@ export const getProducer = (service: Object) => (userId: String) => (dispatch: F
       dispatch({ type: PRODUCER_FETCH_DATA_SUCCESS, payload: data })
     })
     .catch(err =>
-      dispatch(handlePageError(err, { type: PRODUCER_FETCH_HAS_ERRORED, payload: true })))
+      dispatch(actions.handlePageError(err, { type: PRODUCER_FETCH_HAS_ERRORED, payload: true })))
 }
 
 export const getProducerWithAPI = getProducer(api)

@@ -7,7 +7,7 @@ import {
 } from './action-types'
 
 import api from '../../services/api'
-import { handlePageError } from '../../pages/actions'
+import { actions } from '../app'
 
 const uploadFile = (service: Object) => (id: string, file: Object, userId: ?string) => (dispatch: Function) => {
   dispatch({
@@ -26,7 +26,7 @@ const uploadFile = (service: Object) => (id: string, file: Object, userId: ?stri
       })
     })
     .catch(err =>
-      dispatch(handlePageError(err, {
+      dispatch(actions.handlePageError(err, {
         type: UPLOAD_HAS_ERRORED,
         payload: { id },
       })))

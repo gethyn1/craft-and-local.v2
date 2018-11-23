@@ -2,8 +2,7 @@
 
 import { connect } from 'react-redux'
 import { equals, path } from 'ramda'
-import { locations } from 'src/domain'
-import { pageNotFound } from '../actions'
+import { app, locations } from 'src/domain'
 import { Locations } from './locations'
 
 const { getLocationsWithAPI, loadMoreLocationsWithAPI, resetLocations } = locations.actions
@@ -35,7 +34,7 @@ const mapDispatchToProps = {
   getLocations: getLocationsWithAPI,
   loadMoreLocations: loadMoreLocationsWithAPI,
   resetLocations,
-  pageNotFound,
+  pageNotFound: app.actions.pageNotFound,
 }
 
 export default connect(

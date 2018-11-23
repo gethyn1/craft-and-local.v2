@@ -2,17 +2,11 @@
 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { categories, user } from 'src/domain'
 import App from './app'
 
 const mapStateToProps = (state: Object) => ({
   pageNotFound: state.app.ui.pageErrors.pageNotFound,
 })
-
-const mapDispatchToProps = {
-  getUserLocation: user.location.actions.getUserLocation,
-  getCategories: categories.actions.getCategoriesWithAPI,
-}
 
 /**
  * NOTE: Directly connecting and exporting a component wrapped in `withRouter`
@@ -21,7 +15,7 @@ const mapDispatchToProps = {
 
 const connectedAppContainer = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  null,
 )(App)
 
 export default withRouter(connectedAppContainer)

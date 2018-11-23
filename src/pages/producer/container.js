@@ -2,13 +2,12 @@
 
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
-import { location } from 'src/domain'
+import { app, location } from 'src/domain'
 import {
   trackShareProducerModal,
   trackShareProducerButton,
   trackProducerMetaLink,
 } from './actions'
-import { toggleModal } from '../actions'
 import Producer from './producer'
 
 const { getLocationWithAPI } = location.actions
@@ -26,7 +25,7 @@ const mapDispatchToProps = (dispatch: Function) => ({
     dispatch(getLocationWithAPI(userId))
   },
   shareProfile: (isVisible: boolean, userId: string) => {
-    dispatch(toggleModal({ modal: 'shareProducer', isVisible }))
+    dispatch(app.actions.toggleModal({ modal: 'shareProducer', isVisible }))
 
     if (isVisible) {
       dispatch(trackShareProducerModal(userId))

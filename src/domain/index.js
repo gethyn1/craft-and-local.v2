@@ -1,3 +1,4 @@
+export * as app from './app'
 export * as categories from './categories'
 export * as geocoding from './geocoding'
 export * as location from './location'

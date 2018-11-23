@@ -1,7 +1,7 @@
 import configureStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { handlePageError } from '../actions'
-import { PAGE_NOT_FOUND } from '../action-types'
+import { PAGE_NOT_FOUND } from '../types'
 
 const middlewares = [thunk]
 const mockStore = configureStore(middlewares)

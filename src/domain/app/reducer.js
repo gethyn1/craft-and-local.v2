@@ -1,9 +1,7 @@
 // @flow
 
 import { combineReducers } from 'redux'
-import { categories, geocoding, uploads, user, location, locations } from 'src/domain'
-import { reducer as admin } from '../admin'
-import { TOGGLE_MODAL, PAGE_NOT_FOUND, RESET_PAGE_ERRORS } from './action-types'
+import { TOGGLE_MODAL, PAGE_NOT_FOUND, RESET_PAGE_ERRORS } from './types'
 
 const initialModalsState = {
   shareProducer: {
@@ -50,22 +48,9 @@ export const pageErrors = (
   }
 }
 
-const appReducer = combineReducers({
-  app: combineReducers({
-    ui: combineReducers({
-      modals,
-      pageErrors,
-    }),
-  }),
-  admin,
-  domain: combineReducers({
-    categories: categories.reducer,
-    geocoding: geocoding.reducer,
-    uploads: uploads.reducer,
-    user: user.reducer,
-    locations: locations.reducer,
-    location: location.reducer,
+export const reducer = combineReducers({
+  ui: combineReducers({
+    modals,
+    pageErrors,
   }),
 })
-
-export default appReducer

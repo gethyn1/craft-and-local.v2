@@ -1,5 +1,5 @@
 // @flow
-
+import { app } from 'src/domain'
 import {
   CREATE_PRODUCER_REQUESTED,
   CREATE_PRODUCER_SUCCEEDED,
@@ -14,7 +14,6 @@ import {
 } from './action-types'
 
 import api from '../../services/api'
-import { handlePageError } from '../../pages/actions'
 
 export const createProducer = (service: Object) => (producer: Object) => (dispatch: Function) => {
   dispatch({ type: CREATE_PRODUCER_REQUESTED })
@@ -24,7 +23,7 @@ export const createProducer = (service: Object) => (producer: Object) => (dispat
       dispatch({ type: CREATE_PRODUCER_SUCCEEDED, payload: data })
     })
     .catch(err =>
-      dispatch(handlePageError(err, { type: CREATE_PRODUCER_HAS_ERRORED })))
+      dispatch(app.actions.handlePageError(err, { type: CREATE_PRODUCER_HAS_ERRORED })))
 }
 
 export const updateProducer = (service: Object) => (userId: string, producer: Object) => (dispatch: Function) => {
@@ -35,7 +34,7 @@ export const updateProducer = (service: Object) => (userId: string, producer: Ob
       dispatch({ type: UPDATE_PRODUCER_SUCCEEDED, payload: data })
     })
     .catch(err =>
-      dispatch(handlePageError(err, { type: UPDATE_PRODUCER_HAS_ERRORED })))
+      dispatch(app.actions.handlePageError(err, { type: UPDATE_PRODUCER_HAS_ERRORED })))
 }
 
 export const getLocationsForProducer = (service: Object) => (id: string) => (dispatch: Function) => {
@@ -46,7 +45,7 @@ export const getLocationsForProducer = (service: Object) => (id: string) => (dis
       dispatch({ type: GET_LOCATIONS_FOR_PRODUCER_SUCCEEDED, payload: data })
     })
     .catch(err =>
-      dispatch(handlePageError(err, { type: GET_LOCATIONS_FOR_PRODUCER_HAS_ERRORED })))
+      dispatch(app.actions.handlePageError(err, { type: GET_LOCATIONS_FOR_PRODUCER_HAS_ERRORED })))
 }
 
 export const resetProducer = () => (dispatch: Function) => dispatch({ type: PRODUCER_DATA_RESET })

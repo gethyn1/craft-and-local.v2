@@ -8,12 +8,12 @@ jest.doMock('react-router-dom', () => ({
   Link: () => <div />,
 }))
 
-const App = require('../app').default
+const { DefaultLayout } = require('../default-layout')
 
 const getUserLocation = jest.fn()
 const getCategories = jest.fn()
 
-describe('<App />', () => {
+describe('<DefaultLayout />', () => {
   beforeEach(() => {
     getUserLocation.mockReset()
     getCategories.mockReset()
@@ -23,7 +23,7 @@ describe('<App />', () => {
     /* eslint-disable */
     const wrapper = mount(
       <MemoryRouter>
-        <App getUserLocation={getUserLocation} getCategories={getCategories} />
+        <DefaultLayout getUserLocation={getUserLocation} getCategories={getCategories} />
       </MemoryRouter>
     )
     /* eslint-enable */
@@ -35,7 +35,7 @@ describe('<App />', () => {
     /* eslint-disable */
     const wrapper = mount(
       <MemoryRouter>
-        <App getUserLocation={getUserLocation} getCategories={getCategories} />
+        <DefaultLayout getUserLocation={getUserLocation} getCategories={getCategories} />
       </MemoryRouter>
     )
     /* eslint-enable */
