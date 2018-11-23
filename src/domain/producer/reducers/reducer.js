@@ -4,7 +4,7 @@ import {
   PRODUCER_IS_FETCHING_DATA,
   PRODUCER_FETCH_DATA_SUCCESS,
   PRODUCER_FETCH_HAS_ERRORED,
-} from './action-types'
+} from '../action-types'
 
 const producer = (state: ?Object = null, action: { type: string, payload: any }) => {
   switch (action.type) {

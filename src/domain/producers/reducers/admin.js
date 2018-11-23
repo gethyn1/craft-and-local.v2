@@ -1,12 +1,10 @@
 // @flow
 import { combineReducers } from 'redux'
-import { producers } from 'src/domain'
-
-const {
+import {
   PRODUCERS_FETCH_DATA_REQUESTED,
   PRODUCERS_FETCH_DATA_SUCCEEDED,
   PRODUCERS_FETCH_DATA_FAILED,
-} = producers.actionTypes
+} from '../action-types'
 
 const producersReducer = (state: ?Array<Object> = [], action: { type: string, payload: any }) => {
   switch (action.type) {
@@ -52,7 +50,7 @@ const hasErrored = (state: boolean = false, action: { type: string, payload: any
   }
 }
 
-export const reducer = combineReducers({
+export const admin = combineReducers({
   data: producersReducer,
   meta: combineReducers({
     isLoading,
