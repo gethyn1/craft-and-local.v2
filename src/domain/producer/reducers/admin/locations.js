@@ -5,7 +5,7 @@ import {
   GET_LOCATIONS_FOR_PRODUCER_SUCCEEDED,
   GET_LOCATIONS_FOR_PRODUCER_HAS_ERRORED,
   PRODUCER_DATA_RESET,
-} from '../action-types'
+} from '../../action-types'
 
 export const locations = (state: ?Array<Object> = null, action: { type: string, payload: any }) => {
   switch (action.type) {

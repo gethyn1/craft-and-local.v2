@@ -2,13 +2,13 @@
 
 import { path } from 'ramda'
 import { connect } from 'react-redux'
+import { producer } from 'src/domain'
 import { Create } from './create'
-import { createProducerWithAPI } from '../actions'
 
 const mapStateToProps = (state: Object) => {
-  const producer = path(['admin', 'producer'], state)
-  const meta = path(['meta'], producer)
-  const data = path(['data'], producer)
+  const producerState = path(['admin', 'producer'], state)
+  const meta = path(['meta'], producerState)
+  const data = path(['data'], producerState)
 
   return {
     isFetching: path(['isFetching'], meta),
@@ -19,7 +19,7 @@ const mapStateToProps = (state: Object) => {
 }
 
 const mapDispatchToProps = {
-  onSubmit: createProducerWithAPI,
+  onSubmit: producer.actions.createProducerWithAPI,
 }
 
 export const container = connect(

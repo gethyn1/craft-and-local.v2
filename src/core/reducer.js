@@ -3,18 +3,18 @@ import {
   app,
   categories,
   geocoding,
+  producer,
   producers,
   uploads,
   user,
   location,
   locations,
 } from 'src/domain'
-import { reducer as admin } from '../admin'
 
 export const reducer = combineReducers({
   app: app.reducer,
   admin: combineReducers({
-    ...admin,
+    producer: producer.reducers.admin,
     producers: producers.reducers.admin,
     location: location.reducers.admin,
   }),

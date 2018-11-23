@@ -2,7 +2,7 @@
 
 import React from 'react'
 import { FileUpload } from 'components/file-upload'
-import { ASSET_BASE } from '../../../../config'
+import { ASSET_BASE } from '../../../../../config'
 
 type Props = {
   isLoading: boolean,

@@ -5,9 +5,13 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
 import { producer } from 'src/domain'
 import { Edit } from './edit'
-import { updateProducerWithAPI, getLocationsForProducerWithAPI, resetProducer } from '../actions'
 
-const { getProducerWithAPI } = producer.actions
+const {
+  getProducerWithAPI,
+  updateProducerWithAPI,
+  getLocationsForProducerWithAPI,
+  resetProducer,
+} = producer.actions
 
 type Props = {
   userId: string,

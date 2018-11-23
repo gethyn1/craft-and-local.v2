@@ -1,9 +1,11 @@
 // @flow
 
-import { producer } from 'src/domain'
-import { CREATE_PRODUCER_SUCCEEDED, UPDATE_PRODUCER_SUCCEEDED, PRODUCER_DATA_RESET } from '../action-types'
-
-const { PRODUCER_FETCH_DATA_SUCCESS } = producer.actionTypes
+import {
+  CREATE_PRODUCER_SUCCEEDED,
+  UPDATE_PRODUCER_SUCCEEDED,
+  PRODUCER_DATA_RESET,
+  PRODUCER_FETCH_DATA_SUCCESS,
+} from '../../action-types'
 
 export const producerReducer = (state: ?Object = null, action: { type: string, payload: any }) => {
   switch (action.type) {

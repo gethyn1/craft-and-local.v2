@@ -3,7 +3,7 @@ import { producerReducer } from './producer'
 import * as locations from './locations'
 import { isFetching, hasErrored, hasUpdated } from './meta'
 
-export const reducer = combineReducers({
+export const admin = combineReducers({
   data: producerReducer,
   locations: combineReducers({
     data: locations.locations,

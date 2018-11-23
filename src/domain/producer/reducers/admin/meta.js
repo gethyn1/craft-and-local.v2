@@ -1,6 +1,5 @@
 // @flow
 
-import { producer } from 'src/domain'
 import {
   CREATE_PRODUCER_REQUESTED,
   CREATE_PRODUCER_SUCCEEDED,
@@ -8,13 +7,10 @@ import {
   UPDATE_PRODUCER_REQUESTED,
   UPDATE_PRODUCER_SUCCEEDED,
   UPDATE_PRODUCER_HAS_ERRORED,
-} from '../action-types'
-
-const {
   PRODUCER_IS_FETCHING_DATA,
   PRODUCER_FETCH_DATA_SUCCESS,
   PRODUCER_FETCH_HAS_ERRORED,
-} = producer.actionTypes
+} from '../../action-types'
 
 export const isFetching = (state: boolean = false, action: { type: string }) => {
   switch (action.type) {
