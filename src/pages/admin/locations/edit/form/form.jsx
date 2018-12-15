@@ -5,12 +5,10 @@ import { path } from 'ramda'
 import { Input } from 'components/input'
 import { Button } from 'components/button'
 import { AddressLookup } from 'components/address-lookup'
-import { Categories } from 'components/categories'
 
 type Props = {
   location: Object,
   onSubmit: Function,
-  categories: ?Array<Object>,
 }
 
 type State = {
@@ -19,12 +17,6 @@ type State = {
   address: string,
   lng: number,
   lat: number,
-  categories: ?Array<String>,
-  instagram_handle: ?string,
-  twitter_handle: ?string,
-  contact_email: ?string,
-  contact_telephone: ?string,
-  website: ?string,
 }
 
 export class Form extends React.Component<Props, State> {
@@ -37,12 +29,6 @@ export class Form extends React.Component<Props, State> {
       address: '',
       lng: 0,
       lat: 0,
-      categories: [],
-      instagram_handle: '',
-      twitter_handle: '',
-      website: '',
-      contact_email: '',
-      contact_telephone: '',
     }
   }
 
@@ -67,12 +53,6 @@ export class Form extends React.Component<Props, State> {
       address: location.address || '',
       lng: location.location.coordinates[0] || 0,
       lat: location.location.coordinates[1] || 0,
-      categories: path(['categories'], location) ? location.categories.map(category => category._id) : null,
-      instagram_handle: location.instagram_handle || '',
-      twitter_handle: location.twitter_handle || '',
-      website: location.website || '',
-      contact_email: location.contact_email || '',
-      contact_telephone: location.contact_telephone || '',
     })
   }
 
@@ -83,12 +63,6 @@ export class Form extends React.Component<Props, State> {
   handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
     this.setState({
       [event.currentTarget.name]: event.currentTarget.value,
-    })
-  }
-
-  handleCategoryChange = (selected: Array<String>) => {
-    this.setState({
-      categories: selected,
     })
   }
 
@@ -111,24 +85,6 @@ export class Form extends React.Component<Props, State> {
         </div>
         <div className="u-margin-bottom">
           <Input id="lat" label="Latitude" name="lat" onChange={this.handleChange} value={this.state.lat} />
-        </div>
-        <div className="u-margin-bottom">
-          <Categories categories={this.props.categories} selected={this.state.categories} onCategorySelect={this.handleCategoryChange} />
-        </div>
-        <div className="u-margin-bottom">
-          <Input id="instagram_handle" label="Instagram" name="instagram_handle" onChange={this.handleChange} value={this.state.instagram_handle} />
-        </div>
-        <div className="u-margin-bottom">
-          <Input id="twitter_handle" label="Twitter" name="twitter_handle" onChange={this.handleChange} value={this.state.twitter_handle} />
-        </div>
-        <div className="u-margin-bottom">
-          <Input id="website" label="Website" name="website" onChange={this.handleChange} value={this.state.website} />
-        </div>
-        <div className="u-margin-bottom">
-          <Input id="contact_email" label="Contact email address" name="contact_email" onChange={this.handleChange} value={this.state.contact_email} />
-        </div>
-        <div className="u-margin-bottom">
-          <Input id="contact_telephone" label="Contact telephone" name="contact_telephone" onChange={this.handleChange} value={this.state.contact_telephone} />
         </div>
         <Button type="submit">Submit</Button>
       </form>

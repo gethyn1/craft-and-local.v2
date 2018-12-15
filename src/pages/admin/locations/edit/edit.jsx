@@ -12,7 +12,6 @@ type Props = {
   hasErrored: boolean,
   isUpdating: boolean,
   hasUpdated: boolean,
-  categories: ?Array<Object>,
 }
 
 export const Edit = ({
@@ -22,7 +21,6 @@ export const Edit = ({
   isUpdating,
   location,
   onSubmit,
-  categories,
 }: Props) => (
   <AdminLayout>
     <Container>
@@ -34,7 +32,6 @@ export const Edit = ({
       {!isFetching && <Form
         location={location}
         onSubmit={onSubmit}
-        categories={categories}
       />}
     </Container>
   </AdminLayout>
