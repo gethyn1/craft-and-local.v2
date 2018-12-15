@@ -1,0 +1,40 @@
+/* ==========================================================================
+   #NOTIFICATION
+   ========================================================================== */
+
+@import "common/styles/_global-import.scss";
+
+.notification {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: $white;
+  font-weight: bold;
+  background: $palette-primary;
+  padding: $global-spacing-unit-sm;
+}
+
+.message {
+  margin-bottom: 0;
+}
+
+.success {}
+
+.task {}
+
+.error {
+  background: $palette-error;
+}
+
+.close {
+  background: none;
+  color: $white;
+  border: none;
+  position: absolute;
+  right: $global-spacing-unit-sm;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  padding: 0;
+}
