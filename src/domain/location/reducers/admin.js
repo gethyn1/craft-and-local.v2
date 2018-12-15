@@ -11,6 +11,7 @@ import {
   CREATE_LOCATION_REQUESTED,
   CREATE_LOCATION_SUCCEEDED,
   CREATE_LOCATION_FAILED,
+  LOCATION_RESET_META,
 } from '../types'
 
 const locationReducer = (state: ?Array<Object> = null, action: { type: string, payload: any }) => {
@@ -32,6 +33,7 @@ const isFetching = (state: boolean = false, action: { type: string }) => {
     case CREATE_LOCATION_FAILED:
     case LOCATION_FETCH_DATA_SUCCESS:
     case LOCATION_FETCH_HAS_ERRORED:
+    case LOCATION_RESET_META:
       return false
     default:
       return state
@@ -44,6 +46,7 @@ const hasErrored = (state: boolean = false, action: { type: string }) => {
     case CREATE_LOCATION_REQUESTED:
     case LOCATION_IS_FETCHING_DATA:
     case LOCATION_FETCH_DATA_SUCCESS:
+    case LOCATION_RESET_META:
       return false
     case CREATE_LOCATION_FAILED:
     case LOCATION_FETCH_HAS_ERRORED:
@@ -71,6 +74,7 @@ const isUpdating = (state: boolean = false, action: { type: string }) => {
     case CREATE_LOCATION_FAILED:
     case LOCATION_UPDATE_SUCCEEDED:
     case LOCATION_UPDATE_FAILED:
+    case LOCATION_RESET_META:
       return false
     case CREATE_LOCATION_REQUESTED:
     case LOCATION_UPDATE_REQUESTED:
@@ -86,6 +90,7 @@ const hasUpdated = (state: boolean = false, action: { type: string }) => {
     case LOCATION_IS_FETCHING_DATA:
     case LOCATION_UPDATE_REQUESTED:
     case LOCATION_UPDATE_FAILED:
+    case LOCATION_RESET_META:
       return false
     case CREATE_LOCATION_SUCCEEDED:
     case LOCATION_UPDATE_SUCCEEDED:
