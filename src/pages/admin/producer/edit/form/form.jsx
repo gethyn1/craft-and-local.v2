@@ -11,6 +11,7 @@ type Props = {
   producer: Object,
   onSubmit: Function,
   categories: ?Array<Object>,
+  disabled: boolean,
 }
 
 type State = {
@@ -111,7 +112,7 @@ export class Form extends React.Component<Props, State> {
         <div className="u-margin-bottom">
           <Input id="contact_telephone" label="Contact telephone" name="contact_telephone" onChange={this.handleChange} value={this.state.contact_telephone} />
         </div>
-        <Button type="submit">Submit</Button>
+        <Button disabled={this.props.disabled} type="submit">Submit</Button>
       </form>
     )
   }

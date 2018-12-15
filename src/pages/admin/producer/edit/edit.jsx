@@ -3,6 +3,7 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
 import Container from 'components/container'
+import { Notification } from 'components/notification'
 import { APP_NAME } from 'src/config'
 import { Avatar } from './avatar'
 import { Locations } from './locations'
@@ -15,11 +16,13 @@ type Props = {
   onSubmit: Function,
   isFetching: boolean,
   hasErrored: boolean,
+  isUpdating: boolean,
   hasUpdated: boolean,
   categories: ?Array<Object>,
   locations: ?Array<Object>,
   locationsIsLoading: boolean,
   locationsHasErrored: boolean,
+  dismissNotification: Function,
 }
 
 const Edit = (props: Props) => (
@@ -32,24 +35,26 @@ const Edit = (props: Props) => (
     />
     <AdminLayout>
       <Container>
-        <h2>Producer locations</h2>
-        <Locations
-          isLoading={props.locationsIsLoading}
-          hasErrored={props.locationsHasErrored}
-          locations={props.locations}
-          producerId={props.userId}
-        />
-        <h2>Edit avatar</h2>
-        <Avatar />
         <h2>Edit Producer: {props.userId}</h2>
-        {props.hasUpdated && <p>Producer succesfully updated</p>}
-        {props.isFetching && <p>Updating producer ...</p>}
-        {props.hasErrored && <p>There was an error updating the producer. Please try again</p>}
+        <h3>Edit avatar</h3>
+        <Avatar />
+        {props.hasUpdated && <Notification onDismiss={props.dismissNotification} status="success" message="Producer succesfully updated" />}
+        {props.isFetching && <Notification status="task" message="Loading producer ..." />}
+        {props.isUpdating && <Notification status="task" message="Updating producer ..." />}
+        {props.hasErrored && <Notification onDismiss={props.dismissNotification} status="error" message="There was an error updating the producer. Please try again" />}
         <Form
           producer={props.producer}
           onSubmit={props.onSubmit}
           categories={props.categories}
           userId={props.userId}
+          disabled={props.isFetching || props.isUpdating}
+        />
+        <h3>Producer locations</h3>
+        <Locations
+          isLoading={props.locationsIsLoading}
+          hasErrored={props.locationsHasErrored}
+          locations={props.locations}
+          producerId={props.userId}
         />
       </Container>
     </AdminLayout>
