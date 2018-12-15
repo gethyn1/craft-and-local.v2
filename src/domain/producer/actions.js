@@ -15,6 +15,7 @@ import {
   GET_LOCATIONS_FOR_PRODUCER_SUCCEEDED,
   GET_LOCATIONS_FOR_PRODUCER_HAS_ERRORED,
   PRODUCER_DATA_RESET,
+  PRODUCER_META_RESET,
 } from './action-types'
 
 import api from '../../services/api'
@@ -65,6 +66,8 @@ export const getLocationsForProducer = (service: Object) => (id: string) => (dis
 }
 
 export const resetProducer = () => (dispatch: Function) => dispatch({ type: PRODUCER_DATA_RESET })
+
+export const resetProducerMeta = () => (dispatch: Function) => dispatch({ type: PRODUCER_META_RESET })
 
 export const getProducerWithAPI = getProducer(api)
 export const createProducerWithAPI = createProducer(api)
