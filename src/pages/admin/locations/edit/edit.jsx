@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Container from 'components/container'
+import { Notification } from 'components/notification'
 import { Form } from './form'
 import { AdminLayout } from '../../../../layouts/admin-layout'
 
@@ -12,6 +13,7 @@ type Props = {
   hasErrored: boolean,
   isUpdating: boolean,
   hasUpdated: boolean,
+  dismissNotification: Function,
 }
 
 export const Edit = ({
@@ -21,17 +23,19 @@ export const Edit = ({
   isUpdating,
   location,
   onSubmit,
+  dismissNotification,
 }: Props) => (
   <AdminLayout>
     <Container>
       <h2>Edit Location</h2>
-      {hasUpdated && <p>Location succesfully updated</p>}
-      {isFetching && <p>Loading location ...</p>}
-      {isUpdating && <p>Updating location ...</p>}
-      {hasErrored && <p>There was an error updating the location. Please try again</p>}
+      {hasUpdated && <Notification onDismiss={dismissNotification} message="Location succesfully updated" />}
+      {isFetching && <Notification message="Loading location ..." />}
+      {isUpdating && <Notification message="Updating location ..." />}
+      {hasErrored && <Notification onDismiss={dismissNotification} status="error" message="There was an error updating the location. Please try again" />}
       {!isFetching && <Form
         location={location}
         onSubmit={onSubmit}
+        disabled={isFetching || isUpdating}
       />}
     </Container>
   </AdminLayout>

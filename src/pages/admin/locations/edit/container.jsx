@@ -8,7 +8,7 @@ import { APP_NAME } from 'src/config'
 import { location } from 'src/domain'
 import { Edit } from './edit'
 
-const { getLocationWithAPI, updateLocationWithAPI } = location.actions
+const { getLocationWithAPI, updateLocationWithAPI, resetLocationMeta } = location.actions
 
 type Props = {
   id: string,
@@ -23,6 +23,7 @@ type Props = {
   geoCodingLookup: Function,
   onGeoCodingSelect: Function,
   onSubmit: Function,
+  dismissNotification: Function,
 }
 
 class EditContainer extends React.Component<Props> {
@@ -50,6 +51,7 @@ class EditContainer extends React.Component<Props> {
           geoCodingLookup={this.props.geoCodingLookup}
           onGeoCodingSelect={this.props.onGeoCodingSelect}
           onSubmit={this.props.onSubmit}
+          dismissNotification={this.props.dismissNotification}
         />
       </React.Fragment>
     )
@@ -69,6 +71,7 @@ const mapStateToProps = (state: Object, ownProps: Object) => ({
 const mapDispatchToProps = {
   getLocation: getLocationWithAPI,
   onSubmit: updateLocationWithAPI,
+  dismissNotification: resetLocationMeta,
 }
 
 export const container = withRouter(connect(

@@ -9,6 +9,7 @@ import { AddressLookup } from 'components/address-lookup'
 type Props = {
   location: Object,
   onSubmit: Function,
+  disabled: boolean,
 }
 
 type State = {
@@ -86,7 +87,7 @@ export class Form extends React.Component<Props, State> {
         <div className="u-margin-bottom">
           <Input id="lat" label="Latitude" name="lat" onChange={this.handleChange} value={this.state.lat} />
         </div>
-        <Button type="submit">Submit</Button>
+        <Button disabled={this.props.disabled} type="submit">Submit</Button>
       </form>
     )
   }

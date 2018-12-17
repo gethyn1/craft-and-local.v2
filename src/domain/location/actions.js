@@ -48,7 +48,7 @@ export const updateLocation = (service: Object) => (id: string, location: Object
       dispatch(actions.handlePageError(err, { type: LOCATION_UPDATE_FAILED })))
 }
 
-export const resetLocationMeta = (dispatch: Function) => dispatch({ type: LOCATION_RESET_META })
+export const resetLocationMeta = () => (dispatch: Function) => dispatch({ type: LOCATION_RESET_META })
 
 export const getLocationWithAPI = getLocation(api)
 export const createLocationWithAPI = createLocation(api)

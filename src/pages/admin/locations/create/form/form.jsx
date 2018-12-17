@@ -7,6 +7,7 @@ import { Button } from 'components/button'
 type Props = {
   producerId: String,
   onSubmit: Function,
+  disabled: boolean,
 }
 
 type State = {
@@ -39,7 +40,7 @@ export class Form extends React.Component<Props, State> {
         <div className="u-margin-bottom">
           <Input id="alias" label="Alias" name="alias" onChange={this.handleChange} value={this.state.alias} />
         </div>
-        <Button type="submit">Create location</Button>
+        <Button disabled={this.props.disabled} type="submit">Create location</Button>
       </form>
     )
   }
