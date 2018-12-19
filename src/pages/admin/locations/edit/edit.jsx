@@ -1,8 +1,10 @@
 // @flow
 
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Container from 'components/container'
 import { Notification } from 'components/notification'
+import { EDIT_PRODUCERS_PATH } from 'common/constants/paths'
 import { Form } from './form'
 import { AdminLayout } from '../../../../layouts/admin-layout'
 
@@ -14,6 +16,7 @@ type Props = {
   isUpdating: boolean,
   hasUpdated: boolean,
   dismissNotification: Function,
+  producer: Object,
 }
 
 export const Edit = ({
@@ -24,10 +27,12 @@ export const Edit = ({
   location,
   onSubmit,
   dismissNotification,
+  producer,
 }: Props) => (
   <AdminLayout>
     <Container>
       <h2>Edit Location</h2>
+      {producer && <p><Link to={`${EDIT_PRODUCERS_PATH}/${producer.userId}`}>Back to producer</Link></p>}
       {hasUpdated && <Notification onDismiss={dismissNotification} message="Location succesfully updated" />}
       {isFetching && <Notification message="Loading location ..." />}
       {isUpdating && <Notification message="Updating location ..." />}

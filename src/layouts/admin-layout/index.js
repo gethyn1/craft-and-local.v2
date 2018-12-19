@@ -1,1 +1,1 @@
-export { AdminLayout } from './admin-layout'
+export { container as AdminLayout } from './container'

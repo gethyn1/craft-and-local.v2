@@ -7,6 +7,7 @@ import Footer from '../../components/footer'
 
 type Props = {
   children: React.Node,
+  getCategories: Function,
 }
 
 const navigationItems = [
@@ -22,10 +23,18 @@ const navigationItems = [
   },
 ]
 
-export const AdminLayout = ({ children }: Props) => (
-  <React.Fragment>
-    <TopBar navigationItems={navigationItems} />
-    {children}
-    <Footer />
-  </React.Fragment>
-)
+export class AdminLayout extends React.Component<Props> {
+  componentDidMount() {
+    this.props.getCategories()
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <TopBar navigationItems={navigationItems} />
+        {this.props.children}
+        <Footer />
+      </React.Fragment>
+    )
+  }
+}
