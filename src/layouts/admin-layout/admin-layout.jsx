@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react'
-import { PRODUCERS_ADMIN_ROUTE, CREATE_PRODUCERS_PATH } from 'common/constants/paths'
+import { PRODUCERS_ADMIN_ROUTE, CREATE_PRODUCERS_PATH, EDIT_CATEGORIES_ROUTE } from 'common/constants/paths'
 import TopBar from '../../components/top-bar'
 import Footer from '../../components/footer'
 
@@ -20,6 +20,11 @@ const navigationItems = [
     key: 'create-producer',
     path: CREATE_PRODUCERS_PATH,
     title: 'New producer',
+  },
+  {
+    key: 'edit-categories',
+    path: EDIT_CATEGORIES_ROUTE,
+    title: 'Categories',
   },
 ]
 
