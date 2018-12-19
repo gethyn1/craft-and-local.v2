@@ -8,7 +8,7 @@ import { APP_NAME } from 'src/config'
 import { location } from 'src/domain'
 import { Edit } from './edit'
 
-const { getLocationWithAPI, updateLocationWithAPI } = location.actions
+const { getLocationWithAPI, updateLocationWithAPI, resetLocationMeta } = location.actions
 
 type Props = {
   id: string,
@@ -22,8 +22,8 @@ type Props = {
   geoCodingOptions: Array<Object>,
   geoCodingLookup: Function,
   onGeoCodingSelect: Function,
-  categories: Array<Object>,
   onSubmit: Function,
+  dismissNotification: Function,
 }
 
 class EditContainer extends React.Component<Props> {
@@ -48,10 +48,10 @@ class EditContainer extends React.Component<Props> {
           isUpdating={this.props.isUpdating}
           hasUpdated={this.props.hasUpdated}
           geoCodingOptions={this.props.geoCodingOptions}
-          categories={this.props.categories}
           geoCodingLookup={this.props.geoCodingLookup}
           onGeoCodingSelect={this.props.onGeoCodingSelect}
           onSubmit={this.props.onSubmit}
+          dismissNotification={this.props.dismissNotification}
         />
       </React.Fragment>
     )
@@ -66,12 +66,12 @@ const mapStateToProps = (state: Object, ownProps: Object) => ({
   hasErrored: state.admin.location.meta.hasErrored,
   isUpdating: state.admin.location.meta.isUpdating,
   hasUpdated: state.admin.location.meta.hasUpdated,
-  categories: state.domain.categories.data,
 })
 
 const mapDispatchToProps = {
   getLocation: getLocationWithAPI,
   onSubmit: updateLocationWithAPI,
+  dismissNotification: resetLocationMeta,
 }
 
 export const container = withRouter(connect(

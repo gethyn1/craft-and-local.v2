@@ -20,6 +20,7 @@ const mapStateToProps = (state: Object) => {
 
 const mapDispatchToProps = {
   onSubmit: producer.actions.createProducerWithAPI,
+  dismissNotification: producer.actions.resetProducerMeta,
 }
 
 export const container = connect(

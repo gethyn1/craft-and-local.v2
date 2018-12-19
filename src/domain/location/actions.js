@@ -10,6 +10,7 @@ import {
   CREATE_LOCATION_REQUESTED,
   CREATE_LOCATION_SUCCEEDED,
   CREATE_LOCATION_FAILED,
+  LOCATION_RESET_META,
 } from './types'
 import { actions } from '../app'
 import api from '../../services/api'
@@ -46,6 +47,8 @@ export const updateLocation = (service: Object) => (id: string, location: Object
     .catch(err =>
       dispatch(actions.handlePageError(err, { type: LOCATION_UPDATE_FAILED })))
 }
+
+export const resetLocationMeta = () => (dispatch: Function) => dispatch({ type: LOCATION_RESET_META })
 
 export const getLocationWithAPI = getLocation(api)
 export const createLocationWithAPI = createLocation(api)

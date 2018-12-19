@@ -10,7 +10,7 @@ import { producer, location } from 'src/domain'
 import { Create } from './create'
 import type { Props } from './create'
 
-const { createLocationWithAPI } = location.actions
+const { createLocationWithAPI, resetLocationMeta } = location.actions
 const { getProducerWithAPI } = producer.actions
 
 type ContainerProps = {
@@ -53,6 +53,7 @@ const mapStateToProps = (state: Object, ownProps: Object) => ({
 const mapDispatchToProps = {
   onSubmit: createLocationWithAPI,
   getProducer: getProducerWithAPI,
+  dismissNotification: resetLocationMeta,
 }
 
 export const container = withRouter(connect(

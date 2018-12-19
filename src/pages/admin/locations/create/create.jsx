@@ -3,9 +3,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Container from 'components/container'
+import { Notification } from 'components/notification'
 import { EDIT_PRODUCERS_PATH, EDIT_LOCATION_PATH } from 'common/constants/paths'
 import { Form } from './form'
-import { DefaultLayout } from '../../../../layouts/default-layout'
+import { AdminLayout } from '../../../../layouts/admin-layout'
 
 export type Props = {
   producer: Object,
@@ -14,6 +15,7 @@ export type Props = {
   isUpdating: boolean,
   hasUpdated: boolean,
   hasErrored: boolean,
+  dismissNotification: Function,
 }
 
 const NoProducerDefined = () => (
@@ -21,9 +23,9 @@ const NoProducerDefined = () => (
 )
 
 /* eslint-disable-next-line arrow-body-style */
-export const Create = ({ producer, location, hasUpdated, hasErrored, isUpdating, onSubmit }: Props) => {
+export const Create = ({ producer, location, hasUpdated, hasErrored, isUpdating, onSubmit, dismissNotification }: Props) => {
   return (
-    <DefaultLayout>
+    <AdminLayout>
       {producer ? (
         <Container>
           <h2>Create location{producer ? ` for ${producer.userId}` : null}</h2>
@@ -35,11 +37,11 @@ export const Create = ({ producer, location, hasUpdated, hasErrored, isUpdating,
             </div> :
             null}
           {hasUpdated && <p>Location succesfully created. <Link to={`${EDIT_LOCATION_PATH}/${location._id}`}>Edit location</Link></p>}
-          {isUpdating && <p>Creating location ...</p>}
-          {hasErrored && <p>There was an error creating the location. Please try again</p>}
-          <Form producerId={producer._id} onSubmit={onSubmit} />
+          {isUpdating && <Notification message="Creating location ..." />}
+          {hasErrored && <Notification onDismiss={dismissNotification} status="error" message="There was an error creating the producer. Please try again" />}
+          <Form disabled={isUpdating} producerId={producer._id} onSubmit={onSubmit} />
         </Container>
     ) : <NoProducerDefined />}
-    </DefaultLayout>
+    </AdminLayout>
   )
 }

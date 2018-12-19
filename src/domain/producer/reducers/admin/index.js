@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux'
 import { producerReducer } from './producer'
 import * as locations from './locations'
-import { isFetching, hasErrored, hasUpdated } from './meta'
+import { isFetching, hasErrored, isUpdating, hasUpdated } from './meta'
 
 export const admin = combineReducers({
   data: producerReducer,
@@ -16,6 +16,7 @@ export const admin = combineReducers({
   meta: combineReducers({
     isFetching,
     hasErrored,
+    isUpdating,
     hasUpdated,
   }),
 })

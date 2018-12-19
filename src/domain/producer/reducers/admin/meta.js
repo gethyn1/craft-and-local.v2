@@ -10,20 +10,16 @@ import {
   PRODUCER_IS_FETCHING_DATA,
   PRODUCER_FETCH_DATA_SUCCESS,
   PRODUCER_FETCH_HAS_ERRORED,
+  PRODUCER_META_RESET,
 } from '../../action-types'
 
 export const isFetching = (state: boolean = false, action: { type: string }) => {
   switch (action.type) {
-    case CREATE_PRODUCER_REQUESTED:
-    case UPDATE_PRODUCER_REQUESTED:
     case PRODUCER_IS_FETCHING_DATA:
       return true
-    case CREATE_PRODUCER_SUCCEEDED:
-    case CREATE_PRODUCER_HAS_ERRORED:
-    case UPDATE_PRODUCER_SUCCEEDED:
-    case UPDATE_PRODUCER_HAS_ERRORED:
     case PRODUCER_FETCH_HAS_ERRORED:
     case PRODUCER_FETCH_DATA_SUCCESS:
+    case PRODUCER_META_RESET:
       return false
     default:
       return state
@@ -38,11 +34,28 @@ export const hasErrored = (state: boolean = false, action: { type: string }) => 
     case UPDATE_PRODUCER_SUCCEEDED:
     case PRODUCER_IS_FETCHING_DATA:
     case PRODUCER_FETCH_DATA_SUCCESS:
+    case PRODUCER_META_RESET:
       return false
     case CREATE_PRODUCER_HAS_ERRORED:
     case UPDATE_PRODUCER_HAS_ERRORED:
     case PRODUCER_FETCH_HAS_ERRORED:
       return true
+    default:
+      return state
+  }
+}
+
+export const isUpdating = (state: boolean = false, action: { type: string }) => {
+  switch (action.type) {
+    case CREATE_PRODUCER_REQUESTED:
+    case UPDATE_PRODUCER_REQUESTED:
+      return true
+    case CREATE_PRODUCER_SUCCEEDED:
+    case CREATE_PRODUCER_HAS_ERRORED:
+    case UPDATE_PRODUCER_SUCCEEDED:
+    case UPDATE_PRODUCER_HAS_ERRORED:
+    case PRODUCER_META_RESET:
+      return false
     default:
       return state
   }
@@ -57,6 +70,7 @@ export const hasUpdated = (state: boolean = false, action: { type: string }) => 
     case PRODUCER_IS_FETCHING_DATA:
     case PRODUCER_FETCH_DATA_SUCCESS:
     case PRODUCER_FETCH_HAS_ERRORED:
+    case PRODUCER_META_RESET:
       return false
     case CREATE_PRODUCER_SUCCEEDED:
     case UPDATE_PRODUCER_SUCCEEDED:

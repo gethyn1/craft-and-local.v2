@@ -27,6 +27,11 @@
   &:hover {
     background-color: darken($palette-primary, 10);
   }
+
+  &:disabled {
+    pointer-events: none;
+    opacity: .5;
+  }
 }
 
 .block {
