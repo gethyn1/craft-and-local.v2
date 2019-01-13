@@ -4,6 +4,7 @@ import React from 'react'
 import { path } from 'ramda'
 import { Button } from 'components/button'
 import { Input } from 'components/input'
+import { Textarea } from 'components/textarea'
 import { Categories } from 'components/categories'
 
 type Props = {
@@ -18,6 +19,7 @@ type State = {
   title: string,
   userId: string,
   categories: ?Array<String>,
+  description: ?string,
   instagram_handle: ?string,
   twitter_handle: ?string,
   contact_email: ?string,
@@ -33,6 +35,7 @@ export class Form extends React.Component<Props, State> {
       title: '',
       userId: '',
       categories: [],
+      description: '',
       instagram_handle: '',
       twitter_handle: '',
       website: '',
@@ -60,6 +63,7 @@ export class Form extends React.Component<Props, State> {
       title: producer.title,
       userId: producer.userId,
       categories: producer.categories.map(category => category._id),
+      description: producer.description,
       instagram_handle: producer.instagram_handle,
       twitter_handle: producer.twitter_handle,
       website: producer.website,
@@ -93,6 +97,9 @@ export class Form extends React.Component<Props, State> {
         </div>
         <div className="u-margin-bottom">
           <Input id="userId" label="User ID" name="userId" onChange={this.handleChange} value={this.state.userId} />
+        </div>
+        <div className="u-margin-bottom">
+          <Textarea id="description" label="Description" name="description" onChange={this.handleChange} value={this.state.description} />
         </div>
         <div className="u-margin-bottom">
           <Categories categories={this.props.categories} selected={this.state.categories} onCategorySelect={this.handleCategoryChange} />

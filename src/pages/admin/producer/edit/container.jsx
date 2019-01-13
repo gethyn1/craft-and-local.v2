@@ -68,8 +68,8 @@ const mapStateToProps = (state: Object, ownProps: Object) => ({
 })
 
 const mapDispatchToProps = (dispatch: Function) => ({
-  onSubmit: (userId: String) => {
-    dispatch(updateProducerWithAPI(userId))
+  onSubmit: (userId: String, producerState: Object) => {
+    dispatch(updateProducerWithAPI(userId, producerState))
   },
   fetchProducer: (userId: String) => {
     dispatch(getProducerWithAPI(userId))
