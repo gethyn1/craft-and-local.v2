@@ -1,0 +1,12 @@
+/* ==========================================================================
+   #TEXTAREA
+   ========================================================================== */
+
+@import "common/styles/_global-import.scss";
+
+.textarea {
+  border: 1px solid $palette-border;
+  min-height: rem(100px);
+  padding: $global-spacing-unit-sm;
+  width: 100%;
+}
