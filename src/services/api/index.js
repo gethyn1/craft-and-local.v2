@@ -143,6 +143,21 @@ const api = {
         throw Error(err)
       }),
 
+  createCategory: (title: string, slug: string) =>
+    fetch(`${API_URL}/categories`, {
+      method: 'POST',
+      body: JSON.stringify({ title, slug }),
+      headers: createPostHeaders(true),
+    })
+      .then(catchFetchError)
+      .then(response => response.json())
+      .then(data => data.data.category)
+      .catch((err) => {
+        // eslint-disable-next-line no-console
+        console.log('Error in service:', err)
+        throw Error(err)
+      }),
+
   authenticateUser: (email: string, password: string) =>
     fetch(`${API_URL}/users/authenticate`, {
       method: 'POST',
